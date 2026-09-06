@@ -49,7 +49,7 @@ function Reveal({
 
 function SectionMark({ n, label }: { n: string; label: string }) {
   return (
-    <div className="flex items-baseline gap-4 font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
+    <div className="flex items-baseline gap-4 font-mono text-[15px] uppercase tracking-[0.18em] text-faint">
       <span>{n}</span>
       <span className="h-px w-10 bg-rule-strong" />
       <span>{label}</span>
@@ -72,7 +72,7 @@ export default function Landing({
     <KineticGrid globalColor="light">
       {/* ─────────────────────────────────────────────────────────── nav */}
       <header className="mx-auto flex max-w-[1240px] items-center justify-between px-6 py-7 md:px-10">
-        <span className="text-[19px] font-bold tracking-tight">Markable</span>
+        <span className="text-[23px] font-bold tracking-tight">Markable</span>
         <nav className="flex items-center gap-7 text-sm text-muted-ink">
           <a href="#how" className="underline-sweep hidden sm:inline">
             How it works
@@ -108,7 +108,7 @@ export default function Landing({
 
         <div className="mt-14 grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] md:items-end">
           <div className="fade-up" style={{ animationDelay: '0.45s' }}>
-            <p className="max-w-[46ch] text-[17px] leading-relaxed text-ink-soft md:text-[19px]">
+            <p className="max-w-[46ch] text-[23px] leading-relaxed text-ink-soft md:text-[26px]">
               Grading shouldn&rsquo;t end with a number. Markable helps faculty understand how they grade, why students
               lose marks, and what the results reveal about their class.
             </p>
@@ -126,7 +126,7 @@ export default function Landing({
               </a>
             </div>
 
-            <p className="mt-9 font-mono text-[11px] uppercase tracking-[0.16em] text-faint">
+            <p className="mt-9 font-mono text-[15px] uppercase tracking-[0.16em] text-faint">
               Built for educators · Designed to keep them in control
             </p>
           </div>
@@ -135,12 +135,12 @@ export default function Landing({
           <div className="fade-up relative" style={{ animationDelay: '0.6s' }}>
             <div className="rounded-2xl border border-rule bg-white p-7 shadow-[0_18px_50px_-28px_rgba(17,17,17,0.35)]">
               <div className="flex items-baseline justify-between">
-                <span className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-faint">
+                <span className="font-mono text-[15px] uppercase tracking-[0.14em] text-faint">
                   Script 18 · Q4(b)
                 </span>
                 <span className="text-[40px] font-bold leading-none tracking-tight">
                   {hero.mark}
-                  <span className="text-[20px] text-faint"> / {totalMarks}</span>
+                  <span className="text-[26px] text-faint"> / {totalMarks}</span>
                 </span>
               </div>
 
@@ -152,7 +152,7 @@ export default function Landing({
                       key={a.label}
                       className="flex items-center justify-between gap-4 border-b border-rule py-2.5 last:border-b-0"
                     >
-                      <span className="flex items-center gap-2.5 text-[14px]">
+                      <span className="flex items-center gap-2.5 text-[22px]">
                         {full ? (
                           <Check className="h-4 w-4 text-good" />
                         ) : (
@@ -160,7 +160,7 @@ export default function Landing({
                         )}
                         <span className={full ? 'text-ink' : 'text-muted-ink'}>{a.label}</span>
                       </span>
-                      <span className="font-mono text-[13px] tabular-nums text-muted-ink">
+                      <span className="font-mono text-[18px] tabular-nums text-muted-ink">
                         {a.awarded}/{a.max}
                       </span>
                     </div>
@@ -175,10 +175,10 @@ export default function Landing({
               transition={{ duration: 0.8, ease: EASE, delay: 1.1 }}
               className="absolute -bottom-10 -left-4 w-[290px] rounded-2xl bg-lilac p-5 shadow-[0_18px_40px_-24px_rgba(17,17,17,0.4)] md:-left-14"
             >
-              <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink/50">
+              <p className="font-mono text-[15px] uppercase tracking-[0.14em] text-ink/50">
                 Something worth noticing
               </p>
-              <p className="mt-2 text-[15px] font-medium leading-snug text-ink">
+              <p className="mt-2 text-[22px] font-medium leading-snug text-ink">
                 Your marking became {drift.step.toFixed(2)} marks stricter after script {drift.splitAt}.
               </p>
             </motion.div>
@@ -224,7 +224,7 @@ export default function Landing({
                 <div>
                   <span className={`inline-block h-9 w-9 rounded-full ${item.tint}`} />
                   <h3 className="mt-6 text-[24px] font-bold tracking-tight md:text-[28px]">{item.title}</h3>
-                  <p className="mt-3 max-w-[34ch] text-[15px] leading-relaxed text-muted-ink">{item.body}</p>
+                  <p className="mt-3 max-w-[34ch] text-[22px] leading-relaxed text-muted-ink">{item.body}</p>
                 </div>
               </Reveal>
             ))}
@@ -278,19 +278,26 @@ export default function Landing({
             ].map((step, i) => (
               <Reveal key={step.n} delay={0.06 * i}>
                 <div className="group h-full bg-white p-7 transition-colors duration-500 hover:bg-paper-2 md:p-8">
-                  <span className="font-mono text-[11px] tracking-[0.16em] text-faint">{step.n}</span>
-                  <h3 className="mt-5 text-[19px] font-bold leading-tight tracking-tight">{step.title}</h3>
-                  <p className="mt-3 text-[14px] leading-relaxed text-muted-ink">{step.body}</p>
+                  <span className="font-mono text-[15px] tracking-[0.16em] text-faint">{step.n}</span>
+                  <h3 className="mt-5 text-[26px] font-bold leading-tight tracking-tight">{step.title}</h3>
+                  <p className="mt-3 text-[22px] leading-relaxed text-muted-ink">{step.body}</p>
                 </div>
               </Reveal>
             ))}
           </div>
 
           <Reveal delay={0.1}>
-            <div className="mt-14 flex flex-wrap items-center gap-x-5 gap-y-3 font-mono text-[13px] uppercase tracking-[0.16em] text-muted-ink">
-              {['Grade', 'Understand', 'Discover', 'Improve'].map((s, i) => (
+            <div className="mt-14 flex flex-wrap items-center gap-x-5 gap-y-3 font-mono text-[18px] uppercase tracking-[0.16em] text-muted-ink">
+              {[
+                { s: 'Grade', href: '/grade' },
+                { s: 'Understand', href: '/class' },
+                { s: 'Discover', href: '/you' },
+                { s: 'Improve', href: '/improve' },
+              ].map(({ s, href }, i) => (
                 <span key={s} className="flex items-center gap-5">
-                  <span className={i === 3 ? 'text-ink' : ''}>{s}</span>
+                  <Link href={href} className={`underline-sweep ${i === 3 ? 'text-ink' : ''}`}>
+                    {s}
+                  </Link>
                   {i < 3 && <span className="text-faint">&rarr;</span>}
                 </span>
               ))}
@@ -315,11 +322,11 @@ export default function Landing({
           <div className="mt-20 grid gap-6 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)]">
             <Reveal>
               <div className="h-full rounded-2xl border border-rule bg-white p-7 md:p-9">
-                <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-faint">Your grading</p>
+                <p className="font-mono text-[15px] uppercase tracking-[0.14em] text-faint">Your grading</p>
                 <h3 className="mt-3 text-[26px] font-bold leading-tight tracking-tight md:text-[32px]">
                   Possible shift detected
                 </h3>
-                <p className="mt-3 max-w-[46ch] text-[15px] leading-relaxed text-muted-ink">
+                <p className="mt-3 max-w-[46ch] text-[22px] leading-relaxed text-muted-ink">
                   After script {drift.splitAt}, you became{' '}
                   <span className="font-medium text-ink">{drift.step.toFixed(2)} marks stricter</span> on partial
                   credit — {drift.earlyMean.toFixed(2)} above Markable&rsquo;s reading of your guide before it,{' '}
@@ -340,13 +347,13 @@ export default function Landing({
             <div className="grid gap-6">
               <Reveal delay={0.08}>
                 <div className="rounded-2xl bg-peach p-7 md:p-8">
-                  <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink/50">
+                  <p className="font-mono text-[15px] uppercase tracking-[0.14em] text-ink/50">
                     Another thing worth noticing
                   </p>
-                  <p className="mt-3 text-[19px] font-bold leading-snug tracking-tight md:text-[22px]">
+                  <p className="mt-3 text-[25px] font-bold leading-snug tracking-tight md:text-[29px]">
                     {pairCount} pairs of answers were credited identically but marked differently.
                   </p>
-                  <p className="mt-3 text-[14px] leading-relaxed text-ink/65">
+                  <p className="mt-3 text-[22px] leading-relaxed text-ink/65">
                     Same criteria met, different totals. Markable shows them side by side and lets you decide.
                   </p>
                 </div>
@@ -354,11 +361,11 @@ export default function Landing({
 
               <Reveal delay={0.14}>
                 <div className="rounded-2xl bg-mint p-7 md:p-8">
-                  <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink/50">And one more</p>
-                  <p className="mt-3 text-[19px] font-bold leading-snug tracking-tight md:text-[22px]">
+                  <p className="font-mono text-[15px] uppercase tracking-[0.14em] text-ink/50">And one more</p>
+                  <p className="mt-3 text-[25px] font-bold leading-snug tracking-tight md:text-[29px]">
                     {topError ? `${topError.count} students made the same mistake.` : 'One mistake, many students.'}
                   </p>
-                  <p className="mt-3 text-[14px] leading-relaxed text-ink/65">
+                  <p className="mt-3 text-[22px] leading-relaxed text-ink/65">
                     {topError ? topError.label + '.' : ''} Not &ldquo;they found it hard&rdquo; — the exact step, and
                     the scripts behind it.
                   </p>
@@ -367,14 +374,14 @@ export default function Landing({
 
               <Reveal delay={0.2}>
                 <div className="rounded-2xl border border-rule bg-white p-7 md:p-8">
-                  <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-faint">
+                  <p className="font-mono text-[15px] uppercase tracking-[0.14em] text-faint">
                     And what it refuses to claim
                   </p>
-                  <p className="mt-3 text-[19px] font-bold leading-snug tracking-tight md:text-[22px]">
+                  <p className="mt-3 text-[25px] font-bold leading-snug tracking-tight md:text-[29px]">
                     Longer answers scored {length.advantage > 0 ? '+' : ''}
                     {length.advantage.toFixed(2)} higher — and Markable reported nothing.
                   </p>
-                  <p className="mt-3 text-[14px] leading-relaxed text-muted-ink">
+                  <p className="mt-3 text-[22px] leading-relaxed text-muted-ink">
                     Drop the {length.ceilingN} answers already at full marks and the gap reverses to{' '}
                     {length.exCeiling.toFixed(2)}. A finding that flips when you remove a known artefact is not a
                     finding.
@@ -389,7 +396,7 @@ export default function Landing({
               <Link href="/you">
                 <FlowButton text="Explore your grading" />
               </Link>
-              <p className="text-[14px] text-muted-ink">
+              <p className="text-[22px] text-muted-ink">
                 Markable doesn&rsquo;t judge your decisions. It helps you see your patterns.
               </p>
             </div>
@@ -403,14 +410,14 @@ export default function Landing({
           <div className="flex flex-col justify-between gap-12 md:flex-row">
             <div>
               <span className="text-[22px] font-bold tracking-tight">Markable</span>
-              <p className="mt-3 max-w-[34ch] text-[15px] leading-relaxed text-muted-ink">
+              <p className="mt-3 max-w-[34ch] text-[22px] leading-relaxed text-muted-ink">
                 Fairer grading. Clearer feedback. Better teaching. Turn grading into something you can learn from.
               </p>
             </div>
 
-            <nav className="flex gap-14 text-[14px]">
+            <nav className="flex gap-14 text-[22px]">
               <div className="flex flex-col gap-3">
-                <span className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-faint">Product</span>
+                <span className="font-mono text-[15px] uppercase tracking-[0.14em] text-faint">Product</span>
                 <Link href="/grade" className="underline-sweep self-start text-muted-ink hover:text-ink">
                   Grade
                 </Link>
@@ -420,9 +427,18 @@ export default function Landing({
                 <Link href="/class" className="underline-sweep self-start text-muted-ink hover:text-ink">
                   Class
                 </Link>
+                <Link href="/questions" className="underline-sweep self-start text-muted-ink hover:text-ink">
+                  Questions
+                </Link>
               </div>
               <div className="flex flex-col gap-3">
-                <span className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-faint">More</span>
+                <span className="font-mono text-[15px] uppercase tracking-[0.14em] text-faint">More</span>
+                <Link href="/improve" className="underline-sweep self-start text-muted-ink hover:text-ink">
+                  What to do next
+                </Link>
+                <Link href="/history" className="underline-sweep self-start text-muted-ink hover:text-ink">
+                  Marking standards
+                </Link>
                 <a href="#how" className="underline-sweep self-start text-muted-ink hover:text-ink">
                   How it works
                 </a>
@@ -433,7 +449,7 @@ export default function Landing({
             </nav>
           </div>
 
-          <div className="mt-14 flex flex-col justify-between gap-3 border-t border-rule pt-7 font-mono text-[11px] uppercase tracking-[0.14em] text-faint md:flex-row">
+          <div className="mt-14 flex flex-col justify-between gap-3 border-t border-rule pt-7 font-mono text-[15px] uppercase tracking-[0.14em] text-faint md:flex-row">
             <span>Built for AUST CSE Carnival 8.0</span>
             <span>&copy; {new Date().getFullYear()} Markable</span>
           </div>

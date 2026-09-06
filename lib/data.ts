@@ -54,3 +54,18 @@ export const MARKING_RUN = {
   scripts: SCRIPTS.length,
   seconds: 21,
 };
+
+/** What the marker recorded against one criterion.
+ *
+ *  24 of the 250 awards in the shipped run came back with no note — the model
+ *  had nothing to say about a criterion the answer never went near. Rendering
+ *  that as an empty line reads like the record is missing, which is the one
+ *  impression a page defending a mark cannot afford. So the empty case states
+ *  the only thing that is actually known: nothing in the answer addressed it. */
+export function awardNote(award: { note: string; awarded: number; evidence: unknown[] }): string {
+  if (award.note?.trim()) return award.note;
+  if (award.awarded === 0 && award.evidence.length === 0) {
+    return 'Nothing in the answer addresses this criterion.';
+  }
+  return 'No note was recorded against this criterion.';
+}

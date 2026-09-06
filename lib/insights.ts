@@ -8,7 +8,7 @@
 // _truth field on the seed data is generator scaffolding and must never be used
 // here: in a real marking session it does not exist.
 
-import type { Script, Finding, ErrorTag } from './types';
+import type { Script, Finding, ErrorTag, Criterion, CriterionId } from './types';
 
 export const LENGTH_THRESHOLD = 150; // words. See README: where the data separates.
 export const MIN_PAIR_GAP = 2;       // marks
@@ -492,4 +492,103 @@ export function buildFindings(scripts: Script[], totalMarks: number): Finding[] 
   }
 
   return out;
+}
+
+// ---------------------------------------------------------- question quality
+//
+// "Was the question bad?" — the spec's Module 03.
+//
+// The naive version of this test needs a whole-exam score per student, which
+// one marking session does not have. So the strength signal is taken from
+// inside the question instead: a student who earned FULL marks on every other
+// criterion has demonstrated command of the material this question rests on.
+// If those students still miss one particular step, the step is not separating
+// people who understand from people who do not — and that is a property of the
+// question, not of the class.
+//
+// Nothing here is planted or generated. It is arithmetic over the same awards
+// the Grade page shows.
+
+/** Below this a criterion is hard enough to be worth looking at. */
+export const LOW_FACILITY = 0.5;
+/** At or above this share of the strong cohort failing, the step stops
+ *  separating strong from weak. */
+export const POOR_SEPARATION = 0.4;
+/** A strong cohort smaller than this cannot support the claim. */
+export const MIN_STRONG_COHORT = 8;
+
+export type CriterionVerdict = 'review-the-question' | 'genuinely-hard' | 'working';
+
+export interface CriterionPerformance {
+  id: CriterionId;
+  label: string;
+  maxMarks: number;
+  /** Mean share of the criterion's marks earned. 1.0 = everyone got it. */
+  facility: number;
+  fullCredit: number;
+  noCredit: number;
+  /** Students at full marks on every OTHER criterion. */
+  strongN: number;
+  strongFailed: number;
+  strongFailRate: number;
+  weakFailRate: number;
+  /** strongFailRate vs weakFailRate. Near 0 = the step does not separate. */
+  separation: number;
+  verdict: CriterionVerdict;
+  strongFailedIds: string[];
+}
+
+export function criterionPerformance(
+  scripts: Script[],
+  criteria: Criterion[]
+): CriterionPerformance[] {
+  const marked = scripts.filter((s) => s.awards.length > 0);
+
+  return criteria.map((c) => {
+    const awardOf = (s: Script) => s.awards.find((a) => a.criterionId === c.id);
+
+    const earned = marked.reduce((t, s) => t + (awardOf(s)?.awarded ?? 0), 0);
+    const possible = marked.length * c.marks;
+
+    // "Strong" is defined per criterion: full marks on everything except this
+    // one. Each criterion therefore gets its own cohort, which is the point —
+    // we are asking whether THIS step separates people.
+    const strong = marked.filter((s) =>
+      s.awards.every((a) => a.criterionId === c.id || a.awarded >= a.max)
+    );
+    const rest = marked.filter((s) => !strong.includes(s));
+
+    const failed = (s: Script) => (awardOf(s)?.awarded ?? 0) < (awardOf(s)?.max ?? c.marks);
+    const strongFailedList = strong.filter(failed);
+
+    const strongFailRate = strong.length ? strongFailedList.length / strong.length : 0;
+    const weakFailRate = rest.length ? rest.filter(failed).length / rest.length : 0;
+
+    const facility = possible ? earned / possible : 0;
+    const separation = weakFailRate - strongFailRate;
+
+    let verdict: CriterionVerdict = 'working';
+    if (facility < LOW_FACILITY) {
+      verdict =
+        strong.length >= MIN_STRONG_COHORT && strongFailRate >= POOR_SEPARATION
+          ? 'review-the-question'
+          : 'genuinely-hard';
+    }
+
+    return {
+      id: c.id,
+      label: c.label,
+      maxMarks: c.marks,
+      facility,
+      fullCredit: marked.filter((s) => (awardOf(s)?.awarded ?? 0) >= c.marks).length,
+      noCredit: marked.filter((s) => (awardOf(s)?.awarded ?? 0) === 0).length,
+      strongN: strong.length,
+      strongFailed: strongFailedList.length,
+      strongFailRate,
+      weakFailRate,
+      separation,
+      verdict,
+      strongFailedIds: strongFailedList.map((s) => s.id),
+    };
+  });
 }

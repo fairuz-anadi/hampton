@@ -80,7 +80,25 @@
 
   --shadow: 0 1px 2px rgba(17, 17, 17, 0.03), 0 8px 20px rgba(17, 17, 17, 0.045), 0 20px 48px rgba(17, 17, 17, 0.025);
   --shadow-hover: 0 2px 4px rgba(17, 17, 17, 0.04), 0 12px 28px rgba(17, 17, 17, 0.065), 0 28px 56px rgba(17, 17, 17, 0.035);
-  --radius: 10px;
+  --radius: 14px;
+
+  /* Type scale. The floor is deliberate: no prose on a Markable screen is
+     smaller than --t-body, because a page about somebody else's careful
+     reading has no business being hard to read itself.
+
+     --t-label is the one exception and it is not prose. Pills, column heads
+     and eyebrows are taxonomy — you recognise them, you do not read them —
+     and they keep the same 0.7 ratio to body they always had. */
+  --t-label: 15px;   /* mono, uppercase, tracked: pills / eyebrows / th */
+  --t-body: 22px;    /* the floor for everything you actually read */
+  --t-lede: 25px;
+  --t-h3: 24px;
+  --t-h2: 30px;
+  --t-h1: 44px;
+
+  /* One measure, used everywhere, so no two columns of prose disagree about
+     how far the eye should travel before it comes back. */
+  --measure: 58ch;
 
   color-scheme: light;
 }
@@ -99,8 +117,8 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: 'Ubuntu', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  font-size: 15px;
-  line-height: 1.55;
+  font-size: var(--t-body);
+  line-height: 1.62;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -161,25 +179,25 @@ button, input, select, textarea { font: inherit; }
 
 /* ================================================================ shell */
 
-.shell { display: grid; grid-template-columns: 232px minmax(0, 1fr); min-height: 100vh; }
+.shell { display: grid; grid-template-columns: 280px minmax(0, 1fr); min-height: 100vh; }
 
-.main { padding: 30px 34px 80px; max-width: 1120px; min-width: 0; }
+.main { padding: 44px 48px 120px; max-width: 1320px; min-width: 0; }
 
-.page-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+.page-head { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
 
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: var(--t-label);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--faint);
 }
 
-.lede { color: var(--ink-soft); max-width: 68ch; }
+.lede { font-size: var(--t-lede); line-height: 1.5; color: var(--ink-soft); max-width: var(--measure); }
 
-h1 { font-size: 32px; font-weight: 750; letter-spacing: -0.03em; line-height: 1.1; }
-h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.02em; }
-h3 { font-size: 15px; font-weight: 650; }
+h1 { font-size: var(--t-h1); font-weight: 750; letter-spacing: -0.03em; line-height: 1.08; }
+h2 { font-size: var(--t-h2); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+h3 { font-size: var(--t-h3); font-weight: 650; letter-spacing: -0.01em; }
 
 /* ================================================================ panels */
 
@@ -194,18 +212,18 @@ h3 { font-size: 15px; font-weight: 650; }
 .panel:hover { border-color: var(--rule-strong); box-shadow: var(--shadow-hover); }
 
 .panel-head {
-  padding: 16px 20px;
+  padding: 22px 28px;
   border-bottom: 1px solid color-mix(in srgb, var(--rule) 85%, white);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
   flex-wrap: wrap;
 }
 
-.panel-body { padding: 20px; }
-.stack { display: flex; flex-direction: column; gap: 24px; }
-.row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.panel-body { padding: 28px; }
+.stack { display: flex; flex-direction: column; gap: 28px; }
+.row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
 
 /* ================================================================ controls */
 
@@ -213,11 +231,12 @@ h3 { font-size: 15px; font-weight: 650; }
   border: 1px solid var(--ink);
   background: var(--ink);
   color: var(--paper);
-  padding: 9px 16px;
+  padding: 13px 26px;
   border-radius: 999px;
   cursor: pointer;
   font-weight: 650;
-  font-size: 14px;
+  font-size: var(--t-body);
+  line-height: 1.3;
   box-shadow: 0 1px 1px rgba(17, 17, 17, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms ease, box-shadow 200ms ease, background-color 200ms ease, border-color 200ms ease;
 }
@@ -229,14 +248,15 @@ h3 { font-size: 15px; font-weight: 650; }
 .btn-ghost { background: var(--surface); color: var(--ink-soft); border-color: var(--rule-strong); box-shadow: 0 1px 2px rgba(17, 17, 17, 0.035); }
 .btn-ghost:hover { background: var(--surface-2); color: var(--ink); border-color: var(--ink-soft); box-shadow: 0 4px 10px rgba(17, 17, 17, 0.06); }
 
-.btn-sm { padding: 5px 12px; font-size: 13px; }
+.btn-sm { padding: 8px 18px; font-size: var(--t-body); }
 
 input[type='text'], input[type='number'] {
   background: var(--paper);
   border: 1px solid var(--rule-strong);
   color: var(--ink);
-  padding: 8px 12px;
-  border-radius: 8px;
+  font-size: var(--t-body);
+  padding: 10px 14px;
+  border-radius: 10px;
   width: 100%;
   transition: border-color 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
 }
@@ -247,10 +267,10 @@ input[type='text']:focus, input[type='number']:focus { outline: 0; border-color:
 
 .pill {
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: var(--t-label);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 4px 10px;
+  padding: 6px 14px;
   border-radius: 999px;
   white-space: nowrap;
   font-weight: 650;
@@ -264,22 +284,22 @@ input[type='text']:focus, input[type='number']:focus { outline: 0; border-color:
 /* ================================================================ tables */
 
 .table-wrap { overflow-x: auto; }
-table { border-collapse: collapse; width: 100%; font-size: 14px; }
+table { border-collapse: collapse; width: 100%; font-size: var(--t-body); }
 
 th {
   text-align: left;
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: var(--t-label);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--faint);
   font-weight: 500;
-  padding: 10px 14px;
+  padding: 14px 18px;
   border-bottom: 1px solid var(--rule-strong);
   white-space: nowrap;
 }
 
-td { padding: 12px 16px; border-bottom: 1px solid var(--rule); color: var(--ink-soft); vertical-align: middle; transition: background-color 200ms ease, color 200ms ease; }
+td { padding: 16px 18px; border-bottom: 1px solid var(--rule); color: var(--ink-soft); vertical-align: middle; transition: background-color 200ms ease, color 200ms ease; }
 tr:last-child td { border-bottom: 0; }
 
 .num { font-variant-numeric: tabular-nums; }
@@ -294,7 +314,7 @@ tr[data-selected='true'] td { background: var(--accent-wash); }
 .mark-norm { color: var(--accent); }
 .mark-faculty { color: var(--faculty); }
 
-.mark-big { font-size: 44px; font-weight: 700; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.mark-big { font-size: 72px; font-weight: 700; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
 
 /* ================================================================ reader */
 
@@ -302,9 +322,9 @@ tr[data-selected='true'] td { background: var(--accent-wash); }
   background: var(--paper);
   border: 1px solid color-mix(in srgb, var(--rule) 86%, white);
   border-radius: var(--radius);
-  padding: 20px 24px;
-  font-size: 14.5px;
-  line-height: 1.8;
+  padding: 26px 28px;
+  font-size: 23px;
+  line-height: 1.85;
   white-space: pre-wrap;
   color: var(--ink);
 }
@@ -326,14 +346,14 @@ tr[data-selected='true'] td { background: var(--accent-wash); }
 .criterion {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 4px 16px;
-  padding: 12px 0;
+  gap: 6px 24px;
+  padding: 20px 0;
   border-bottom: 1px solid var(--rule);
 }
 
 .criterion:last-child { border-bottom: 0; }
-.criterion-label { font-weight: 650; display: flex; align-items: center; gap: 8px; }
-.criterion-note { font-size: 13px; color: var(--muted); grid-column: 1; max-width: 62ch; line-height: 1.55; }
+.criterion-label { font-weight: 650; display: flex; align-items: center; gap: 12px; }
+.criterion-note { font-size: var(--t-body); line-height: 1.5; color: var(--muted); grid-column: 1; max-width: var(--measure); }
 .criterion-mark { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 650; color: var(--ink-soft); }
 
 .tick { color: var(--good); }
@@ -342,40 +362,125 @@ tr[data-selected='true'] td { background: var(--accent-wash); }
 
 /* ================================================================ findings */
 
-.finding-detail { color: var(--ink-soft); max-width: 70ch; }
-.stat-row { display: flex; gap: 28px; flex-wrap: wrap; }
+.finding-detail { font-size: var(--t-lede); line-height: 1.5; color: var(--ink-soft); max-width: var(--measure); }
+.stat-row { display: flex; gap: 48px; flex-wrap: wrap; }
 
 .stat-label {
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: var(--t-label);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--faint);
 }
 
-.stat-value { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.stat-value { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; font-variant-numeric: tabular-nums; }
 
-.bar-track { height: 10px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.bar-track { height: 14px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
 .bar-fill { height: 100%; border-radius: 999px; transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
 
 .hedge {
-  font-size: 13px;
+  font-size: var(--t-body);
+  line-height: 1.55;
   color: color-mix(in srgb, var(--muted) 92%, var(--ink));
-  border-left: 2px solid var(--rule-strong);
-  padding-left: 10px;
-  max-width: 66ch;
+  border-left: 3px solid var(--rule-strong);
+  padding-left: 18px;
+  max-width: var(--measure);
 }
 
 /* ================================================================ layout */
 
-.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
-.split { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 24px; align-items: start; }
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; }
+.split { display: grid; grid-template-columns: 420px minmax(0, 1fr); gap: 28px; align-items: start; }
 
-.empty { padding: 34px 18px; text-align: center; color: var(--muted); font-size: 14px; }
+.empty { padding: 56px 28px; text-align: center; color: var(--muted); font-size: var(--t-body); }
+
+/* ================================================================ actions */
+
+/* One card, one thing to do. The finding is the loud line and the suggestion
+   is the quiet one, because the number is what earns the advice its hearing. */
+.action {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px 32px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: start;
+}
+
+.action:last-child { border-bottom: 0; }
+.action:first-child { padding-top: 4px; }
+
+.action-finding { font-size: var(--t-lede); line-height: 1.45; font-weight: 500; max-width: var(--measure); }
+.action-do { grid-column: 1; color: var(--muted); max-width: var(--measure); }
+.action-side { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; grid-row: 1 / span 2; }
+
+/* ================================================================ verdicts */
+
+/* The question breakdown. A row per criterion, its facility as a bar you can
+   scan down in one pass — the collapsed step should be obvious without
+   reading a single number. */
+.verdict { padding: 28px 0; border-bottom: 1px solid var(--rule); }
+.verdict:last-child { border-bottom: 0; }
+
+.verdict-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.verdict-name { font-size: var(--t-h3); font-weight: 600; letter-spacing: -0.01em; }
+
+.facility-track {
+  height: 22px;
+  background: var(--surface-2);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 16px;
+}
+
+.facility-fill { height: 100%; border-radius: 8px; transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* ================================================================ steps */
+
+/* Numbered progress through the marking session. Faculty should be able to
+   tell where they are without reading anything. */
+.steps { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px 8px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  color: var(--faint);
+  font-size: var(--t-body);
+  background: var(--surface);
+}
+
+.step[data-state='now'] { border-color: var(--ink); color: var(--ink); font-weight: 500; }
+.step[data-state='done'] { color: var(--good); border-color: var(--good-wash); background: var(--good-wash); }
+
+.step-n {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+}
+
+.step[data-state='now'] .step-n { background: var(--ink); color: var(--paper); }
+.step[data-state='done'] .step-n { background: var(--good); color: #fff; }
+
+@media (max-width: 1180px) {
+  .split { grid-template-columns: 340px minmax(0, 1fr); }
+}
 
 @media (max-width: 980px) {
   .shell { grid-template-columns: minmax(0, 1fr); }
-  .main { padding: 20px 16px 60px; min-width: 0; }
+  .main { padding: 24px 20px 80px; min-width: 0; }
   .two-col, .split { grid-template-columns: minmax(0, 1fr); }
+  .action { grid-template-columns: minmax(0, 1fr); }
+  .action-side { grid-row: auto; align-items: flex-start; }
+  h1 { font-size: 34px; }
+  h2 { font-size: 26px; }
 }
 }

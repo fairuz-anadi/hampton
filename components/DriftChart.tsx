@@ -36,14 +36,14 @@ export default function DriftChart({ points, splitAt, earlyMean, lateMean, total
       {ticks.map((t) => (
         <g key={t}>
           <line x1={L} y1={y(t)} x2={R} y2={y(t)} stroke="var(--rule)" strokeWidth={1} />
-          <text x={L - 10} y={y(t) + 4} textAnchor="end" fill="var(--faint)" fontFamily="IBM Plex Mono, monospace" fontSize={11}>
+          <text x={L - 10} y={y(t) + 4} textAnchor="end" fill="var(--faint)" fontFamily="IBM Plex Mono, monospace" fontSize={13}>
             {t > 0 ? `+${t}` : t}
           </text>
         </g>
       ))}
 
       <line x1={x(splitAt + 0.5)} y1={T} x2={x(splitAt + 0.5)} y2={B} stroke="var(--critical)" strokeWidth={1} strokeDasharray="3 3" />
-      <text x={x(splitAt + 0.5) + 7} y={T + 11} fill="var(--critical)" fontFamily="IBM Plex Mono, monospace" fontSize={11}>
+      <text x={x(splitAt + 0.5) + 7} y={T + 11} fill="var(--critical)" fontFamily="IBM Plex Mono, monospace" fontSize={13}>
         script {splitAt}
       </text>
 
@@ -61,20 +61,20 @@ export default function DriftChart({ points, splitAt, earlyMean, lateMean, total
       <line x1={x(1)} y1={y(earlyMean)} x2={x(splitAt)} y2={y(earlyMean)} stroke="var(--good)" strokeWidth={2.5} />
       <line x1={x(splitAt + 1)} y1={y(lateMean)} x2={x(totalScripts)} y2={y(lateMean)} stroke="var(--faculty)" strokeWidth={2.5} />
 
-      <text x={x(1)} y={y(earlyMean) - 10} fill="var(--good)" fontFamily="IBM Plex Mono, monospace" fontSize={11.5} fontWeight={600}>
+      <text x={x(1)} y={y(earlyMean) - 10} fill="var(--good)" fontFamily="IBM Plex Mono, monospace" fontSize={16} fontWeight={600}>
         mean +{earlyMean.toFixed(2)}
       </text>
-      <text x={x(totalScripts)} y={y(lateMean) + 18} textAnchor="end" fill="var(--faculty)" fontFamily="IBM Plex Mono, monospace" fontSize={11.5} fontWeight={600}>
+      <text x={x(totalScripts)} y={y(lateMean) + 18} textAnchor="end" fill="var(--faculty)" fontFamily="IBM Plex Mono, monospace" fontSize={16} fontWeight={600}>
         mean +{lateMean.toFixed(2)}
       </text>
 
       <line x1={L} y1={B} x2={R} y2={B} stroke="var(--rule-strong)" strokeWidth={1} />
       {[1, splitAt, totalScripts].map((n) => (
-        <text key={n} x={x(n)} y={B + 18} textAnchor="middle" fill="var(--faint)" fontFamily="IBM Plex Mono, monospace" fontSize={11}>
+        <text key={n} x={x(n)} y={B + 18} textAnchor="middle" fill="var(--faint)" fontFamily="IBM Plex Mono, monospace" fontSize={13}>
           {n}
         </text>
       ))}
-      <text x={(L + R) / 2} y={B + 38} textAnchor="middle" fill="var(--faint)" fontFamily="IBM Plex Mono, monospace" fontSize={10.5} letterSpacing="0.12em">
+      <text x={(L + R) / 2} y={B + 38} textAnchor="middle" fill="var(--faint)" fontFamily="IBM Plex Mono, monospace" fontSize={13} letterSpacing="0.12em">
         MARKING ORDER
       </text>
       <text
@@ -84,7 +84,7 @@ export default function DriftChart({ points, splitAt, earlyMean, lateMean, total
         transform={`rotate(-90 14 ${(T + B) / 2})`}
         fill="var(--faint)"
         fontFamily="IBM Plex Mono, monospace"
-        fontSize={10.5}
+        fontSize={13}
         letterSpacing="0.12em"
       >
         YOU − Markable (MARKS)

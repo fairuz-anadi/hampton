@@ -63,11 +63,11 @@ export default function AskMarkable() {
 
         {asked && (
           <div className="rounded-xl border border-rule bg-paper p-5">
-            <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-faint">You asked</p>
-            <p className="mt-1 text-[15px] font-medium">{asked}</p>
+            <p className="font-mono text-[15px] uppercase tracking-[0.14em] text-faint">You asked</p>
+            <p className="mt-2 text-[25px] font-medium leading-snug">{asked}</p>
 
-            <p className="mt-5 font-mono text-[10.5px] uppercase tracking-[0.14em] text-faint">Markable</p>
-            <p className="mt-1 max-w-[68ch] text-[15px] leading-relaxed text-ink-soft">
+            <p className="mt-5 font-mono text-[15px] uppercase tracking-[0.14em] text-faint">Markable</p>
+            <p className="mt-2 max-w-[58ch] text-[22px] leading-relaxed text-ink-soft">
               {busy ? 'Reading the session…' : answer}
             </p>
           </div>
