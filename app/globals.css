@@ -78,7 +78,8 @@
   --critical-wash: #f7d3d6;
   --highlight: #f8ecc0;
 
-  --shadow: 0 1px 2px rgba(17, 17, 17, 0.04);
+  --shadow: 0 1px 2px rgba(17, 17, 17, 0.03), 0 8px 20px rgba(17, 17, 17, 0.045), 0 20px 48px rgba(17, 17, 17, 0.025);
+  --shadow-hover: 0 2px 4px rgba(17, 17, 17, 0.04), 0 12px 28px rgba(17, 17, 17, 0.065), 0 28px 56px rgba(17, 17, 17, 0.035);
   --radius: 14px;
 
   /* Type scale. The floor is deliberate: no prose on a Markable screen is
@@ -194,22 +195,25 @@ button, input, select, textarea { font: inherit; }
 
 .lede { font-size: var(--t-lede); line-height: 1.5; color: var(--ink-soft); max-width: var(--measure); }
 
-h1 { font-size: var(--t-h1); font-weight: 700; letter-spacing: -0.025em; line-height: 1.08; }
-h2 { font-size: var(--t-h2); font-weight: 700; letter-spacing: -0.018em; line-height: 1.2; }
-h3 { font-size: var(--t-h3); font-weight: 600; letter-spacing: -0.01em; }
+h1 { font-size: var(--t-h1); font-weight: 750; letter-spacing: -0.03em; line-height: 1.08; }
+h2 { font-size: var(--t-h2); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+h3 { font-size: var(--t-h3); font-weight: 650; letter-spacing: -0.01em; }
 
 /* ================================================================ panels */
 
 .panel {
   background: var(--surface);
-  border: 1px solid var(--rule);
+  border: 1px solid color-mix(in srgb, var(--rule-strong) 72%, white);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  transition: box-shadow 200ms ease, border-color 200ms ease;
 }
+
+.panel:hover { border-color: var(--rule-strong); box-shadow: var(--shadow-hover); }
 
 .panel-head {
   padding: 22px 28px;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid color-mix(in srgb, var(--rule) 85%, white);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -230,18 +234,19 @@ h3 { font-size: var(--t-h3); font-weight: 600; letter-spacing: -0.01em; }
   padding: 13px 26px;
   border-radius: 999px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 650;
   font-size: var(--t-body);
   line-height: 1.3;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s;
+  box-shadow: 0 1px 1px rgba(17, 17, 17, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms ease, box-shadow 200ms ease, background-color 200ms ease, border-color 200ms ease;
 }
 
-.btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn:hover { opacity: 0.94; transform: translateY(-1px); box-shadow: 0 5px 12px rgba(17, 17, 17, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.14); }
 .btn:active { transform: scale(0.97); }
 .btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
 
-.btn-ghost { background: transparent; color: var(--ink-soft); border-color: var(--rule-strong); }
-.btn-ghost:hover { background: var(--surface-2); }
+.btn-ghost { background: var(--surface); color: var(--ink-soft); border-color: var(--rule-strong); box-shadow: 0 1px 2px rgba(17, 17, 17, 0.035); }
+.btn-ghost:hover { background: var(--surface-2); color: var(--ink); border-color: var(--ink-soft); box-shadow: 0 4px 10px rgba(17, 17, 17, 0.06); }
 
 .btn-sm { padding: 8px 18px; font-size: var(--t-body); }
 
@@ -253,7 +258,10 @@ input[type='text'], input[type='number'] {
   padding: 10px 14px;
   border-radius: 10px;
   width: 100%;
+  transition: border-color 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
 }
+input[type='text']:hover, input[type='number']:hover { border-color: var(--ink-soft); }
+input[type='text']:focus, input[type='number']:focus { outline: 0; border-color: var(--accent); background: var(--surface); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent); }
 
 /* ================================================================ pills */
 
@@ -265,7 +273,7 @@ input[type='text'], input[type='number'] {
   padding: 6px 14px;
   border-radius: 999px;
   white-space: nowrap;
-  font-weight: 500;
+  font-weight: 650;
 }
 
 .pill-clear { background: var(--good-wash); color: var(--good); }
@@ -291,13 +299,13 @@ th {
   white-space: nowrap;
 }
 
-td { padding: 16px 18px; border-bottom: 1px solid var(--rule); color: var(--ink-soft); vertical-align: middle; }
+td { padding: 16px 18px; border-bottom: 1px solid var(--rule); color: var(--ink-soft); vertical-align: middle; transition: background-color 200ms ease, color 200ms ease; }
 tr:last-child td { border-bottom: 0; }
 
 .num { font-variant-numeric: tabular-nums; }
 
 tr.clickable { cursor: pointer; }
-tr.clickable:hover td { background: var(--surface-2); }
+tr.clickable:hover td { background: color-mix(in srgb, var(--surface-2) 78%, white); color: var(--ink); }
 tr[data-selected='true'] td { background: var(--accent-wash); }
 
 /* ================================================================ marks */
@@ -312,7 +320,7 @@ tr[data-selected='true'] td { background: var(--accent-wash); }
 
 .reader {
   background: var(--paper);
-  border: 1px solid var(--rule);
+  border: 1px solid color-mix(in srgb, var(--rule) 86%, white);
   border-radius: var(--radius);
   padding: 26px 28px;
   font-size: 23px;
@@ -344,9 +352,9 @@ tr[data-selected='true'] td { background: var(--accent-wash); }
 }
 
 .criterion:last-child { border-bottom: 0; }
-.criterion-label { font-weight: 600; display: flex; align-items: center; gap: 12px; }
+.criterion-label { font-weight: 650; display: flex; align-items: center; gap: 12px; }
 .criterion-note { font-size: var(--t-body); line-height: 1.5; color: var(--muted); grid-column: 1; max-width: var(--measure); }
-.criterion-mark { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 500; }
+.criterion-mark { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 650; color: var(--ink-soft); }
 
 .tick { color: var(--good); }
 .cross { color: var(--critical); }
@@ -373,7 +381,7 @@ tr[data-selected='true'] td { background: var(--accent-wash); }
 .hedge {
   font-size: var(--t-body);
   line-height: 1.55;
-  color: var(--muted);
+  color: color-mix(in srgb, var(--muted) 92%, var(--ink));
   border-left: 3px solid var(--rule-strong);
   padding-left: 18px;
   max-width: var(--measure);

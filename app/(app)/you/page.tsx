@@ -15,6 +15,13 @@ export default function YouPage() {
   const longPct = length.longMean / QUESTION.totalMarks;
   const shortPct = length.shortMean / QUESTION.totalMarks;
 
+  // Spread of the gaps, written as a range only when there is a range to write.
+  // Math.min of an empty list is Infinity, and "3–3 marks" reads like a bug.
+  const gaps = pairs.map((p) => p.gap);
+  const gapLo = gaps.length ? Math.min(...gaps) : 0;
+  const gapHi = gaps.length ? Math.max(...gaps) : 0;
+  const gapRange = gapLo === gapHi ? `${gapLo}` : `${gapLo}–${gapHi}`;
+
   return (
     <div className="stack">
       <div className="page-head">
@@ -174,15 +181,25 @@ export default function YouPage() {
       {/* ----------------------------------------------------------- pairs */}
       <section className="panel">
         <div className="panel-head">
-          <h2>{pairs.length} pairs worth comparing</h2>
+          <h2>
+            {pairs.length} {pairs.length === 1 ? 'pair' : 'pairs'} worth comparing
+          </h2>
           <span className="pill pill-quiet">{consistency.diverging} found, {pairs.length} shown</span>
         </div>
         <div className="panel-body stack">
-          <p className="finding-detail">
-            Markable credited each of these pairs the same way against every criterion, but your marks differ by{' '}
-            {Math.min(...pairs.map((p) => p.gap))}–{Math.max(...pairs.map((p) => p.gap))} marks. Open one and decide
-            whether the difference is justified — often it is.
-          </p>
+          {pairs.length === 0 ? (
+            <p className="finding-detail">
+              No two answers were close enough in wording, credited the same way, and marked far enough apart to be
+              worth putting side by side.
+            </p>
+          ) : (
+            <p className="finding-detail">
+              Markable credited {pairs.length === 1 ? 'this pair' : 'each of these pairs'} the same way against every
+              criterion, but your marks differ by{' '}
+              {gapRange} marks. Open{' '}
+              {pairs.length === 1 ? 'it' : 'one'} and decide whether the difference is justified — often it is.
+            </p>
+          )}
           <PairCompare pairs={pairs} criteria={CRITERIA} />
           <p className="hedge">
             Deduplicated so each script appears once. {consistency.diverging} raw combinations diverge by 2 or more,

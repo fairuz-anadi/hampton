@@ -60,6 +60,11 @@ Return ONLY this JSON, no prose, no code fence:
 
 The marks must sum to exactly ${QUESTION.totalMarks}.`;
 
+  // Why the last attempt failed, so the banner can say something actionable. Every branch
+  // below used to collapse into "did not add up", which is wrong for an expired key or an
+  // account with no credit — and leaves you guessing at exactly the wrong moment.
+  let lastReason = 'The model did not return a guide that adds up. Showing the stored one.';
+
   // Two attempts: models occasionally return criteria whose marks do not add up.
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
@@ -79,7 +84,17 @@ The marks must sum to exactly ${QUESTION.totalMarks}.`;
         signal: AbortSignal.timeout(20_000),
       });
 
-      if (!res.ok) continue;
+      if (!res.ok) {
+        const detail = await res.text().catch(() => '');
+        const hint =
+          res.status === 401 ? 'the key was rejected — expired, revoked, or mistyped'
+          : res.status === 429 ? 'rate limited, or the account has no credit left'
+          : res.status === 404 ? `the model "${model}" is not available to this key`
+          : `OpenAI returned ${res.status}`;
+        lastReason = `Could not reach the model: ${hint}. Showing the stored guide.`;
+        console.error('[rubric] OpenAI %d: %s', res.status, detail.slice(0, 300));
+        continue;
+      }
 
       const json = await res.json();
       const text = json?.choices?.[0]?.message?.content ?? '';
@@ -87,10 +102,15 @@ The marks must sum to exactly ${QUESTION.totalMarks}.`;
       if (parsed) {
         return NextResponse.json({ criteria: parsed, source: 'live', model, approved: false });
       }
-    } catch {
+    } catch (err) {
       // fall through to the next attempt, then to the stored guide
+      lastReason =
+        err instanceof Error && err.name === 'TimeoutError'
+          ? 'The model took longer than 20 seconds. Showing the stored guide.'
+          : 'Could not reach the model. Showing the stored guide.';
+      console.error('[rubric] %s', err);
     }
   }
 
-  return fallback('The model did not return a guide that adds up. Showing the stored one.');
+  return fallback(lastReason);
 }

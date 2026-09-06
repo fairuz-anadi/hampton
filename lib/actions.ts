@@ -124,11 +124,17 @@ export function buildActions(
 
   const pairs = findSimilarPairs(scripts, 5);
   if (pairs.length) {
+    const gaps = pairs.map((p) => p.gap);
+    const lo = Math.min(...gaps);
+    const hi = Math.max(...gaps);
+    const range = lo === hi ? `${lo}` : `${lo}–${hi}`;
+    const many = pairs.length !== 1;
+
     out.push({
       id: 'mark-pairs',
       area: 'marking',
-      finding: `${pairs.length} pairs of answers were credited identically against every criterion but marked ${Math.min(...pairs.map((p) => p.gap))}–${Math.max(...pairs.map((p) => p.gap))} marks apart.`,
-      suggestion: 'Open the pairs and settle each one before results go out — these are the marks a student is most likely to appeal, and the ones hardest to defend from memory.',
+      finding: `${pairs.length} ${many ? 'pairs' : 'pair'} of answers ${many ? 'were' : 'was'} credited identically against every criterion but marked ${range} marks apart.`,
+      suggestion: `Open ${many ? 'the pairs and settle each one' : 'it and settle it'} before results go out — these are the marks a student is most likely to appeal, and the ones hardest to defend from memory.`,
       weight: pairs.length * 2,
       weightLabel: `${pairs.length * 2} scripts`,
       href: '/you',
