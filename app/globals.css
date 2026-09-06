@@ -416,7 +416,10 @@ tr[data-selected='true'] td { background: var(--accent-wash); }
 
 .action-finding { font-size: var(--t-lede); line-height: 1.45; font-weight: 500; max-width: var(--measure); }
 .action-do { grid-column: 1; color: var(--muted); max-width: var(--measure); }
-.action-side { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; grid-row: 1 / span 2; }
+/* grid-column MUST be explicit. With only a definite row, auto-placement runs this
+   item first and drops it into column 1, which pushes the prose into the `auto`
+   track and collapses the 1fr track to ~277px — four words a line. */
+.action-side { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; grid-column: 2; grid-row: 1 / span 2; }
 
 /* ================================================================ verdicts */
 
@@ -483,7 +486,8 @@ tr[data-selected='true'] td { background: var(--accent-wash); }
   .main { padding: 24px 20px 80px; min-width: 0; }
   .two-col, .split { grid-template-columns: minmax(0, 1fr); }
   .action { grid-template-columns: minmax(0, 1fr); }
-  .action-side { grid-row: auto; align-items: flex-start; }
+  /* single column below 980px, so the explicit column-2 placement must be released too */
+  .action-side { grid-column: 1; grid-row: auto; align-items: flex-start; }
   h1 { font-size: 40px; }
   h2 { font-size: 30px; }
 }
