@@ -1,4 +1,4 @@
-// NORM — the only file that knows which API we call (Dev 1).
+// Markable — the only file that knows which API we call (Dev 1).
 //
 // OpenAI chat completions. Set before running:
 //   $env:OPENAI_API_KEY = "sk-..."

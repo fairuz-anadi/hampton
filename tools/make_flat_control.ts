@@ -1,7 +1,7 @@
 // Builds the flat control from Dev 1's real graded data.
 //
-// Same texts, same NORM marks, same rubric — the ONLY change is that each faculty mark is
-// replaced with the NORM mark plus small symmetric noise. So there is no drift and no length
+// Same texts, same rubric, same marks from Markable — the ONLY change is that each faculty mark
+// is replaced by Markable's mark plus small symmetric noise. So there is no drift and no length
 // effect in it, by construction.
 //
 // This is a true control rather than a second synthetic dataset: if the discovery functions

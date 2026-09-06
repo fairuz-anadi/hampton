@@ -1,4 +1,4 @@
-// NORM — builds fixtures/fake-10.json (Dev 1, handed to Dev 2 and Dev 3 at 0:20).
+// Markable — builds fixtures/fake-10.json (Dev 1, handed to Dev 2 and Dev 3 at 0:20).
 //
 //   node scripts/build-fixture.mjs
 //

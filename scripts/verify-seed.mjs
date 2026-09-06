@@ -1,4 +1,4 @@
-// NORM — proof the planted effects actually landed (Dev 1).
+// Markable — proof the planted effects actually landed (Dev 1).
 //
 //   node scripts/verify-seed.mjs
 //
@@ -6,7 +6,7 @@
 // output, it is not in the data, and the hero moment finds nothing.
 //
 // Before marking it compares against ground-truth coverage; once
-// data/graded-50.json exists it uses NORM's real marks instead.
+// data/graded-50.json exists it uses Markable's real marks instead.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -23,11 +23,11 @@ const scripts = marked ? read('data/graded-50.json') : read('data/scripts-50.jso
 const mean = (a) => (a.length ? a.reduce((s, n) => s + n, 0) / a.length : NaN);
 const f2 = (n) => (Number.isFinite(n) ? n.toFixed(2) : '—');
 
-// NORM's mark, or ground-truth base as a stand-in before marking.
+// Markable's mark, or ground-truth base as a stand-in before marking.
 const norm = (s) => (marked && s.normMark != null ? s.normMark : s._truth.base);
 const residual = (s) => s.facultyMark - norm(s);
 
-console.log(`\nSource: ${marked ? 'data/graded-50.json (real NORM marks)' : 'data/scripts-50.json (ground-truth coverage as stand-in)'}`);
+console.log(`\nSource: ${marked ? 'data/graded-50.json (real Markable marks)' : 'data/scripts-50.json (ground-truth coverage as stand-in)'}`);
 console.log(`Scripts: ${scripts.length}\n`);
 
 // ---- 1. drift -------------------------------------------------------------
@@ -38,7 +38,7 @@ const late = partial.filter((s) => s.order > PLANT.driftAfter);
 const mE = mean(early.map(residual));
 const mL = mean(late.map(residual));
 
-console.log('DRIFT  (faculty - NORM, partial-credit answers only)');
+console.log('DRIFT  (faculty - Markable, partial-credit answers only)');
 console.log(`  scripts 1-${PLANT.driftAfter}    n=${String(early.length).padStart(2)}  mean +${f2(mE)}`);
 console.log(`  scripts ${PLANT.driftAfter + 1}-${scripts.length}   n=${String(late.length).padStart(2)}  mean +${f2(mL)}`);
 console.log(`  step             ${f2(mE - mL)}  (planted ${f2(PLANT.generosityEarly - PLANT.generosityLate)})`);

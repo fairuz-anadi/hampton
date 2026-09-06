@@ -1,4 +1,4 @@
-// NORM — shared types. Agreed 0:15. Change only by agreement in the room.
+// Markable — shared types. Agreed 0:15. Change only by agreement in the room.
 //
 // Ownership boundary (do not cross):
 //   Dev 1  scripts/**  prompts/**  data/**

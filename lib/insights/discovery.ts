@@ -1,4 +1,4 @@
-// NORM — Discovery. Dev 2.
+// Markable — Discovery. Dev 2.
 //
 // Pure functions over Script[]. No React, no fetch, no API calls, no randomness.
 // Everything here is deterministic and runs offline, so nothing on the You page
@@ -81,7 +81,7 @@ const MIN_PAIR_GAP = 2;      // marks between two near-identical answers
 /**
  * Did the marking standard move over the course of the session?
  *
- * Measured as residual (facultyMark - normMark) against marking order. NORM is not
+ * Measured as residual (facultyMark - normMark) against marking order. Markable is not
  * claimed to be correct here, only *constant* — it is a fixed ruler, and drift is
  * movement against it.
  *

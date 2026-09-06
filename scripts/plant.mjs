@@ -1,4 +1,4 @@
-// NORM — the planted effects (Dev 1).
+// Markable — the planted effects (Dev 1).
 //
 // Faculty marks are computed here, never by the model. If the model assigned
 // them we could not guarantee the drift step exists, and the demo rests on it.

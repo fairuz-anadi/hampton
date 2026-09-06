@@ -1,6 +1,6 @@
-# NORM
+# Markable
 
-Fairer grading. Clearer feedback. NORM marks against a guide the faculty
+Fairer grading. Clearer feedback. Markable marks against a guide the faculty
 approved, then shows the faculty what happened to their own marking while they
 did it.
 
@@ -40,8 +40,8 @@ without them.
 ```bash
 npm run seed     # ~1 min   50 answers, faculty marks with planted effects
 npm run verify   # instant  proves the effects are actually in the data
-npm run mark     # ~2 min   NORM marks all 50, writes data/graded-50.json
-npm run verify   # again    now against real NORM marks
+npm run mark     # ~2 min   Markable marks all 50, writes data/graded-50.json
+npm run verify   # again    now against real Markable marks
 ```
 
 Then spot-check five highlights by hand before telling anyone the data is ready.
@@ -51,7 +51,7 @@ Then spot-check five highlights by hand before telling anyone the data is ready.
 | File | What it holds |
 |---|---|
 | `data/question.json` | The exam question and the approved rubric (`referenceCriteria`) |
-| `data/scripts-50.json` | 50 answers + faculty marks. No NORM marks yet |
+| `data/scripts-50.json` | 50 answers + faculty marks. No Markable marks yet |
 | `data/planted-effects.json` | The ground truth: drift step, length bonus, which pairs are inconsistent |
 | `data/graded-50.json` | **The file the app ships.** Everything the UI reads |
 | `fixtures/fake-10.json` | 10 hand-written rows in the same shape, for Dev 2 and Dev 3 to build against from minute 20 |
@@ -83,7 +83,7 @@ not the ones in the pitch deck** — a judge who reads the axis will check.
 | Triage | 43 clear · 4 review · 3 unusual |
 | Most common error | `missed-regularity-check`, **36 students** |
 | Evidence | 163 credited awards, **0 without a located highlight** |
-| NORM vs ground truth | exact on 41/50, within 1 mark on 45/50 |
+| Markable vs ground truth | exact on 41/50, within 1 mark on 45/50 |
 
 ## Marking order is data
 

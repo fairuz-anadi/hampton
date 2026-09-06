@@ -35,5 +35,5 @@
       "expects": "Concludes T(n) = Theta(n log n)."
     }
   ],
-  "_note": "referenceCriteria is the approved rubric the batch marking runs against. In the demo, NORM induces a rubric live from this question and the faculty approves it — the induced one should land close to this."
+  "_note": "referenceCriteria is the approved rubric the batch marking runs against. In the demo, Markable induces a rubric live from this question and the faculty approves it — the induced one should land close to this."
 }
