@@ -71,11 +71,15 @@ The marks must sum to exactly ${QUESTION.totalMarks}.`;
       const res = await fetch(`${base}/chat/completions`, {
         method: 'POST',
         headers: { 'content-type': 'application/json', authorization: `Bearer ${key}` },
+        // Attempt 0 uses the classic chat-completions shape. Newer models reject both
+        // `max_tokens` (they want `max_completion_tokens`) and any temperature other than 1,
+        // and answer 400 — so attempt 1 retries with the shape those models accept.
         body: JSON.stringify({
           model,
-          max_tokens: 1500,
-          temperature: 0,
           response_format: { type: 'json_object' },
+          ...(attempt === 0
+            ? { max_tokens: 1500, temperature: 0 }
+            : { max_completion_tokens: 1500 }),
           messages: [
             { role: 'system', content: SYSTEM },
             { role: 'user', content: user },
@@ -86,11 +90,19 @@ The marks must sum to exactly ${QUESTION.totalMarks}.`;
 
       if (!res.ok) {
         const detail = await res.text().catch(() => '');
+        // Surface OpenAI's own sentence. It names the offending parameter, which is the
+        // difference between fixing this in a minute and guessing at it.
+        let detailMsg = '';
+        try {
+          detailMsg = JSON.parse(detail)?.error?.message ?? '';
+        } catch {
+          detailMsg = '';
+        }
         const hint =
           res.status === 401 ? 'the key was rejected — expired, revoked, or mistyped'
           : res.status === 429 ? 'rate limited, or the account has no credit left'
           : res.status === 404 ? `the model "${model}" is not available to this key`
-          : `OpenAI returned ${res.status}`;
+          : `OpenAI returned ${res.status} for model "${model}"${detailMsg ? ` — ${detailMsg}` : ''}`;
         lastReason = `Could not reach the model: ${hint}. Showing the stored guide.`;
         console.error('[rubric] OpenAI %d: %s', res.status, detail.slice(0, 300));
         continue;
