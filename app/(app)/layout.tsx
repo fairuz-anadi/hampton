@@ -13,7 +13,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const actions = buildActions(SCRIPTS, CRITERIA, QUESTION.totalMarks).length;
 
   return (
-    <div className="flex min-h-screen flex-col bg-paper md:flex-row">
+    <div className="app-ground flex min-h-screen flex-col md:flex-row">
       <AppNav
         counts={counts}
         findings={findings}

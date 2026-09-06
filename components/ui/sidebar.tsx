@@ -84,20 +84,30 @@ export const DesktopSidebar = ({
   ...props
 }: React.ComponentProps<typeof motion.div>) => {
   const { open, setOpen, animate } = useSidebar();
+  const collapsed = animate ? 76 : 280;
   return (
-    <motion.div
-      className={cn(
-        "h-full px-5 py-7 hidden md:flex md:flex-col bg-paper-2 border-r border-rule w-[280px] shrink-0",
-        className
-      )}
-      animate={{ width: animate ? (open ? "280px" : "76px") : "280px" }}
-      transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-      {...props}
+    // The rail reserves a fixed 76px and never changes width. Expanding the panel
+    // inside it floats over the page instead of pushing it: if the whole dashboard
+    // slid sideways every time the cursor drifted left, reading a script would be
+    // miserable — and worse in front of an audience.
+    <div
+      className="sticky top-0 hidden h-screen shrink-0 md:block"
+      style={{ width: collapsed, zIndex: 30 }}
     >
-      {children}
-    </motion.div>
+      <motion.div
+        className={cn(
+          "absolute inset-y-0 left-0 flex flex-col overflow-hidden border-r border-rule bg-paper-2 px-5 py-7",
+          className
+        )}
+        animate={{ width: animate ? (open ? 280 : 76) : 280 }}
+        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+        {...props}
+      >
+        {children}
+      </motion.div>
+    </div>
   );
 };
 
@@ -185,7 +195,7 @@ export const SidebarLink = ({
             display: animate ? (open ? "inline-block" : "none") : "inline-block",
             opacity: animate ? (open ? 1 : 0) : 1,
           }}
-          className="ml-auto font-mono text-[15px] text-faint whitespace-pre tabular-nums"
+          className="ml-auto font-mono text-[22px] text-faint whitespace-pre tabular-nums"
         >
           {note}
         </motion.span>

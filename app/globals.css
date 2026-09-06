@@ -89,12 +89,16 @@
      --t-label is the one exception and it is not prose. Pills, column heads
      and eyebrows are taxonomy — you recognise them, you do not read them —
      and they keep the same 0.7 ratio to body they always had. */
-  --t-label: 15px;   /* mono, uppercase, tracked: pills / eyebrows / th */
+  /* The dashboard scale runs 22 -> 56 and nothing sits outside it. 22px is the
+     floor for every piece of text, labels included; 56px is the ceiling. The
+     landing page keeps its own display sizes (.hero-h1 / .landing-h2) — that is
+     a poster, this is a workspace. */
+  --t-label: 22px;   /* mono, uppercase, tracked: pills / eyebrows / th */
   --t-body: 22px;    /* the floor for everything you actually read */
-  --t-lede: 25px;
-  --t-h3: 24px;
-  --t-h2: 30px;
-  --t-h1: 44px;
+  --t-lede: 26px;
+  --t-h3: 28px;
+  --t-h2: 38px;
+  --t-h1: 56px;
 
   /* One measure, used everywhere, so no two columns of prose disagree about
      how far the eye should travel before it comes back. */
@@ -480,8 +484,8 @@ tr[data-selected='true'] td { background: var(--accent-wash); }
   .two-col, .split { grid-template-columns: minmax(0, 1fr); }
   .action { grid-template-columns: minmax(0, 1fr); }
   .action-side { grid-row: auto; align-items: flex-start; }
-  h1 { font-size: 34px; }
-  h2 { font-size: 26px; }
+  h1 { font-size: 40px; }
+  h2 { font-size: 30px; }
 }
 }
 
@@ -505,4 +509,17 @@ tr[data-selected='true'] td { background: var(--accent-wash); }
 @media (max-width: 900px) {
   .hero-h1 { line-height: 1.05; }
   .landing-h2 { line-height: 1.08; }
+}
+
+/* ── Dashboard ground ────────────────────────────────────────────────────────
+   The same dot field the landing page draws on its canvas — same colour, same
+   28px spacing — but as a static background. The landing's grid warps toward the
+   cursor, which is a nice flourish on a marketing page and a distraction behind a
+   drift chart, so the dashboard takes the texture without the animation. */
+
+.app-ground {
+  background-color: var(--paper);
+  background-image: radial-gradient(rgba(17, 17, 17, 0.06) 1.1px, transparent 1.1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
 }
