@@ -1,4 +1,4 @@
-// NORM — the You page. Dev 2.
+// Markable — the You page. Dev 2.
 //
 // Drop-in for Dev 3: `<YouPage scripts={data.scripts} />`. Ships its own styles so it renders
 // correctly the moment it is mounted; if you want it on your tokens, delete the <style> tag and
@@ -128,7 +128,7 @@ function NothingFound() {
     <section className="card empty">
       <h2>Nothing worth flagging in this session</h2>
       <p>
-        NORM checked for marking drift, an answer-length effect, and similar answers marked
+        Markable checked for marking drift, an answer-length effect, and similar answers marked
         differently. None of them showed up above the level you would expect from ordinary
         variation, so there is nothing to report.
       </p>
@@ -148,10 +148,10 @@ export default function YouPage({ scripts }: { scripts: Script[] }) {
       <style dangerouslySetInnerHTML={{ __html: YOU_PAGE_CSS }} />
 
       <header className="page">
-        <p className="eyebrow">NORM · You</p>
+        <p className="eyebrow">Markable · You</p>
         <h1>What happened while you were marking</h1>
         <p className="sub">
-          {scripts.length} scripts, one question. NORM re-marked every script against the guide you
+          {scripts.length} scripts, one question. Markable re-marked every script against the guide you
           approved, then looked at how your own marks moved.
         </p>
       </header>
@@ -186,7 +186,7 @@ export default function YouPage({ scripts }: { scripts: Script[] }) {
       )}
 
       <footer className="note">
-        NORM&rsquo;s marks are not claimed to be correct — only consistent. Everything above measures
+        Markable&rsquo;s marks are not claimed to be correct — only consistent. Everything above measures
         your marking against one fixed standard, so a shift means the standard you applied moved, not
         that any single mark was wrong.
       </footer>

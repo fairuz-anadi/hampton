@@ -1,10 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
+<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>You (Dev 1 real data) — Markable</title>
-<style>
+<title>Markable — You</title><style>
 :root {
   color-scheme: light;
   --surface-0: #f4f4f1;
@@ -131,35 +127,17 @@ footer.note { margin-top: 28px; font-size: 13px; color: var(--text-muted); borde
 .dc-mean.dc-late  { stroke: var(--series-2); }
 .dc-mean-label { font-size: 13px; font-weight: 600; fill: var(--text-secondary); }
 
-</style>
-</head>
-<body>
-<div class="wrap">
-  <header class="page">
-    <p class="eyebrow">Markable · You</p>
-    <h1>What happened while you were marking</h1>
-    <p class="sub">50 scripts, one question. Markable re-marked every script against the guide you approved, then looked at how your own marks moved.</p>
-  </header>
 
-  <div class="chips">
-    <div class="chip"><b>50</b><span>scripts marked</span></div>
-    <div class="chip"><b>0</b><span>patterns found</span></div>
-    <div class="chip"><b>0</b><span>pairs to review</span></div>
-    <div class="chip"><b>5</b><span>shared mistakes</span></div>
-  </div>
-
-  <section class="card empty">
-           <h2>Nothing worth flagging in this session</h2>
-           <p>Markable checked for marking drift, an answer-length effect, and similar answers marked
-           differently. None of them showed up above the level you would expect from ordinary
-           variation, so there is nothing to report.</p>
-         </section>
-
-  <footer class="note">
-    Markable's marks are not claimed to be correct — only consistent. Everything above measures your
-    marking against one fixed standard, so a shift means the standard you applied moved, not that
-    any single mark was wrong. Preview built from <code>data/graded-50.json</code>.
-  </footer>
-</div>
-</body>
-</html>
+a.card { display:block; text-decoration:none; color:inherit; }
+a.card:hover { border-color: var(--rule-strong); }
+</style></head><body><div class="wrap">
+<header class="page">
+  <p class="eyebrow">Markable</p>
+  <h1>What happened while you were marking</h1>
+  <p class="sub">Markable re-marks every script against the guide the faculty member approved, then
+  looks at how their own marks moved. It never decides a student's grade.</p>
+</header>
+<a class="card" href="you.html"><h2>The You page</h2><p class="detail">Marking drift, an answer-length effect, and four pairs of similar answers marked differently.</p></a>
+<a class="card" href="you-real.html"><h2>On the current seed data</h2><p class="detail">The same page where the planted effects have not survived. Nothing is reported.</p></a>
+<a class="card" href="you-flat.html"><h2>On clean data</h2><p class="detail">Faculty marks replaced with noise. Nothing is planted, so nothing is found — the honesty check.</p></a>
+</div></body></html>

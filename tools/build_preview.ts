@@ -96,7 +96,7 @@ function build(file: string, title: string): string {
     total === 0
       ? `<section class="card empty">
            <h2>Nothing worth flagging in this session</h2>
-           <p>NORM checked for marking drift, an answer-length effect, and similar answers marked
+           <p>Markable checked for marking drift, an answer-length effect, and similar answers marked
            differently. None of them showed up above the level you would expect from ordinary
            variation, so there is nothing to report.</p>
          </section>`
@@ -109,15 +109,15 @@ function build(file: string, title: string): string {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${esc(title)} — NORM</title>
+<title>${esc(title)} — Markable</title>
 <style>${YOU_PAGE_CSS}</style>
 </head>
 <body>
 <div class="wrap">
   <header class="page">
-    <p class="eyebrow">NORM · You</p>
+    <p class="eyebrow">Markable · You</p>
     <h1>What happened while you were marking</h1>
-    <p class="sub">${scripts.length} scripts, one question. NORM re-marked every script against the guide you approved, then looked at how your own marks moved.</p>
+    <p class="sub">${scripts.length} scripts, one question. Markable re-marked every script against the guide you approved, then looked at how your own marks moved.</p>
   </header>
 
   <div class="chips">
@@ -130,7 +130,7 @@ function build(file: string, title: string): string {
   ${body}
 
   <footer class="note">
-    NORM's marks are not claimed to be correct — only consistent. Everything above measures your
+    Markable's marks are not claimed to be correct — only consistent. Everything above measures your
     marking against one fixed standard, so a shift means the standard you applied moved, not that
     any single mark was wrong. Preview built from <code>${esc(file)}</code>.
   </footer>
@@ -140,6 +140,30 @@ function build(file: string, title: string): string {
 }
 
 mkdirSync(new URL('../preview/', import.meta.url), { recursive: true });
+
+/** A landing page, so the deployed URL opens on something rather than a file listing. */
+function index(): string {
+  const card = (href: string, title: string, blurb: string) =>
+    `<a class="card" href="${href}"><h2>${title}</h2><p class="detail">${blurb}</p></a>`;
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Markable — You</title><style>${YOU_PAGE_CSS}
+a.card { display:block; text-decoration:none; color:inherit; }
+a.card:hover { border-color: var(--rule-strong); }
+</style></head><body><div class="wrap">
+<header class="page">
+  <p class="eyebrow">Markable</p>
+  <h1>What happened while you were marking</h1>
+  <p class="sub">Markable re-marks every script against the guide the faculty member approved, then
+  looks at how their own marks moved. It never decides a student's grade.</p>
+</header>
+${card('you.html', 'The You page', 'Marking drift, an answer-length effect, and four pairs of similar answers marked differently.')}
+${card('you-real.html', 'On the current seed data', 'The same page where the planted effects have not survived. Nothing is reported.')}
+${card('you-flat.html', 'On clean data', 'Faculty marks replaced with noise. Nothing is planted, so nothing is found — the honesty check.')}
+</div></body></html>`;
+}
+writeFileSync(new URL('../preview/index.html', import.meta.url), index(), 'utf8');
+console.log('wrote preview/index.html');
 for (const [fixture, out, title] of [
   ['fixtures/demo-control.json', 'you.html', 'You'],
   ['data/graded-50.json', 'you-real.html', 'You (Dev 1 real data)'],

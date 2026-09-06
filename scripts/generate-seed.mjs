@@ -1,11 +1,11 @@
-// NORM — seed generator (Dev 1).
+// Markable — seed generator (Dev 1).
 //
 // The model writes the ANSWERS. JavaScript computes the FACULTY MARKS.
 // That split is deliberate: if the model assigned the marks we could not
 // guarantee the drift step exists, and the whole demo rests on it existing.
 //
 //   node scripts/generate-seed.mjs
-//   -> data/scripts-50.json      50 Script rows, facultyMark set, unmarked by NORM
+//   -> data/scripts-50.json      50 Script rows, facultyMark set, unmarked by Markable
 //   -> data/planted-effects.json ground truth Dev 2's detectors must recover
 //
 // Needs OPENAI_API_KEY (see scripts/llm.mjs). No npm install — node 20 has fetch.

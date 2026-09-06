@@ -1,4 +1,4 @@
-// NORM — re-apply the planted effects to answers we already have (Dev 1).
+// Markable — re-apply the planted effects to answers we already have (Dev 1).
 //
 //   node scripts/replant.mjs
 //
@@ -7,7 +7,7 @@
 // scripts/plant.mjs, run this, run verify. Costs nothing and takes no time.
 //
 // Rewrites data/scripts-50.json and data/planted-effects.json in place.
-// Does NOT touch data/graded-50.json — re-run marking if NORM's marks matter.
+// Does NOT touch data/graded-50.json — re-run marking if Markable's marks matter.
 
 import fs from 'node:fs';
 import path from 'node:path';

@@ -1,4 +1,4 @@
-// NORM — batch marking (Dev 1). Runs ONCE, offline, on your laptop.
+// Markable — batch marking (Dev 1). Runs ONCE, offline, on your laptop.
 // The committed output is what the app ships; nothing calls the model in prod.
 //
 //   node scripts/mark-all.mjs

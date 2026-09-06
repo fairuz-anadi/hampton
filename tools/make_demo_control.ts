@@ -7,7 +7,7 @@
 //
 // Three things differ from data/graded-50.json:
 //
-//  1. Lower generosity baseline. The real file averages +1.3 above NORM, which pins 16 of 50
+//  1. Lower generosity baseline. The real file averages +1.3 above Markable's own mark, pinning 16 of 50
 //     faculty marks at 10.0, and the clamping silently eats the drift step. Same step, lower base.
 //  2. A real spread of answer lengths. The real file runs 22-226 words with only 12 over the
 //     150-word threshold, which leaves the length effect nothing to measure.
@@ -67,7 +67,7 @@ for (const [a, b] of PAIRS) {
   const A = byId.get(a);
   const B = byId.get(b);
   if (!A || !B) continue;
-  // B now gives A's answer, lightly reworded. Same substance => NORM must award the same marks.
+  // B now gives A's answer, lightly reworded. Same substance => Markable must award the same marks.
   B.text = A.text
     .replace(/^We /, 'I ')
     .replace(/Therefore/g, 'So therefore')
