@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import DriftChart from '@/components/DriftChart';
 import PairCompare from '@/components/PairCompare';
 import { SCRIPTS, QUESTION, CRITERIA } from '@/lib/data';
@@ -187,6 +188,26 @@ export default function YouPage() {
             Deduplicated so each script appears once. {consistency.diverging} raw combinations diverge by 2 or more,
             but inside a group of similarly-marked answers most of those are the same disagreement counted repeatedly.
           </p>
+        </div>
+      </section>
+
+      <section className="panel">
+        <div className="panel-head">
+          <h3>So what do I do about it?</h3>
+        </div>
+        <div className="panel-body stack">
+          <p className="hedge">
+            Findings on their own are just uncomfortable reading. Markable turns each of these into the smallest thing
+            that would change it next time.
+          </p>
+          <div className="row">
+            <Link href="/improve" className="btn" style={{ textDecoration: 'none' }}>
+              What happens next
+            </Link>
+            <Link href="/questions" className="btn btn-ghost" style={{ textDecoration: 'none' }}>
+              Was the question fair?
+            </Link>
+          </div>
         </div>
       </section>
     </div>

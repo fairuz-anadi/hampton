@@ -26,6 +26,13 @@ export default function GradeSession({ question, criteria, scripts, markingRun }
   const total = rubric.reduce((sum, c) => sum + (Number(c.marks) || 0), 0);
   const balanced = total === question.totalMarks;
 
+  // A live proposal is a genuinely new guide, and the shipped marks were not
+  // awarded under it. Detecting that is what lets the results panel say so
+  // instead of quietly showing one guide's labels over another guide's marks.
+  const driftedFromStored = rubric.some(
+    (c, i) => criteria[i] && criteria[i].label.trim() !== c.label.trim()
+  );
+
   const counts = useMemo(
     () => ({
       clear: scripts.filter((s) => s.triage === 'clear').length,
@@ -81,6 +88,24 @@ export default function GradeSession({ question, criteria, scripts, markingRun }
         <h1>One marking session</h1>
         <p className="lede">{question.question}</p>
       </div>
+
+      {/* Three steps, always visible. The faculty should never have to work out
+          how far through the session they are, or what is coming next. */}
+      <nav className="steps" aria-label="Marking session progress">
+        {[
+          { n: 1, label: 'Agree the guide', at: ['intake', 'proposing', 'guide'] },
+          { n: 2, label: 'Markable marks', at: ['marking'] },
+          { n: 3, label: 'Read what came back', at: ['done'] },
+        ].map((s) => {
+          const state = s.at.includes(phase) ? 'now' : s.n < (phase === 'done' ? 3 : phase === 'marking' ? 2 : 1) ? 'done' : 'next';
+          return (
+            <span className="step" data-state={state} key={s.n}>
+              <span className="step-n">{state === 'done' ? '✓' : s.n}</span>
+              {s.label}
+            </span>
+          );
+        })}
+      </nav>
 
       {/* ---------------------------------------------------------- step 1 */}
       <section className="panel">
@@ -197,6 +222,14 @@ export default function GradeSession({ question, criteria, scripts, markingRun }
               </span>
             </div>
             <div className="panel-body">
+              {driftedFromStored && (
+                <p className="hedge" style={{ marginBottom: 22, borderLeftColor: 'var(--critical)' }}>
+                  The guide just proposed is not the one these 50 scripts were marked against — the marking run
+                  shipped with this app used the stored guide, and the model wrote a different one. The marks and
+                  criteria below are the stored run. Markable will not relabel real marks to match a guide they were
+                  never awarded under.
+                </p>
+              )}
               <div className="stat-row">
                 {(['clear', 'review', 'unusual'] as const).map((k) => (
                   <button
@@ -209,8 +242,9 @@ export default function GradeSession({ question, criteria, scripts, markingRun }
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'flex-start',
-                      gap: 2,
-                      minWidth: 130,
+                      gap: 4,
+                      minWidth: 200,
+                      padding: '18px 24px',
                     }}
                   >
                     <span className="stat-value">{counts[k]}</span>
@@ -220,10 +254,34 @@ export default function GradeSession({ question, criteria, scripts, markingRun }
                   </button>
                 ))}
               </div>
-              <p className="hedge" style={{ marginTop: 14 }}>
+              <p className="hedge" style={{ marginTop: 20 }}>
                 &ldquo;Worth a look&rdquo; means Markable gave partial credit somewhere — a judgement call rather than a
                 check. &ldquo;Unusual&rdquo; means the answer took a route your guide does not describe.
               </p>
+            </div>
+          </section>
+
+          {/* The handoff into the discovery layer. Marking is finished here;
+              everything the session can still tell them is one click away, and
+              they should not have to go looking for it in a sidebar. */}
+          <section className="panel" style={{ background: 'var(--accent-wash)', borderColor: 'var(--accent)' }}>
+            <div className="panel-body stack" style={{ gap: 20 }}>
+              <h2>Want to see what happened while you were marking?</h2>
+              <p className="finding-detail" style={{ color: 'var(--ink)' }}>
+                The marks are only half of what this session produced. Markable also watched the order you marked in,
+                which answers it credited identically, and which step of the question the class fell over.
+              </p>
+              <div className="row">
+                <a href="/you" className="btn" style={{ textDecoration: 'none' }}>
+                  Show me my marking
+                </a>
+                <a href="/class" className="btn btn-ghost" style={{ textDecoration: 'none' }}>
+                  What the class got wrong
+                </a>
+                <a href="/questions" className="btn btn-ghost" style={{ textDecoration: 'none' }}>
+                  Was the question fair?
+                </a>
+              </div>
             </div>
           </section>
 
@@ -294,7 +352,13 @@ export default function GradeSession({ question, criteria, scripts, markingRun }
                     <ScriptReader script={current} focus={focus} />
                     <div className="criteria">
                       {current.awards.map((a) => {
-                        const c = rubric.find((x) => x.id === a.criterionId);
+                        // Deliberately the STORED criteria, not the live proposal.
+                        // Both use positional ids, so a freshly proposed guide with
+                        // different criteria in different slots would silently
+                        // relabel marks that were awarded against the stored one.
+                        // A mark shown under the wrong criterion is the single worst
+                        // thing this screen could do.
+                        const c = criteria.find((x) => x.id === a.criterionId);
                         const state = a.awarded >= a.max ? 'tick' : a.awarded > 0 ? 'part' : 'cross';
                         return (
                           <div
@@ -319,9 +383,14 @@ export default function GradeSession({ question, criteria, scripts, markingRun }
                         );
                       })}
                     </div>
-                    <a href={`/student?id=${current.id}`} className="btn btn-ghost btn-sm" style={{ alignSelf: 'flex-start', textDecoration: 'none' }}>
-                      See what this student is shown
-                    </a>
+                    <div className="row">
+                      <a href={`/appeal?id=${current.id}`} className="btn btn-sm" style={{ textDecoration: 'none' }}>
+                        The record behind this mark
+                      </a>
+                      <a href={`/student?id=${current.id}`} className="btn btn-ghost btn-sm" style={{ textDecoration: 'none' }}>
+                        What this student is shown
+                      </a>
+                    </div>
                   </div>
                 </>
               )}

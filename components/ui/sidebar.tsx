@@ -87,10 +87,10 @@ export const DesktopSidebar = ({
   return (
     <motion.div
       className={cn(
-        "h-full px-4 py-5 hidden md:flex md:flex-col bg-paper-2 border-r border-rule w-[260px] shrink-0",
+        "h-full px-5 py-7 hidden md:flex md:flex-col bg-paper-2 border-r border-rule w-[280px] shrink-0",
         className
       )}
-      animate={{ width: animate ? (open ? "260px" : "72px") : "260px" }}
+      animate={{ width: animate ? (open ? "280px" : "76px") : "280px" }}
       transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
@@ -163,8 +163,8 @@ export const SidebarLink = ({
     <Link
       href={link.href}
       className={cn(
-        "flex items-center justify-start gap-3 group/sidebar rounded-full px-3 py-2 transition-colors duration-200",
-        active ? "bg-lilac text-ink" : "hover:bg-paper text-ink-soft",
+        "flex items-center justify-start gap-3.5 group/sidebar rounded-full px-4 py-2.5 transition-colors duration-200",
+        active ? "bg-lilac text-ink font-medium" : "hover:bg-paper text-ink-soft",
         className
       )}
       {...props}
@@ -175,7 +175,7 @@ export const SidebarLink = ({
           display: animate ? (open ? "inline-block" : "none") : "inline-block",
           opacity: animate ? (open ? 1 : 0) : 1,
         }}
-        className="text-sm whitespace-pre inline-block !p-0 !m-0 group-hover/sidebar:translate-x-0.5 transition duration-150"
+        className="text-[22px] leading-tight whitespace-pre inline-block !p-0 !m-0 group-hover/sidebar:translate-x-0.5 transition duration-150"
       >
         {link.label}
       </motion.span>
@@ -185,7 +185,7 @@ export const SidebarLink = ({
             display: animate ? (open ? "inline-block" : "none") : "inline-block",
             opacity: animate ? (open ? 1 : 0) : 1,
           }}
-          className="ml-auto font-mono text-[10.5px] text-faint whitespace-pre"
+          className="ml-auto font-mono text-[15px] text-faint whitespace-pre tabular-nums"
         >
           {note}
         </motion.span>

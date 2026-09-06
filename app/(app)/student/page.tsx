@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import ScriptReader from '@/components/ScriptReader';
-import { SCRIPTS, CRITERIA, QUESTION, scriptById } from '@/lib/data';
+import ExplainThis from '@/components/ExplainThis';
+import { SCRIPTS, CRITERIA, QUESTION, scriptById, awardNote } from '@/lib/data';
 
 export const metadata = { title: 'Your result · Markable' };
 
@@ -30,7 +31,7 @@ export default async function StudentPage({
         <div className="panel-body stack">
           <div className="row" style={{ alignItems: 'baseline', gap: 14 }}>
             <span className="mark-big">{script.normMark}</span>
-            <span style={{ color: 'var(--faint)', fontSize: 20 }}>/ {QUESTION.totalMarks}</span>
+            <span style={{ color: 'var(--faint)', fontSize: 32 }}>/ {QUESTION.totalMarks}</span>
           </div>
           <p className="lede">
             {lostMarks === 0
@@ -62,7 +63,7 @@ export default async function StudentPage({
                     <div className="criterion-mark">
                       {a.awarded}/{a.max}
                     </div>
-                    <div className="criterion-note">{a.note}</div>
+                    <div className="criterion-note">{awardNote(a)}</div>
                   </div>
                 ))}
               </div>
@@ -88,8 +89,16 @@ export default async function StudentPage({
                     </div>
                     <div className="criterion-mark">−{a.max - a.awarded}</div>
                     <div className="criterion-note">
-                      {a.note} <span style={{ color: 'var(--faint)' }}>Expected: {CRITERIA.find((c) => c.id === a.criterionId)?.expects}</span>
+                      {awardNote(a)}{' '}
+                      <span style={{ color: 'var(--faint)' }}>
+                        Expected: {CRITERIA.find((c) => c.id === a.criterionId)?.expects}
+                      </span>
                     </div>
+                    <ExplainThis
+                      scriptId={script.id}
+                      criterionId={a.criterionId}
+                      criterionLabel={label(a.criterionId)}
+                    />
                   </div>
                 ))}
               </div>

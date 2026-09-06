@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { SCRIPTS, CRITERIA, QUESTION, scriptById } from '@/lib/data';
+import { SCRIPTS, CRITERIA, QUESTION, scriptById, awardNote } from '@/lib/data';
 import { findCommonErrors } from '@/lib/insights';
 import AskMarkable from '@/components/AskMarkable';
 
@@ -30,7 +30,7 @@ export default function ClassPage() {
             </div>
             <div>
               <div className="stat-label">Mean mark</div>
-              <div className="stat-value">{mean.toFixed(1)}<span style={{ color: 'var(--faint)', fontSize: 14 }}>/{QUESTION.totalMarks}</span></div>
+              <div className="stat-value">{mean.toFixed(1)}<span style={{ color: 'var(--faint)', fontSize: 24 }}>/{QUESTION.totalMarks}</span></div>
             </div>
             <div>
               <div className="stat-label">Patterns found</div>
@@ -52,7 +52,7 @@ export default function ClassPage() {
           <section className="panel" key={e.tag}>
             <div className="panel-head">
               <h2>
-                <span style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 13, color: 'var(--faint)', marginRight: 10 }}>
+                <span style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 15, color: 'var(--faint)', marginRight: 14 }}>
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 {e.label}
@@ -66,7 +66,7 @@ export default function ClassPage() {
               </p>
 
               <details>
-                <summary style={{ cursor: 'pointer', color: 'var(--accent)', fontSize: 14 }}>
+                <summary style={{ cursor: 'pointer', color: 'var(--accent)', fontSize: 22, fontWeight: 500, padding: '6px 0' }}>
                   Show the {e.count} scripts
                 </summary>
                 <div className="table-wrap" style={{ marginTop: 12 }}>
@@ -88,7 +88,7 @@ export default function ClassPage() {
                           <tr key={id}>
                             <td>{s.label}</td>
                             <td className="num mark mark-faculty">{s.facultyMark}</td>
-                            <td style={{ maxWidth: 380 }}>{award?.note}</td>
+                            <td style={{ maxWidth: '34ch' }}>{award ? awardNote(award) : ''}</td>
                             <td>
                               <Link className="btn btn-ghost btn-sm" href={`/student?id=${id}`} style={{ textDecoration: 'none' }}>
                                 Open
@@ -111,6 +111,26 @@ export default function ClassPage() {
           <div className="empty">No mistake was made by enough students to call it a pattern.</div>
         </section>
       )}
+
+      <section className="panel">
+        <div className="panel-head">
+          <h3>Before you re-teach any of it</h3>
+        </div>
+        <div className="panel-body stack">
+          <p className="hedge">
+            One of these patterns may not be a teaching problem at all. Markable checks whether the students who
+            understood everything else still got it wrong — and if they did, the question is the thing to fix.
+          </p>
+          <div className="row">
+            <Link href="/questions" className="btn" style={{ textDecoration: 'none' }}>
+              Check the question first
+            </Link>
+            <Link href="/improve" className="btn btn-ghost" style={{ textDecoration: 'none' }}>
+              What happens next
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
