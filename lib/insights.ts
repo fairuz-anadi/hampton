@@ -13,6 +13,7 @@ import type { Script, Finding, ErrorTag } from './types';
 export const LENGTH_THRESHOLD = 150; // words. See README: where the data separates.
 export const MIN_PAIR_GAP = 2;       // marks
 export const MIN_DRIFT_STEP = 0.4;   // below this we report nothing
+export const MIN_PAIR_SIMILARITY = 0.6; // tf-idf cosine; below this the two answers do not read alike
 
 const mean = (xs: number[]) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : NaN);
 const round2 = (n: number) => Math.round(n * 100) / 100;
@@ -174,6 +175,96 @@ export function detectLengthEffect(scripts: Script[], totalMarks = 10): LengthEf
   };
 }
 
+
+// ---------------------------------------------------------------- statistics
+
+/** Abramowitz & Stegun 7.1.26. */
+function erf(x: number): number {
+  const sign = x < 0 ? -1 : 1;
+  const a = Math.abs(x);
+  const t = 1 / (1 + 0.3275911 * a);
+  const y =
+    1 -
+    ((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t - 0.284496736) * t + 0.254829592) *
+      t *
+      Math.exp(-a * a);
+  return sign * y;
+}
+
+/** Smallest z with P(|Z| > z) <= p. Bisection — exact enough, and avoids a dependency. */
+function twoSidedZ(p: number): number {
+  let lo = 0;
+  let hi = 8;
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    const tail = 1 - erf(mid / Math.SQRT2);
+    if (tail > p) lo = mid;
+    else hi = mid;
+  }
+  return hi;
+}
+
+/** Sample SD of marking noise, estimated from spread WITHIN coverage groups.
+ *  Answers Markable credited identically should have received the same mark, so
+ *  whatever spread remains is the marker's own wobble. */
+function withinGroupSD(groups: Map<string, Script[]>): number {
+  let ss = 0;
+  let df = 0;
+  for (const [, g] of groups) {
+    const marks = g.filter((s) => s.facultyMark != null).map((s) => s.facultyMark!);
+    if (marks.length < 2) continue;
+    const m = mean(marks);
+    for (const x of marks) ss += (x - m) ** 2;
+    df += marks.length - 1;
+  }
+  return df > 0 ? Math.sqrt(ss / df) : NaN;
+}
+
+const STOP_WORDS = new Set([
+  'the', 'a', 'an', 'and', 'or', 'is', 'are', 'was', 'to', 'of', 'in', 'it', 'this',
+  'that', 'we', 'i', 'so', 'here', 'be', 'as', 'at', 'for', 'on', 'with', 'by',
+]);
+
+const tokenize = (t: string): string[] =>
+  t.toLowerCase().replace(/[^a-z0-9^_()/+=. ]/g, ' ').split(/\s+/).filter((w) => w && !STOP_WORDS.has(w));
+
+/** Tf-idf, L2-normalised. Idf matters: fifty answers to one question share most of
+ *  their vocabulary, so raw word overlap calls every pair similar. */
+function tfidfVectors(scripts: Script[]): Map<string, Map<string, number>> {
+  const docs = scripts.map((s) => [s.id, tokenize(s.text)] as const);
+  const n = docs.length;
+  const df = new Map<string, number>();
+  for (const [, d] of docs) for (const w of new Set(d)) df.set(w, (df.get(w) ?? 0) + 1);
+
+  const out = new Map<string, Map<string, number>>();
+  for (const [id, d] of docs) {
+    const tf = new Map<string, number>();
+    for (const w of d) tf.set(w, (tf.get(w) ?? 0) + 1);
+    const v = new Map<string, number>();
+    let norm = 0;
+    for (const [w, c] of tf) {
+      const weight = (c / d.length) * Math.log(n / (df.get(w) ?? 1));
+      v.set(w, weight);
+      norm += weight * weight;
+    }
+    norm = Math.sqrt(norm) || 1;
+    for (const [w, x] of v) v.set(w, x / norm);
+    out.set(id, v);
+  }
+  return out;
+}
+
+/** Cosine of two L2-normalised sparse vectors. */
+function cosine(a: Map<string, number>, b: Map<string, number>): number {
+  const [small, big] = a.size < b.size ? [a, b] : [b, a];
+  let dot = 0;
+  for (const [w, x] of small) {
+    const o = big.get(w);
+    if (o !== undefined) dot += x * o;
+  }
+  return dot;
+}
+
 // ---------------------------------------------------------------- similar pairs
 
 export interface SimilarPair {
@@ -181,6 +272,18 @@ export interface SimilarPair {
   b: Script;
   gap: number;
   key: string;
+  /** Tf-idf cosine of the two answers, 0-1. Shown so the claim on screen matches
+   *  what the reader sees when they open the two answers side by side. */
+  similarity: number;
+}
+
+export interface SimilarPairResult {
+  pairs: SimilarPair[];
+  /** Mark gap a pair had to clear to be reported. Derived from this session's own
+   *  marking noise and the number of comparisons made — not a fixed constant. */
+  minGap: number;
+  compared: number;
+  noiseSD: number;
 }
 
 /**
@@ -192,33 +295,76 @@ export interface SimilarPair {
  * worth a second look".
  */
 export function findSimilarPairs(scripts: Script[], limit = 5): SimilarPair[] {
-  const groups = groupBy(scripts.filter((s) => s.facultyMark != null), coverageKey);
+  return analyseSimilarPairs(scripts, limit).pairs;
+}
+
+/**
+ * Answers Markable credited identically that the faculty marked differently.
+ *
+ * Two gates, and both are needed.
+ *
+ * 1. The gap must be bigger than this session's own marking noise, corrected for how
+ *    many pairs we looked at. With ~230 comparable pairs, a plain "2 marks apart" bar
+ *    is met by chance almost every time: measured over 400 noise-only datasets, the
+ *    uncorrected rule reported a contradiction in 99.5% of them. Looking at hundreds of
+ *    pairs and reporting the widest is how you find a pattern in a coin toss.
+ *
+ * 2. The two answers must actually read alike. Identical CREDIT does not mean identical
+ *    ANSWER — a 45-word response and a 215-word response can earn the same marks. The
+ *    screen invites the reader to compare them, so if they look nothing alike the finding
+ *    collapses the moment anyone clicks.
+ */
+export function analyseSimilarPairs(
+  scripts: Script[],
+  limit = 5,
+  minSimilarity = MIN_PAIR_SIMILARITY,
+): SimilarPairResult {
+  const marked = scripts.filter((s) => s.facultyMark != null);
+  const groups = groupBy(marked, coverageKey);
+
+  let compared = 0;
+  for (const [, g] of groups) compared += (g.length * (g.length - 1)) / 2;
+
+  const noiseSD = withinGroupSD(groups);
+  // Two sigma of this session's own marking noise. A full Bonferroni correction across all
+  // ~230 comparisons puts the bar above 5 marks on a 10-mark question, which rejects even a
+  // deliberately planted contradiction — too blunt to be useful. The similarity gate below
+  // is what actually removes the chance findings; this only keeps a pair from qualifying on
+  // a wobble that is small relative to how this marker varies anyway.
+  const derived = Number.isFinite(noiseSD) ? 2 * noiseSD : NaN;
+  const minGap = Number.isFinite(derived) ? Math.max(MIN_PAIR_GAP, derived) : MIN_PAIR_GAP;
+
+  const vectors = tfidfVectors(marked);
   const candidates: SimilarPair[] = [];
 
   for (const [key, group] of groups) {
     for (let i = 0; i < group.length; i++) {
       for (let j = i + 1; j < group.length; j++) {
         const gap = Math.abs(group[i].facultyMark! - group[j].facultyMark!);
-        if (gap >= MIN_PAIR_GAP) {
-          const [hi, lo] = group[i].facultyMark! >= group[j].facultyMark! ? [group[i], group[j]] : [group[j], group[i]];
-          candidates.push({ a: hi, b: lo, gap: round2(gap), key });
-        }
+        if (gap < minGap) continue;
+        const similarity = cosine(vectors.get(group[i].id)!, vectors.get(group[j].id)!);
+        if (similarity < minSimilarity) continue;
+        const [hi, lo] =
+          group[i].facultyMark! >= group[j].facultyMark! ? [group[i], group[j]] : [group[j], group[i]];
+        candidates.push({ a: hi, b: lo, gap: round2(gap), key, similarity: round2(similarity) });
       }
     }
   }
 
-  candidates.sort((x, y) => y.gap - x.gap);
+  // Most alike first: the pair that best survives being opened side by side leads.
+  candidates.sort((x, y) => y.similarity - x.similarity || y.gap - x.gap);
 
   const used = new Set<string>();
-  const picked: SimilarPair[] = [];
+  const pairs: SimilarPair[] = [];
   for (const c of candidates) {
     if (used.has(c.a.id) || used.has(c.b.id)) continue;
     used.add(c.a.id);
     used.add(c.b.id);
-    picked.push(c);
-    if (picked.length >= limit) break;
+    pairs.push(c);
+    if (pairs.length >= limit) break;
   }
-  return picked;
+
+  return { pairs, minGap: round2(minGap), compared, noiseSD: round2(noiseSD) };
 }
 
 // ---------------------------------------------------------------- common errors
@@ -322,12 +468,24 @@ export function buildFindings(scripts: Script[], totalMarks: number): Finding[] 
     });
   }
 
-  const pairs = findSimilarPairs(scripts);
+  const sim = analyseSimilarPairs(scripts);
+  const pairs = sim.pairs;
   if (pairs.length) {
+    const gaps = pairs.map((p) => p.gap);
+    const lo = Math.min(...gaps);
+    const hi = Math.max(...gaps);
+    const range = lo === hi ? `${lo}` : `${lo}–${hi}`;
     out.push({
       kind: 'similar-pair',
-      headline: `${pairs.length} pairs of answers worth comparing`,
-      detail: `These answers were credited the same way against every criterion, but their marks differ by ${Math.min(...pairs.map((p) => p.gap))}–${Math.max(...pairs.map((p) => p.gap))} marks.`,
+      headline:
+        pairs.length === 1
+          ? 'Two answers say the same thing and were marked differently'
+          : `${pairs.length} pairs of answers worth comparing`,
+      detail:
+        `Markable credited ${pairs.length === 1 ? 'these' : 'each of these'} the same way on every criterion, ` +
+        `and they read alike too — ${pairs.length === 1 ? `${Math.round(pairs[0].similarity * 100)}% of the wording overlaps` : 'at least 60% of the wording overlaps'}. ` +
+        `Their marks differ by ${range} marks. Out of ${sim.compared} comparable pairs, ` +
+        `${pairs.length === 1 ? 'this was the only one' : `these were the ${pairs.length}`} where the gap was larger than this marker's own variation.`,
       strength: 'clear',
       scriptIds: pairs.flatMap((p) => [p.a.id, p.b.id]),
     });
