@@ -1,0 +1,15 @@
+{
+  "name": "norm",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "fixture": "node scripts/build-fixture.mjs",
+    "seed": "node scripts/generate-seed.mjs",
+    "verify": "node scripts/verify-seed.mjs",
+    "mark": "node scripts/mark-all.mjs",
+    "replant": "node scripts/replant.mjs"
+  }
+}

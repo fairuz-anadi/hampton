@@ -1,0 +1,775 @@
+[
+  {
+    "id": "f01",
+    "order": 1,
+    "label": "Student 1",
+    "text": "Here a = 3, b = 4, f(n) = n log n. So n^(log_4 3) = n^0.79. Since n log n grows faster, this is Case 3. Therefore T(n) = Theta(n log n).",
+    "wordCount": 33,
+    "facultyMark": 8.5,
+    "normMark": 8,
+    "awards": [
+      {
+        "criterionId": "c1",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            5,
+            34
+          ]
+        ],
+        "note": "All three parameters stated.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c2",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            38,
+            59
+          ]
+        ],
+        "note": "Critical exponent computed.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c3",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            60,
+            103
+          ]
+        ],
+        "note": "Case 3 selected with a reason.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c4",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [],
+        "note": "Regularity condition never checked.",
+        "errorTag": "missed-regularity-check"
+      },
+      {
+        "criterionId": "c5",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            104,
+            136
+          ]
+        ],
+        "note": "Correct bound.",
+        "errorTag": null
+      }
+    ],
+    "triage": "clear",
+    "_truth": {
+      "covers": [
+        "c1",
+        "c2",
+        "c3",
+        "c5"
+      ],
+      "base": 8,
+      "style": "concise"
+    }
+  },
+  {
+    "id": "f02",
+    "order": 2,
+    "label": "Student 2",
+    "text": "a is 3 and b is 4 and the driving function is n log n. Computing the watershed we get n raised to log base 4 of 3 which is about n^0.79. Comparing the two, the driving function clearly dominates, so we are in the third case of the theorem, and I believe the answer works out to Theta of n log n overall.",
+    "wordCount": 64,
+    "facultyMark": 9,
+    "normMark": 8,
+    "awards": [
+      {
+        "criterionId": "c1",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            0,
+            54
+          ]
+        ],
+        "note": "Parameters identified in words.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c2",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            86,
+            136
+          ]
+        ],
+        "note": "Exponent computed correctly.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c3",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            199,
+            238
+          ]
+        ],
+        "note": "Case 3 identified.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c4",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [],
+        "note": "No regularity check.",
+        "errorTag": "missed-regularity-check"
+      },
+      {
+        "criterionId": "c5",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            254,
+            303
+          ]
+        ],
+        "note": "Bound stated, hedged.",
+        "errorTag": null
+      }
+    ],
+    "triage": "clear",
+    "_truth": {
+      "covers": [
+        "c1",
+        "c2",
+        "c3",
+        "c5"
+      ],
+      "base": 8,
+      "style": "verbose"
+    }
+  },
+  {
+    "id": "f03",
+    "order": 3,
+    "label": "Student 3",
+    "text": "a = 3, b = 4, f(n) = n log n. n^(log_4 3) is roughly n^0.79.",
+    "wordCount": 16,
+    "facultyMark": 5.5,
+    "normMark": 4,
+    "awards": [
+      {
+        "criterionId": "c1",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            0,
+            29
+          ]
+        ],
+        "note": "Parameters stated.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c2",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            30,
+            60
+          ]
+        ],
+        "note": "Exponent computed.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c3",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [],
+        "note": "No case selected.",
+        "errorTag": "incomplete-working"
+      },
+      {
+        "criterionId": "c4",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [],
+        "note": "Not attempted.",
+        "errorTag": "incomplete-working"
+      },
+      {
+        "criterionId": "c5",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [],
+        "note": "No bound given.",
+        "errorTag": "incomplete-working"
+      }
+    ],
+    "triage": "clear",
+    "_truth": {
+      "covers": [
+        "c1",
+        "c2"
+      ],
+      "base": 4,
+      "style": "concise"
+    }
+  },
+  {
+    "id": "f04",
+    "order": 4,
+    "label": "Student 4",
+    "text": "The recurrence given to us is T(n) = 3T(n/4) + n log n, which is a divide and conquer recurrence of the standard form. We can see that a = 3 and b = 4 and the extra work at each level is f(n) = n log n. Next we need the watershed function, which is n to the power log base 4 of 3, approximately n^0.79 as a decimal. I am fairly confident this is the right approach here.",
+    "wordCount": 80,
+    "facultyMark": 7,
+    "normMark": 4,
+    "awards": [
+      {
+        "criterionId": "c1",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            135,
+            202
+          ]
+        ],
+        "note": "Parameters identified.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c2",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            249,
+            315
+          ]
+        ],
+        "note": "Exponent computed.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c3",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [],
+        "note": "Stops before choosing a case.",
+        "errorTag": "incomplete-working"
+      },
+      {
+        "criterionId": "c4",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [],
+        "note": "Not attempted.",
+        "errorTag": "incomplete-working"
+      },
+      {
+        "criterionId": "c5",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [],
+        "note": "No bound.",
+        "errorTag": "incomplete-working"
+      }
+    ],
+    "triage": "clear",
+    "_truth": {
+      "covers": [
+        "c1",
+        "c2"
+      ],
+      "base": 4,
+      "style": "verbose"
+    }
+  },
+  {
+    "id": "f05",
+    "order": 5,
+    "label": "Student 5",
+    "text": "a = 3, b = 4. f(n) = n log n. Case 3 applies. Also 3(n/4)log(n/4) <= (3/4) n log n so the regularity condition holds. T(n) = Theta(n log n).",
+    "wordCount": 31,
+    "facultyMark": 10,
+    "normMark": 10,
+    "awards": [
+      {
+        "criterionId": "c1",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            0,
+            29
+          ]
+        ],
+        "note": "Parameters stated.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c2",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            30,
+            45
+          ]
+        ],
+        "note": "Exponent implied by the case choice.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c3",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            30,
+            45
+          ]
+        ],
+        "note": "Case 3 selected.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c4",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            51,
+            117
+          ]
+        ],
+        "note": "Regularity verified explicitly.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c5",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            118,
+            140
+          ]
+        ],
+        "note": "Correct bound.",
+        "errorTag": null
+      }
+    ],
+    "triage": "clear",
+    "_truth": {
+      "covers": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5"
+      ],
+      "base": 10,
+      "style": "concise"
+    }
+  },
+  {
+    "id": "f06",
+    "order": 6,
+    "label": "Student 6",
+    "text": "We have a = 3, b = 4, f(n) = n log n. The watershed is n^(log_4 3) = n^0.79. f(n) is bigger so Case 3. Hence T(n) = Theta(n log n).",
+    "wordCount": 32,
+    "facultyMark": 7.5,
+    "normMark": 8,
+    "awards": [
+      {
+        "criterionId": "c1",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            8,
+            37
+          ]
+        ],
+        "note": "Parameters stated.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c2",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            38,
+            76
+          ]
+        ],
+        "note": "Exponent computed.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c3",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            77,
+            102
+          ]
+        ],
+        "note": "Case 3 selected.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c4",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [],
+        "note": "No regularity check.",
+        "errorTag": "missed-regularity-check"
+      },
+      {
+        "criterionId": "c5",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            103,
+            131
+          ]
+        ],
+        "note": "Correct bound.",
+        "errorTag": null
+      }
+    ],
+    "triage": "clear",
+    "_truth": {
+      "covers": [
+        "c1",
+        "c2",
+        "c3",
+        "c5"
+      ],
+      "base": 8,
+      "style": "concise"
+    }
+  },
+  {
+    "id": "f07",
+    "order": 7,
+    "label": "Student 7",
+    "text": "Reading the recurrence carefully, we can identify that a equals 3, b equals 4, and the additional work per level is f(n) = n log n. The comparison function is therefore n to the power of log base 4 of 3, which evaluates to approximately n^0.79. Since n log n is polynomially larger than this, the third case of the Master Theorem is the one that applies to this recurrence, and so the final asymptotic bound must be Theta(n log n) as required.",
+    "wordCount": 83,
+    "facultyMark": 8.5,
+    "normMark": 8,
+    "awards": [
+      {
+        "criterionId": "c1",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            55,
+            131
+          ]
+        ],
+        "note": "Parameters identified.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c2",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            169,
+            244
+          ]
+        ],
+        "note": "Exponent computed.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c3",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            293,
+            353
+          ]
+        ],
+        "note": "Case 3 with justification.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c4",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [],
+        "note": "Regularity not verified.",
+        "errorTag": "missed-regularity-check"
+      },
+      {
+        "criterionId": "c5",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            381,
+            430
+          ]
+        ],
+        "note": "Correct bound.",
+        "errorTag": null
+      }
+    ],
+    "triage": "clear",
+    "_truth": {
+      "covers": [
+        "c1",
+        "c2",
+        "c3",
+        "c5"
+      ],
+      "base": 8,
+      "style": "verbose"
+    }
+  },
+  {
+    "id": "f08",
+    "order": 8,
+    "label": "Student 8",
+    "text": "a = 3, b = 4, f(n) = n log n. Comparing, I think this is Case 1, so T(n) = Theta(n^0.79).",
+    "wordCount": 22,
+    "facultyMark": 2.5,
+    "normMark": 2,
+    "awards": [
+      {
+        "criterionId": "c1",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            0,
+            29
+          ]
+        ],
+        "note": "Parameters stated.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c2",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [],
+        "note": "Exponent never computed.",
+        "errorTag": "incomplete-working"
+      },
+      {
+        "criterionId": "c3",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [
+          [
+            41,
+            63
+          ]
+        ],
+        "note": "Case 1 chosen; f(n) dominates so Case 3 applies.",
+        "errorTag": "wrong-case-selected"
+      },
+      {
+        "criterionId": "c4",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [],
+        "note": "Not attempted.",
+        "errorTag": "incomplete-working"
+      },
+      {
+        "criterionId": "c5",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [
+          [
+            68,
+            89
+          ]
+        ],
+        "note": "Bound follows from the wrong case.",
+        "errorTag": "wrong-case-selected"
+      }
+    ],
+    "triage": "clear",
+    "_truth": {
+      "covers": [
+        "c1"
+      ],
+      "base": 2,
+      "style": "concise"
+    }
+  },
+  {
+    "id": "f09",
+    "order": 9,
+    "label": "Student 9",
+    "text": "For this recurrence we should identify the constants first. Clearly a = 3 because there are three subproblems, and b = 4 because the size shrinks by a factor of four each time, with f(n) = n log n being the combine step. Having set that up, my instinct is that the first case of the theorem applies here, giving T(n) = Theta(n^0.79) as the final answer, though I am not completely certain about this part.",
+    "wordCount": 76,
+    "facultyMark": 4,
+    "normMark": 2,
+    "awards": [
+      {
+        "criterionId": "c1",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            68,
+            120
+          ]
+        ],
+        "note": "Parameters identified with reasons.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c2",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [],
+        "note": "Exponent not computed.",
+        "errorTag": "incomplete-working"
+      },
+      {
+        "criterionId": "c3",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [
+          [
+            261,
+            303
+          ]
+        ],
+        "note": "Case 1 chosen incorrectly.",
+        "errorTag": "wrong-case-selected"
+      },
+      {
+        "criterionId": "c4",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [],
+        "note": "Not attempted.",
+        "errorTag": "incomplete-working"
+      },
+      {
+        "criterionId": "c5",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [
+          [
+            312,
+            352
+          ]
+        ],
+        "note": "Bound follows the wrong case.",
+        "errorTag": "wrong-case-selected"
+      }
+    ],
+    "triage": "review",
+    "_truth": {
+      "covers": [
+        "c1"
+      ],
+      "base": 2,
+      "style": "verbose"
+    }
+  },
+  {
+    "id": "f10",
+    "order": 10,
+    "label": "Student 10",
+    "text": "I would draw the recursion tree and add up the levels. The tree has depth log_4 n and each level does about n log n work, so summing gives roughly n log n times a constant. So T(n) = Theta(n log n).",
+    "wordCount": 42,
+    "facultyMark": 4,
+    "normMark": 2,
+    "awards": [
+      {
+        "criterionId": "c1",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [],
+        "note": "Parameters never named.",
+        "errorTag": "misidentified-parameters"
+      },
+      {
+        "criterionId": "c2",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [],
+        "note": "No critical exponent.",
+        "errorTag": "incomplete-working"
+      },
+      {
+        "criterionId": "c3",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [
+          [
+            0,
+            31
+          ]
+        ],
+        "note": "Recursion tree used instead of the Master Theorem.",
+        "errorTag": "no-justification"
+      },
+      {
+        "criterionId": "c4",
+        "awarded": 0,
+        "max": 2,
+        "evidence": [],
+        "note": "Not applicable to the method used.",
+        "errorTag": null
+      },
+      {
+        "criterionId": "c5",
+        "awarded": 2,
+        "max": 2,
+        "evidence": [
+          [
+            173,
+            198
+          ]
+        ],
+        "note": "Reaches the correct bound by another route.",
+        "errorTag": "correct-but-unexplained"
+      }
+    ],
+    "triage": "unusual",
+    "_truth": {
+      "covers": [
+        "c5"
+      ],
+      "base": 2,
+      "style": "concise"
+    }
+  }
+]

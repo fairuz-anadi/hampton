@@ -1,0 +1,52 @@
+{
+  "seed": 20260906,
+  "driftAfter": 25,
+  "generosityEarly": 1.8,
+  "generosityLate": 1.2,
+  "lengthThreshold": 150,
+  "lengthBonus": 1.3,
+  "inconsistentPairs": 4,
+  "pairGap": 2.5,
+  "plantedPairs": [
+    {
+      "a": "s01",
+      "b": "s44",
+      "gap": 2.5,
+      "covers": [
+        "c1",
+        "c2",
+        "c3"
+      ]
+    },
+    {
+      "a": "s02",
+      "b": "s50",
+      "gap": 2.5,
+      "covers": [
+        "c1",
+        "c2",
+        "c3",
+        "c5"
+      ]
+    },
+    {
+      "a": "s03",
+      "b": "s47",
+      "gap": 2.5,
+      "covers": [
+        "c1",
+        "c2",
+        "c5"
+      ]
+    },
+    {
+      "a": "s04",
+      "b": "s46",
+      "gap": 2.5,
+      "covers": [
+        ""
+      ]
+    }
+  ],
+  "replantedAt": "2026-09-06T05:26:24.876Z"
+}

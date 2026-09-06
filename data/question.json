@@ -1,0 +1,39 @@
+{
+  "questionId": "q4b",
+  "paper": "CSE 2211 — Algorithms, Mid-term",
+  "question": "Q4(b). Solve the recurrence T(n) = 3T(n/4) + n log n using the Master Theorem. State which case applies, verify any condition that case requires, and give the asymptotic bound for T(n).",
+  "totalMarks": 10,
+  "referenceCriteria": [
+    {
+      "id": "c1",
+      "label": "Identifies the parameters",
+      "marks": 2,
+      "expects": "States a = 3, b = 4 and f(n) = n log n."
+    },
+    {
+      "id": "c2",
+      "label": "Computes the critical exponent",
+      "marks": 2,
+      "expects": "Computes n^(log_b a) = n^(log_4 3), approximately n^0.79."
+    },
+    {
+      "id": "c3",
+      "label": "Selects the correct case",
+      "marks": 2,
+      "expects": "Identifies Case 3, because f(n) grows polynomially faster than n^(log_4 3)."
+    },
+    {
+      "id": "c4",
+      "label": "Verifies the regularity condition",
+      "marks": 2,
+      "expects": "Checks a·f(n/b) <= c·f(n) for some c < 1, e.g. 3·(n/4)·log(n/4) <= (3/4)·n log n."
+    },
+    {
+      "id": "c5",
+      "label": "States the bound",
+      "marks": 2,
+      "expects": "Concludes T(n) = Theta(n log n)."
+    }
+  ],
+  "_note": "referenceCriteria is the approved rubric the batch marking runs against. In the demo, NORM induces a rubric live from this question and the faculty approves it — the induced one should land close to this."
+}
