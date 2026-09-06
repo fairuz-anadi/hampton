@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { SCRIPTS, QUESTION, CRITERIA, triageCounts } from '@/lib/data';
 import { detectDrift, detectLengthEffect, findSimilarPairs, findCommonErrors, consistencyScore } from '@/lib/insights';
+import { envOr, envOrUndefined } from '@/lib/env';
 
 // Answers questions about THIS marking session, and only from numbers Markable has
 // already computed. The facts are assembled here and handed to the model as the
@@ -69,7 +70,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ answer: 'Ask me something about this marking session.' });
   }
 
-  const key = process.env.OPENAI_API_KEY;
+  const key = envOrUndefined('OPENAI_API_KEY');
   if (!key) {
     return NextResponse.json({
       answer: 'No API key is configured on the server, so I can only show the numbers already on these pages.',
@@ -77,8 +78,8 @@ export async function POST(req: Request) {
     });
   }
 
-  const model = process.env.OPENAI_MODEL ?? 'gpt-4o';
-  const base = process.env.OPENAI_BASE_URL ?? 'https://api.openai.com/v1';
+  const model = envOr('OPENAI_MODEL', 'gpt-4o');
+  const base = envOr('OPENAI_BASE_URL', 'https://api.openai.com/v1');
 
   try {
     const res = await fetch(`${base}/chat/completions`, {

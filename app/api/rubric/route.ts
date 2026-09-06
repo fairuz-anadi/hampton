@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { QUESTION } from '@/lib/data';
 import type { Criterion } from '@/lib/types';
+import { envOr, envOrUndefined } from '@/lib/env';
 
 // The only live model call in the product. Everything else is the record of a
 // marking run that already happened.
@@ -44,11 +45,11 @@ function normalise(raw: unknown, totalMarks: number): Criterion[] | null {
 }
 
 export async function POST() {
-  const key = process.env.OPENAI_API_KEY;
+  const key = envOrUndefined('OPENAI_API_KEY');
   if (!key) return fallback('No API key configured on the server — showing the stored guide.');
 
-  const model = process.env.OPENAI_MODEL ?? 'gpt-4o';
-  const base = process.env.OPENAI_BASE_URL ?? 'https://api.openai.com/v1';
+  const model = envOr('OPENAI_MODEL', 'gpt-4o');
+  const base = envOr('OPENAI_BASE_URL', 'https://api.openai.com/v1');
 
   const user = `Question (${QUESTION.totalMarks} marks):
 ${QUESTION.question}

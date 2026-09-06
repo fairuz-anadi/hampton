@@ -9,9 +9,12 @@
 // reasoning model that rejects `temperature` or `max_tokens`, the first call
 // detects it from the error and retries without them — you do not have to care.
 
-const BASE = process.env.OPENAI_BASE_URL ?? 'https://api.openai.com/v1';
-const MODEL = process.env.OPENAI_MODEL ?? 'gpt-4o';
-const KEY = process.env.OPENAI_API_KEY;
+// Trim, and treat a blank value as absent: a dashboard variable left empty arrives as "",
+// which `??` happily passes through.
+const env = (n, d) => process.env[n]?.trim() || d;
+const BASE = env('OPENAI_BASE_URL', 'https://api.openai.com/v1');
+const MODEL = env('OPENAI_MODEL', 'gpt-4o');
+const KEY = env('OPENAI_API_KEY', undefined);
 
 if (!KEY) {
   console.error('OPENAI_API_KEY is not set.  PowerShell:  $env:OPENAI_API_KEY = "sk-..."');

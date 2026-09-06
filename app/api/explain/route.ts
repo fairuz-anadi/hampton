@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { QUESTION, CRITERIA, scriptById } from '@/lib/data';
+import { envOr, envOrUndefined } from '@/lib/env';
 
 // "Want to understand this?" — the one place in the product where a model
 // talks to a student.
@@ -44,11 +45,11 @@ export async function POST(req: Request) {
   // standard their examiner approved, in full, rather than an error.
   const fallback = `Your examiner's guide asks for this: ${criterion.expects} The marker's note on your answer was: "${award?.note ?? 'no note recorded'}" Markable cannot reach a model to explain the idea further right now, but that is the exact standard your answer was read against.`;
 
-  const key = process.env.OPENAI_API_KEY;
+  const key = envOrUndefined('OPENAI_API_KEY');
   if (!key) return NextResponse.json({ explanation: fallback, grounded: false });
 
-  const model = process.env.OPENAI_MODEL ?? 'gpt-4o';
-  const base = process.env.OPENAI_BASE_URL ?? 'https://api.openai.com/v1';
+  const model = envOr('OPENAI_MODEL', 'gpt-4o');
+  const base = envOr('OPENAI_BASE_URL', 'https://api.openai.com/v1');
 
   const user = `The exam question was:
 ${QUESTION.question}
