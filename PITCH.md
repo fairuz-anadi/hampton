@@ -190,3 +190,98 @@ Point at the panel that says **nothing found**.
 | 9:30–10:00 | Close |
 
 **Rules:** one person drives. Say "approve" out loud. Pause after drift and after the pair — the silence does the work.
+
+---
+
+# What Markable actually does — screen by screen
+
+Plain-language reference. Use this to answer questions, or to fill Part 3.
+
+## The whole product in one line
+
+> A teacher gives Markable one question and scripts they already marked. Markable works out
+> the standard they were using, applies it to all 50, and shows them where their own marking
+> drifted away from it.
+
+## 1. Grade — `/grade`
+
+**"One marking session."** Four things happen, in order:
+
+1. **Markable writes the marking guide.** It reads the question and its mark allocation and
+   proposes criteria — *"Identifies the parameters (2)"*, *"Selects the correct case (2)"*,
+   *"Verifies the regularity condition (2)"*. Observable things, never vague words like
+   "understanding".
+2. **The teacher approves it.** The screen says *"Awaiting your approval."* Nothing is marked
+   until they press it. **Say this out loud** — it is the answer to "is the AI grading students?"
+   before anyone asks.
+3. **It applies the approved guide to all 50 scripts**, criterion by criterion.
+4. **It sorts them into clear / review / unusual**, so the teacher opens the five that matter
+   instead of all fifty.
+
+Open any script and you see *why* it got its marks: each criterion, the marks given, and the
+**exact sentence in the student's answer that earned them**, highlighted. Nobody has to take a
+score on faith.
+
+## 2. You — `/you` — the differentiator
+
+**"What happened while you were marking."** This screen is not about students. It is about the
+teacher.
+
+- **Three headline numbers** — consistency 71%, 232 pairs compared, 68 diverging.
+- **Marking drift** — *"Your marking may have tightened as you went."* One dot per script, in
+  marking order. Early scripts sat higher above the standard than late ones.
+- **Answer length** — *"Were you rewarding good answers, or long ones?"* Says **nothing found**,
+  and means it: the check re-runs with full-mark answers removed, and the effect does not
+  survive. It refuses to report a ceiling artefact as a marking habit.
+- **Similar answers, different marks** — Student 20 and Student 17. 80% identical wording,
+  marked 10 and 7.5.
+
+## 3. Class — `/class`
+
+**"What the class struggled with."** Groups every lost mark by *what went wrong*, not by who.
+Instead of "the average was 6.4", the teacher gets **36 students never verified the regularity
+condition** — one named, specific, re-teachable mistake. That is twenty minutes of next week's
+lecture, chosen from evidence.
+
+## 4. Student — `/student`
+
+The other half of the product. A student sees **what you got right**, criterion by criterion;
+**where the marks went**, and how much each cost; and **their own answer with the credited parts
+highlighted**. They stop receiving a number and start receiving a reason — and because it comes
+from the guide the teacher approved, the teacher can stand behind every line.
+
+## 5. Ask
+
+A chat box. Ask about the session in plain English; it answers from the computed findings —
+drift, pairs, common errors, consistency.
+
+---
+
+## The claim that earns the most credibility
+
+**Only one thing in the whole product calls an AI model: writing the first draft of the marking
+guide.** Drift, the length check, the pairs, the class patterns, the consistency score — all
+arithmetic. No model, no randomness, no network.
+
+Say it plainly:
+
+> "Every number on this screen is a formula we can show you. Run it twice, you get the same
+> answer. Nothing here was written by a language model."
+
+That is a far stronger claim than "we used GPT-4", and it is why the findings survive being
+questioned. And when the model call fails, it falls back to a stored guide and says so — which
+is why the demo cannot die on venue wifi.
+
+---
+
+## ⚠️ Decide before you present
+
+The live rubric call currently returns `"source":"fallback"` — there is no `OPENAI_API_KEY` set
+on Vercel, so it shows the stored guide rather than generating one.
+
+**Either** set the key in Vercel (Settings → Environment Variables → `OPENAI_API_KEY` → tick all
+three environments → Save → redeploy), **or** drop the word "live" and say *"here is the guide it
+proposed"*.
+
+Both are fine. What is not fine is saying "watch it generate this" while it quietly serves a
+stored file.
