@@ -64,6 +64,9 @@ export interface Finding {
   kind: 'drift' | 'length' | 'similar-pair';
   headline: string;   // hedged: "possible", "worth reviewing" — never "detected bias"
   detail: string;     // must contain the real numbers
+  /** How hard the UI is allowed to lean on it. Nothing reaches the screen at
+   *  all unless its detector called it significant. */
+  strength: 'weak' | 'clear';
   scriptIds: string[];
   series?: { x: number; y: number }[];
 }

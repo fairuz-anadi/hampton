@@ -1,0 +1,373 @@
+@import 'tailwindcss';
+
+/* NORM — one light theme. No dark mode: the product is paper, ink and pastel.
+   The kinetic grid behind the landing page is the only strictly black-and-white
+   surface; everything sitting on top of it carries the colour. */
+
+@theme {
+  --font-sans: 'Ubuntu', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* paper + ink */
+  --color-paper: #faf9f7;
+  --color-paper-2: #f2f0eb;
+  --color-ink: #111111;
+  --color-ink-soft: #3a3a38;
+  --color-muted-ink: #6b6b66;
+  --color-faint: #9a9a94;
+  --color-rule: #e7e4dd;
+  --color-rule-strong: #d4d0c8;
+
+  /* pastels — the product's whole colour vocabulary */
+  --color-blush: #f7d3d6;
+  --color-peach: #fbe3c7;
+  --color-lilac: #ded9f4;
+  --color-mint: #cfe9dc;
+  --color-sky: #d6e7f6;
+  --color-butter: #f8ecc0;
+
+  /* semantic, drawn from the same family */
+  --color-norm: #574fb0;
+  --color-faculty: #a86a2e;
+  --color-good: #2d7d63;
+  --color-critical: #bd4438;
+
+  /* shadcn-compatible tokens, so the dropped-in components resolve */
+  --color-background: #faf9f7;
+  --color-foreground: #111111;
+  --color-card: #ffffff;
+  --color-card-foreground: #111111;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #111111;
+  --color-primary: #111111;
+  --color-primary-foreground: #faf9f7;
+  --color-secondary: #f2f0eb;
+  --color-secondary-foreground: #111111;
+  --color-muted: #f2f0eb;
+  --color-muted-foreground: #6b6b66;
+  --color-accent: #ded9f4;
+  --color-accent-foreground: #111111;
+  --color-destructive: #bd4438;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #e7e4dd;
+  --color-input: #e7e4dd;
+  --color-ring: #574fb0;
+}
+
+/* Legacy custom properties used by the dashboard CSS below. */
+:root {
+  --paper: #faf9f7;
+  --surface: #ffffff;
+  --surface-2: #f2f0eb;
+  --ink: #111111;
+  --ink-soft: #3a3a38;
+  --muted: #6b6b66;
+  --faint: #9a9a94;
+  --rule: #e7e4dd;
+  --rule-strong: #d4d0c8;
+
+  --accent: #574fb0;
+  --faculty: #a86a2e;
+  --good: #2d7d63;
+  --warn: #a86a2e;
+  --critical: #bd4438;
+
+  --accent-wash: #ded9f4;
+  --faculty-wash: #fbe3c7;
+  --good-wash: #cfe9dc;
+  --critical-wash: #f7d3d6;
+  --highlight: #f8ecc0;
+
+  --shadow: 0 1px 2px rgba(17, 17, 17, 0.04);
+  --radius: 10px;
+
+  color-scheme: light;
+}
+
+/* Tailwind 4 sorts layers theme < base < components < utilities, and UNLAYERED
+   css beats all of them. Everything below is layered on purpose so a Tailwind
+   utility in a component can still win — without this, `h2 { font-size }` here
+   silently overrides `text-[clamp(...)]` on the landing page. */
+
+@layer base {
+* { box-sizing: border-box; }
+
+html, body { padding: 0; margin: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Ubuntu', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+}
+
+@layer components {
+/* ================================================================ landing */
+
+.display {
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+  text-wrap: balance;
+}
+
+/* Words rise into place once, on load. Visible at rest for anyone with
+   reduced motion or JS off — the animation only ever moves them from
+   somewhere back to here. */
+.rise > span {
+  display: inline-block;
+  animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+@keyframes rise {
+  from { transform: translateY(0.5em); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.fade-up {
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+@keyframes fadeUp {
+  from { transform: translateY(14px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.underline-sweep {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.underline-sweep:hover { background-size: 100% 1px; }
+
+/* ================================================================ shell */
+
+.shell { display: grid; grid-template-columns: 232px minmax(0, 1fr); min-height: 100vh; }
+
+.main { padding: 30px 34px 80px; max-width: 1120px; min-width: 0; }
+
+.page-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 26px; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.lede { color: var(--ink-soft); max-width: 68ch; }
+
+h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; }
+h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.015em; }
+h3 { font-size: 15px; font-weight: 500; }
+
+/* ================================================================ panels */
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.panel-head {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.panel-body { padding: 18px; }
+.stack { display: flex; flex-direction: column; gap: 20px; }
+.row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+/* ================================================================ controls */
+
+.btn {
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 9px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s;
+}
+
+.btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+
+.btn-ghost { background: transparent; color: var(--ink-soft); border-color: var(--rule-strong); }
+.btn-ghost:hover { background: var(--surface-2); }
+
+.btn-sm { padding: 5px 12px; font-size: 13px; }
+
+input[type='text'], input[type='number'] {
+  background: var(--paper);
+  border: 1px solid var(--rule-strong);
+  color: var(--ink);
+  padding: 6px 9px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+/* ================================================================ pills */
+
+.pill {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.pill-clear { background: var(--good-wash); color: var(--good); }
+.pill-review { background: var(--faculty-wash); color: var(--faculty); }
+.pill-unusual { background: var(--critical-wash); color: var(--critical); }
+.pill-quiet { background: var(--surface-2); color: var(--muted); }
+
+/* ================================================================ tables */
+
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+
+th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+  font-weight: 500;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule-strong);
+  white-space: nowrap;
+}
+
+td { padding: 10px 14px; border-bottom: 1px solid var(--rule); color: var(--ink-soft); vertical-align: middle; }
+tr:last-child td { border-bottom: 0; }
+
+.num { font-variant-numeric: tabular-nums; }
+
+tr.clickable { cursor: pointer; }
+tr.clickable:hover td { background: var(--surface-2); }
+tr[data-selected='true'] td { background: var(--accent-wash); }
+
+/* ================================================================ marks */
+
+.mark { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 500; }
+.mark-norm { color: var(--accent); }
+.mark-faculty { color: var(--faculty); }
+
+.mark-big { font-size: 44px; font-weight: 700; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+
+/* ================================================================ reader */
+
+.reader {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  font-size: 14.5px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  color: var(--ink);
+}
+
+.reader mark {
+  background: var(--highlight);
+  color: inherit;
+  padding: 2px 0;
+  border-radius: 2px;
+  box-shadow: 0 0 0 3px var(--highlight);
+}
+
+.reader mark[data-dim='true'] { background: transparent; box-shadow: none; border-bottom: 1px dotted var(--rule-strong); }
+
+/* ================================================================ criteria */
+
+.criteria { display: flex; flex-direction: column; }
+
+.criterion {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.criterion:last-child { border-bottom: 0; }
+.criterion-label { font-weight: 500; display: flex; align-items: center; gap: 8px; }
+.criterion-note { font-size: 13px; color: var(--muted); grid-column: 1; max-width: 62ch; }
+.criterion-mark { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 500; }
+
+.tick { color: var(--good); }
+.cross { color: var(--critical); }
+.part { color: var(--warn); }
+
+/* ================================================================ findings */
+
+.finding-detail { color: var(--ink-soft); max-width: 70ch; }
+.stat-row { display: flex; gap: 28px; flex-wrap: wrap; }
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.stat-value { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+
+.bar-track { height: 10px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 999px; transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+
+.hedge {
+  font-size: 13px;
+  color: var(--muted);
+  border-left: 2px solid var(--rule-strong);
+  padding-left: 10px;
+  max-width: 66ch;
+}
+
+/* ================================================================ layout */
+
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
+.split { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 18px; align-items: start; }
+
+.empty { padding: 34px 18px; text-align: center; color: var(--muted); font-size: 14px; }
+
+@media (max-width: 980px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .main { padding: 20px 16px 60px; min-width: 0; }
+  .two-col, .split { grid-template-columns: minmax(0, 1fr); }
+}
+}

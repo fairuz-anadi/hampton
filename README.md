@@ -21,6 +21,39 @@ from. Agreed at 0:15:
 Dev 2 needs something visual → ask Dev 3, or ship it unstyled. Dev 3 never
 touches `lib/insights/**`.
 
+## Running the app
+
+```bash
+npm install
+npm run dev      # http://localhost:3100
+npm run build    # type-checks and prerenders
+```
+
+Four routes:
+
+| Route | What it is | Rendering |
+|---|---|---|
+| `/grade` | The marking session: propose a guide, approve it, see all 50 marked with evidence | static |
+| `/you` | Drift, the length check, similar pairs. The discovery layer | static |
+| `/class` | One mistake, many students — grouped from the recorded error tags | static |
+| `/student` | What a student is shown: marks, criteria, highlighted evidence | dynamic (`?id=`) |
+| `/api/rubric` | The one live model call. Falls back to the stored guide on any failure | dynamic |
+
+Everything except `/api/rubric` is prerendered from the committed JSON, so the
+deployed app works with no key and no network.
+
+## Deploying
+
+Push, import the repo on Vercel, and set **one** environment variable:
+
+```
+OPENAI_API_KEY=sk-...
+```
+
+Optionally `OPENAI_MODEL`. Nothing else is required — and never prefix the key
+with `NEXT_PUBLIC_`, which would ship it to the browser. Without the key the app
+still runs; `/api/rubric` returns the stored guide and says so in the UI.
+
 ## Setup
 
 Node 20+. No dependencies for the data scripts — they use built-in `fetch`.
@@ -78,8 +111,9 @@ not the ones in the pitch deck** — a judge who reads the axis will check.
 | | |
 |---|---|
 | Drift step after script 25 | **0.59 marks** (+1.74 for scripts 1–25, +1.15 for 26–50, n=21 / n=23) |
-| Length advantage at equal coverage | **+0.80 marks** for answers over 150 words, across all 6 coverage groups |
-| Similar pairs ≥2 marks apart | 28 raw — **surface the top 4–5 by gap**, deduped so a script appears once |
+| Length advantage at equal coverage | **Not reported — it does not survive its own check.** +0.37 raw, but **−0.65** once the 16 answers already at 10/10 are excluded. The apparent bonus is the mark ceiling, not a habit. Do not quote +0.80: that figure came from grouping on the generator's ground truth, which does not exist in a real session |
+| Similar pairs ≥2 marks apart | 68 raw combinations — the app **shows the top 5 by gap**, deduped so a script appears once |
+| Consistency | 71% of similarly-credited pairs marked within 2 marks |
 | Triage | 43 clear · 4 review · 3 unusual |
 | Most common error | `missed-regularity-check`, **36 students** |
 | Evidence | 163 credited awards, **0 without a located highlight** |
