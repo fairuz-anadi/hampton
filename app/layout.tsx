@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'NORM — Fairer grading. Clearer feedback. Better teaching.',
+  title: 'Markable — Fairer grading. Clearer feedback. Better teaching.',
   description:
-    'Grading should not end with a number. NORM helps faculty understand how they grade, why students lose marks, and what the results reveal about their class.',
+    'Grading should not end with a number. Markable helps faculty understand how they grade, why students lose marks, and what the results reveal about their class.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

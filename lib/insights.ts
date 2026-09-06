@@ -1,10 +1,10 @@
-// NORM — the discovery layer.
+// Markable — the discovery layer.
 //
 // Everything here is arithmetic over Script[]. No model calls, so a finding is
 // reproducible, costs nothing, and can be defended with a formula when someone
 // asks "how do you know?".
 //
-// Rubric coverage is read from the AWARDS — what NORM actually credited. The
+// Rubric coverage is read from the AWARDS — what Markable actually credited. The
 // _truth field on the seed data is generator scaffolding and must never be used
 // here: in a real marking session it does not exist.
 
@@ -56,7 +56,7 @@ export interface Drift {
 /**
  * Did the marking standard move as the pile went down?
  *
- * Compares faculty marks against NORM's, in marking order. Full-mark answers
+ * Compares faculty marks against Markable's, in marking order. Full-mark answers
  * are excluded: you cannot mark someone above the total, so they cannot show
  * generosity and including them would flatten a real effect.
  */
@@ -184,7 +184,7 @@ export interface SimilarPair {
 }
 
 /**
- * Answers NORM credited identically that the faculty marked differently.
+ * Answers Markable credited identically that the faculty marked differently.
  *
  * Deduplicated so each script appears at most once: inside a group of n
  * similarly-credited answers there are n(n-1)/2 raw combinations, and a screen
@@ -304,7 +304,7 @@ export function buildFindings(scripts: Script[], totalMarks: number): Finding[] 
     out.push({
       kind: 'drift',
       headline: `Your marking may have tightened after script ${drift.splitAt}`,
-      detail: `Partial-credit answers before script ${drift.splitAt} were marked ${drift.earlyMean.toFixed(2)} above NORM's reading of the guide, and after it ${drift.lateMean.toFixed(2)} — a difference of ${drift.step.toFixed(2)} marks (n=${drift.earlyN} and n=${drift.lateN}).`,
+      detail: `Partial-credit answers before script ${drift.splitAt} were marked ${drift.earlyMean.toFixed(2)} above Markable's reading of the guide, and after it ${drift.lateMean.toFixed(2)} — a difference of ${drift.step.toFixed(2)} marks (n=${drift.earlyN} and n=${drift.lateN}).`,
       strength: drift.step >= 0.5 ? 'clear' : 'weak',
       scriptIds: scripts.map((s) => s.id),
       series: drift.points.map((p) => ({ x: p.x, y: p.y })),
@@ -316,7 +316,7 @@ export function buildFindings(scripts: Script[], totalMarks: number): Finding[] 
     out.push({
       kind: 'length',
       headline: 'Longer answers scored higher for the same credited work',
-      detail: `Across ${len.groups} groups of answers NORM credited identically, those over ${len.threshold} words averaged ${len.advantage.toFixed(2)} marks more (${len.longN} longer, ${len.shortN} shorter).`,
+      detail: `Across ${len.groups} groups of answers Markable credited identically, those over ${len.threshold} words averaged ${len.advantage.toFixed(2)} marks more (${len.longN} longer, ${len.shortN} shorter).`,
       strength: Math.abs(len.advantage) >= 0.8 ? 'clear' : 'weak',
       scriptIds: [],
     });

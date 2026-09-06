@@ -32,7 +32,7 @@ const NODE_BASE_RADIUS = 1.8;
 const NODE_ACTIVE_RADIUS = 3.2;
 
 // ─── Themes ───────────────────────────────────────────────────────────────────
-// "light" is the one NORM uses: paper ground, graphite grid. Strictly black and
+// "light" is the one Markable uses: paper ground, graphite grid. Strictly black and
 // white — the pastels belong to the content sitting on top of it, and a tinted
 // grid would fight them.
 

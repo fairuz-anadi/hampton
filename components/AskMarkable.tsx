@@ -9,7 +9,7 @@ const SUGGESTIONS = [
   'Which two answers should I compare first?',
 ];
 
-export default function AskNorm() {
+export default function AskMarkable() {
   const [asked, setAsked] = useState<string | null>(null);
   const [answer, setAnswer] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -29,7 +29,7 @@ export default function AskNorm() {
       const data = await res.json();
       setAnswer(data.answer);
     } catch {
-      setAnswer('Something went wrong reaching NORM. The numbers are all on this page regardless.');
+      setAnswer('Something went wrong reaching Markable. The numbers are all on this page regardless.');
     }
     setBusy(false);
   }
@@ -38,7 +38,7 @@ export default function AskNorm() {
     <section className="panel">
       <div className="panel-head">
         <h2>Ask about this session</h2>
-        <span className="pill pill-quiet">answers only from what NORM computed</span>
+        <span className="pill pill-quiet">answers only from what Markable computed</span>
       </div>
 
       <div className="panel-body stack">
@@ -66,7 +66,7 @@ export default function AskNorm() {
             <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-faint">You asked</p>
             <p className="mt-1 text-[15px] font-medium">{asked}</p>
 
-            <p className="mt-5 font-mono text-[10.5px] uppercase tracking-[0.14em] text-faint">NORM</p>
+            <p className="mt-5 font-mono text-[10.5px] uppercase tracking-[0.14em] text-faint">Markable</p>
             <p className="mt-1 max-w-[68ch] text-[15px] leading-relaxed text-ink-soft">
               {busy ? 'Reading the session…' : answer}
             </p>
@@ -74,7 +74,7 @@ export default function AskNorm() {
         )}
 
         <p className="hedge">
-          NORM answers from the numbers on these pages and nothing else. Ask it something it has not computed and it
+          Markable answers from the numbers on these pages and nothing else. Ask it something it has not computed and it
           will tell you so rather than guess.
         </p>
       </div>

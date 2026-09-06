@@ -36,7 +36,7 @@ export default function AppNav({ counts, findings, mistakes }: Props) {
               animate={{ display: open ? 'inline-block' : 'none', opacity: open ? 1 : 0 }}
               className="text-lg font-bold tracking-tight whitespace-pre"
             >
-              NORM
+              Markable
             </motion.span>
           </Link>
 

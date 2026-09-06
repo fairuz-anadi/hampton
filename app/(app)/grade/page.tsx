@@ -1,7 +1,7 @@
 import GradeSession from '@/components/GradeSession';
 import { SCRIPTS, QUESTION, CRITERIA, MARKING_RUN } from '@/lib/data';
 
-export const metadata = { title: 'Grade · NORM' };
+export const metadata = { title: 'Grade · Markable' };
 
 export default function GradePage() {
   return (

@@ -3,7 +3,7 @@ import PairCompare from '@/components/PairCompare';
 import { SCRIPTS, QUESTION, CRITERIA } from '@/lib/data';
 import { detectDrift, detectLengthEffect, findSimilarPairs, consistencyScore } from '@/lib/insights';
 
-export const metadata = { title: 'You · NORM' };
+export const metadata = { title: 'You · Markable' };
 
 export default function YouPage() {
   const drift = detectDrift(SCRIPTS, QUESTION.totalMarks);
@@ -20,7 +20,7 @@ export default function YouPage() {
         <div className="eyebrow">What happened while you were marking</div>
         <h1>Your marking</h1>
         <p className="lede">
-          Every number here is arithmetic over the marks you gave and the marks NORM gave against the guide you
+          Every number here is arithmetic over the marks you gave and the marks Markable gave against the guide you
           approved. Nothing on this page was written by a model, and each finding opens the scripts it came from.
         </p>
       </div>
@@ -42,7 +42,7 @@ export default function YouPage() {
             </div>
           </div>
           <p className="hedge" style={{ marginTop: 14 }}>
-            Of every pair of answers NORM credited identically, {consistency.pct}% were marked within 2 marks of each
+            Of every pair of answers Markable credited identically, {consistency.pct}% were marked within 2 marks of each
             other. That is a comparison of {consistency.compared} pairs, not a judgement about you.
           </p>
         </div>
@@ -61,7 +61,7 @@ export default function YouPage() {
             <>
               <p className="finding-detail">
                 Partial-credit answers before script {drift.splitAt} sat{' '}
-                <strong>{drift.earlyMean.toFixed(2)} marks</strong> above NORM&rsquo;s reading of your guide. After it,{' '}
+                <strong>{drift.earlyMean.toFixed(2)} marks</strong> above Markable&rsquo;s reading of your guide. After it,{' '}
                 <strong>{drift.lateMean.toFixed(2)}</strong>. That is a difference of{' '}
                 <strong>{drift.step.toFixed(2)} marks</strong> in how much benefit of the doubt an incomplete answer
                 got, depending on when you reached it.
@@ -110,7 +110,7 @@ export default function YouPage() {
           {length.significant ? (
             <>
               <p className="finding-detail">
-                Across <strong>{length.groups} groups</strong> of answers NORM credited identically against every
+                Across <strong>{length.groups} groups</strong> of answers Markable credited identically against every
                 criterion, the ones over {length.threshold} words averaged{' '}
                 <strong>{length.advantage.toFixed(2)} marks more</strong>.
               </p>
@@ -144,7 +144,7 @@ export default function YouPage() {
             <>
               <p className="finding-detail">
                 Longer answers did sit <strong>{length.advantage.toFixed(2)} marks</strong> above shorter ones with the
-                same credited work. NORM is not reporting it as a finding, because the effect does not survive its own
+                same credited work. Markable is not reporting it as a finding, because the effect does not survive its own
                 check.
               </p>
               <div className="stat-row">
@@ -163,7 +163,7 @@ export default function YouPage() {
                 {length.ceilingN} answers were already at {QUESTION.totalMarks}/{QUESTION.totalMarks}, and a mark that
                 cannot go higher cannot show generosity. Drop those and the gap reverses sign — so the apparent reward
                 for length is the mark ceiling, not a habit. A finding that flips when you remove a known artefact is
-                not a finding, and NORM would rather say so than hand you a number to repeat.
+                not a finding, and Markable would rather say so than hand you a number to repeat.
               </p>
             </>
           )}
@@ -178,7 +178,7 @@ export default function YouPage() {
         </div>
         <div className="panel-body stack">
           <p className="finding-detail">
-            NORM credited each of these pairs the same way against every criterion, but your marks differ by{' '}
+            Markable credited each of these pairs the same way against every criterion, but your marks differ by{' '}
             {Math.min(...pairs.map((p) => p.gap))}–{Math.max(...pairs.map((p) => p.gap))} marks. Open one and decide
             whether the difference is justified — often it is.
           </p>

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { SCRIPTS, QUESTION, CRITERIA, triageCounts } from '@/lib/data';
 import { detectDrift, detectLengthEffect, findSimilarPairs, findCommonErrors, consistencyScore } from '@/lib/insights';
 
-// Answers questions about THIS marking session, and only from numbers NORM has
+// Answers questions about THIS marking session, and only from numbers Markable has
 // already computed. The facts are assembled here and handed to the model as the
 // entire world it may draw on — the model phrases the answer, it does not
 // produce the arithmetic. If a question needs something not in the facts, the
@@ -92,7 +92,7 @@ export async function POST(req: Request) {
           {
             role: 'system',
             content:
-              'You answer questions about one exam marking session for the faculty member who marked it. The JSON below is the ONLY information you have. Quote its numbers exactly and never invent or estimate one. If the answer is not in the JSON, say plainly that NORM has not computed it. Two or three sentences, plain language, no bullet points, no markdown. Hedge findings the way the data does: say "may have" and "worth reviewing", never "you are biased".',
+              'You answer questions about one exam marking session for the faculty member who marked it. The JSON below is the ONLY information you have. Quote its numbers exactly and never invent or estimate one. If the answer is not in the JSON, say plainly that Markable has not computed it. Two or three sentences, plain language, no bullet points, no markdown. Hedge findings the way the data does: say "may have" and "worth reviewing", never "you are biased".',
           },
           { role: 'user', content: `Session facts:\n${JSON.stringify(facts())}\n\nQuestion: ${question}` },
         ],

@@ -1,4 +1,4 @@
-// NORM — the marking session the app ships with.
+// Markable — the marking session the app ships with.
 //
 // Read straight off the committed JSON. No database, no API key, nothing to
 // fail on venue wifi: the marking already happened and this is its record.

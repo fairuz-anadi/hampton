@@ -2,7 +2,7 @@ import Link from 'next/link';
 import ScriptReader from '@/components/ScriptReader';
 import { SCRIPTS, CRITERIA, QUESTION, scriptById } from '@/lib/data';
 
-export const metadata = { title: 'Your result · NORM' };
+export const metadata = { title: 'Your result · Markable' };
 
 export default async function StudentPage({
   searchParams,

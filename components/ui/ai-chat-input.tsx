@@ -13,7 +13,7 @@ const SMOOTH_HEIGHT_TRANSITION =
   "max-width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), height 0.15s ease-out";
 
 // The sentence the simulated voice fallback types when no microphone or speech
-// API is available. Adapted for NORM — the stock string talked about dashboards.
+// API is available. Adapted for Markable — the stock string talked about dashboards.
 const VOICE_DEMO_TEXT =
   "Which criterion did students lose the most marks on, and did my marking change as I went?";
 
@@ -177,7 +177,7 @@ export interface PromptInputProps {
   value?: string;
   onChange?: (value: string) => void;
   maxAttachments?: number;
-  /** Collapsed / expanded max widths. NORM uses a wider pair than the stock demo. */
+  /** Collapsed / expanded max widths. Markable uses a wider pair than the stock demo. */
   widths?: { collapsed: number; expanded: number };
 }
 

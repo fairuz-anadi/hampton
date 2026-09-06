@@ -72,7 +72,7 @@ export default function Landing({
     <KineticGrid globalColor="light">
       {/* ─────────────────────────────────────────────────────────── nav */}
       <header className="mx-auto flex max-w-[1240px] items-center justify-between px-6 py-7 md:px-10">
-        <span className="text-[19px] font-bold tracking-tight">NORM</span>
+        <span className="text-[19px] font-bold tracking-tight">Markable</span>
         <nav className="flex items-center gap-7 text-sm text-muted-ink">
           <a href="#how" className="underline-sweep hidden sm:inline">
             How it works
@@ -81,7 +81,7 @@ export default function Landing({
             What it finds
           </a>
           <Link href="/grade" className="underline-sweep font-medium text-ink">
-            Open NORM
+            Open Markable
           </Link>
         </nav>
       </header>
@@ -109,7 +109,7 @@ export default function Landing({
         <div className="mt-14 grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] md:items-end">
           <div className="fade-up" style={{ animationDelay: '0.45s' }}>
             <p className="max-w-[46ch] text-[17px] leading-relaxed text-ink-soft md:text-[19px]">
-              Grading shouldn&rsquo;t end with a number. NORM helps faculty understand how they grade, why students
+              Grading shouldn&rsquo;t end with a number. Markable helps faculty understand how they grade, why students
               lose marks, and what the results reveal about their class.
             </p>
 
@@ -131,7 +131,7 @@ export default function Landing({
             </p>
           </div>
 
-          {/* Hero visual — a real marked script, and the thing NORM noticed */}
+          {/* Hero visual — a real marked script, and the thing Markable noticed */}
           <div className="fade-up relative" style={{ animationDelay: '0.6s' }}>
             <div className="rounded-2xl border border-rule bg-white p-7 shadow-[0_18px_50px_-28px_rgba(17,17,17,0.35)]">
               <div className="flex items-baseline justify-between">
@@ -232,7 +232,7 @@ export default function Landing({
 
           <Reveal delay={0.1}>
             <p className="mt-24 max-w-[24ch] text-[clamp(26px,3.4vw,44px)] font-bold leading-[1.1] tracking-tight">
-              NORM turns the grading process into something you can learn from.
+              Markable turns the grading process into something you can learn from.
             </p>
           </Reveal>
         </div>
@@ -242,7 +242,7 @@ export default function Landing({
       <section id="how" className="border-t border-rule bg-white/70 backdrop-blur-[2px]">
         <div className="mx-auto max-w-[1240px] px-6 py-28 md:px-10 md:py-36">
           <Reveal>
-            <SectionMark n="02" label="How NORM works" />
+            <SectionMark n="02" label="How Markable works" />
           </Reveal>
 
           <Reveal delay={0.05}>
@@ -257,13 +257,13 @@ export default function Landing({
             {[
               {
                 n: '01',
-                title: 'Show NORM how you mark',
+                title: 'Show Markable how you mark',
                 body: 'Upload a question and the answers you have already graded.',
               },
               {
                 n: '02',
                 title: 'Grade with your standard',
-                body: 'NORM proposes a marking guide. You edit it, you approve it, and nothing is marked until you do.',
+                body: 'Markable proposes a marking guide. You edit it, you approve it, and nothing is marked until you do.',
               },
               {
                 n: '03',
@@ -303,12 +303,12 @@ export default function Landing({
       <section id="discover" className="border-t border-rule bg-paper/70 backdrop-blur-[2px]">
         <div className="mx-auto max-w-[1240px] px-6 py-28 md:px-10 md:py-36">
           <Reveal>
-            <SectionMark n="03" label="What NORM finds" />
+            <SectionMark n="03" label="What Markable finds" />
           </Reveal>
 
           <Reveal delay={0.05}>
             <h2 className="display mt-8 max-w-[18ch] text-[clamp(38px,6.6vw,92px)]">
-              NORM finds things you can&rsquo;t see while grading.
+              Markable finds things you can&rsquo;t see while grading.
             </h2>
           </Reveal>
 
@@ -322,7 +322,7 @@ export default function Landing({
                 <p className="mt-3 max-w-[46ch] text-[15px] leading-relaxed text-muted-ink">
                   After script {drift.splitAt}, you became{' '}
                   <span className="font-medium text-ink">{drift.step.toFixed(2)} marks stricter</span> on partial
-                  credit — {drift.earlyMean.toFixed(2)} above NORM&rsquo;s reading of your guide before it,{' '}
+                  credit — {drift.earlyMean.toFixed(2)} above Markable&rsquo;s reading of your guide before it,{' '}
                   {drift.lateMean.toFixed(2)} after.
                 </p>
                 <div className="mt-7">
@@ -347,7 +347,7 @@ export default function Landing({
                     {pairCount} pairs of answers were credited identically but marked differently.
                   </p>
                   <p className="mt-3 text-[14px] leading-relaxed text-ink/65">
-                    Same criteria met, different totals. NORM shows them side by side and lets you decide.
+                    Same criteria met, different totals. Markable shows them side by side and lets you decide.
                   </p>
                 </div>
               </Reveal>
@@ -372,7 +372,7 @@ export default function Landing({
                   </p>
                   <p className="mt-3 text-[19px] font-bold leading-snug tracking-tight md:text-[22px]">
                     Longer answers scored {length.advantage > 0 ? '+' : ''}
-                    {length.advantage.toFixed(2)} higher — and NORM reported nothing.
+                    {length.advantage.toFixed(2)} higher — and Markable reported nothing.
                   </p>
                   <p className="mt-3 text-[14px] leading-relaxed text-muted-ink">
                     Drop the {length.ceilingN} answers already at full marks and the gap reverses to{' '}
@@ -390,7 +390,7 @@ export default function Landing({
                 <FlowButton text="Explore your grading" />
               </Link>
               <p className="text-[14px] text-muted-ink">
-                NORM doesn&rsquo;t judge your decisions. It helps you see your patterns.
+                Markable doesn&rsquo;t judge your decisions. It helps you see your patterns.
               </p>
             </div>
           </Reveal>
@@ -402,7 +402,7 @@ export default function Landing({
         <div className="mx-auto max-w-[1240px] px-6 py-16 md:px-10">
           <div className="flex flex-col justify-between gap-12 md:flex-row">
             <div>
-              <span className="text-[22px] font-bold tracking-tight">NORM</span>
+              <span className="text-[22px] font-bold tracking-tight">Markable</span>
               <p className="mt-3 max-w-[34ch] text-[15px] leading-relaxed text-muted-ink">
                 Fairer grading. Clearer feedback. Better teaching. Turn grading into something you can learn from.
               </p>
@@ -435,7 +435,7 @@ export default function Landing({
 
           <div className="mt-14 flex flex-col justify-between gap-3 border-t border-rule pt-7 font-mono text-[11px] uppercase tracking-[0.14em] text-faint md:flex-row">
             <span>Built for AUST CSE Carnival 8.0</span>
-            <span>&copy; {new Date().getFullYear()} NORM</span>
+            <span>&copy; {new Date().getFullYear()} Markable</span>
           </div>
         </div>
       </footer>

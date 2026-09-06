@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { SCRIPTS, CRITERIA, QUESTION, scriptById } from '@/lib/data';
 import { findCommonErrors } from '@/lib/insights';
-import AskNorm from '@/components/AskNorm';
+import AskMarkable from '@/components/AskMarkable';
 
-export const metadata = { title: 'Class · NORM' };
+export const metadata = { title: 'Class · Markable' };
 
 export default function ClassPage() {
   const errors = findCommonErrors(SCRIPTS);
@@ -40,7 +40,7 @@ export default function ClassPage() {
         </div>
       </section>
 
-      <AskNorm />
+      <AskMarkable />
 
       {errors.map((e, i) => {
         const criteriaHit = e.criterionIds

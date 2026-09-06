@@ -8,7 +8,7 @@ interface Props {
 
 /**
  * Every partial-credit script, plotted where it was marked against how far the
- * faculty sat above NORM's reading of their own guide. One scale places the
+ * faculty sat above Markable's reading of their own guide. One scale places the
  * dots, the mean lines and the labels — if the two segments sit at different
  * heights, the marking standard moved.
  */
@@ -32,7 +32,7 @@ export default function DriftChart({ points, splitAt, earlyMean, lateMean, total
 
   return (
     <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img"
-      aria-label={`Faculty marks minus NORM's marks, plotted against marking order. Scripts 1 to ${splitAt} average ${earlyMean} marks above NORM; scripts ${splitAt + 1} to ${totalScripts} average ${lateMean}.`}>
+      aria-label={`Faculty marks minus Markable's marks, plotted against marking order. Scripts 1 to ${splitAt} average ${earlyMean} marks above Markable; scripts ${splitAt + 1} to ${totalScripts} average ${lateMean}.`}>
       {ticks.map((t) => (
         <g key={t}>
           <line x1={L} y1={y(t)} x2={R} y2={y(t)} stroke="var(--rule)" strokeWidth={1} />
@@ -87,7 +87,7 @@ export default function DriftChart({ points, splitAt, earlyMean, lateMean, total
         fontSize={10.5}
         letterSpacing="0.12em"
       >
-        YOU − NORM (MARKS)
+        YOU − Markable (MARKS)
       </text>
     </svg>
   );

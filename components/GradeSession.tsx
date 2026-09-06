@@ -101,7 +101,7 @@ export default function GradeSession({ question, criteria, scripts, markingRun }
           {phase === 'intake' && (
             <>
               <p className="lede">
-                NORM reads the question and its mark allocation and proposes criteria. Nothing is marked until you have
+                Markable reads the question and its mark allocation and proposes criteria. Nothing is marked until you have
                 read them and pressed approve.
               </p>
               <div className="row">
@@ -221,7 +221,7 @@ export default function GradeSession({ question, criteria, scripts, markingRun }
                 ))}
               </div>
               <p className="hedge" style={{ marginTop: 14 }}>
-                &ldquo;Worth a look&rdquo; means NORM gave partial credit somewhere — a judgement call rather than a
+                &ldquo;Worth a look&rdquo; means Markable gave partial credit somewhere — a judgement call rather than a
                 check. &ldquo;Unusual&rdquo; means the answer took a route your guide does not describe.
               </p>
             </div>
@@ -244,7 +244,7 @@ export default function GradeSession({ question, criteria, scripts, markingRun }
                       <th>#</th>
                       <th>Student</th>
                       <th className="num">You</th>
-                      <th className="num">NORM</th>
+                      <th className="num">Markable</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -286,7 +286,7 @@ export default function GradeSession({ question, criteria, scripts, markingRun }
                       {current.label} <span style={{ color: 'var(--faint)', fontWeight: 400 }}>· script {current.order}</span>
                     </h3>
                     <div className="row">
-                      <span className="mark mark-norm">NORM {current.normMark}</span>
+                      <span className="mark mark-norm">Markable {current.normMark}</span>
                       <span className="mark mark-faculty">You {current.facultyMark}</span>
                     </div>
                   </div>
