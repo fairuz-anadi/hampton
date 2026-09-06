@@ -140,6 +140,30 @@ function build(file: string, title: string): string {
 }
 
 mkdirSync(new URL('../preview/', import.meta.url), { recursive: true });
+
+/** A landing page, so the deployed URL opens on something rather than a file listing. */
+function index(): string {
+  const card = (href: string, title: string, blurb: string) =>
+    `<a class="card" href="${href}"><h2>${title}</h2><p class="detail">${blurb}</p></a>`;
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NORM — You</title><style>${YOU_PAGE_CSS}
+a.card { display:block; text-decoration:none; color:inherit; }
+a.card:hover { border-color: var(--rule-strong); }
+</style></head><body><div class="wrap">
+<header class="page">
+  <p class="eyebrow">NORM</p>
+  <h1>What happened while you were marking</h1>
+  <p class="sub">NORM re-marks every script against the guide the faculty member approved, then
+  looks at how their own marks moved. It never decides a student's grade.</p>
+</header>
+${card('you.html', 'The You page', 'Marking drift, an answer-length effect, and four pairs of similar answers marked differently.')}
+${card('you-real.html', 'On the current seed data', 'The same page where the planted effects have not survived. Nothing is reported.')}
+${card('you-flat.html', 'On clean data', 'Faculty marks replaced with noise. Nothing is planted, so nothing is found — the honesty check.')}
+</div></body></html>`;
+}
+writeFileSync(new URL('../preview/index.html', import.meta.url), index(), 'utf8');
+console.log('wrote preview/index.html');
 for (const [fixture, out, title] of [
   ['fixtures/demo-control.json', 'you.html', 'You'],
   ['data/graded-50.json', 'you-real.html', 'You (Dev 1 real data)'],
