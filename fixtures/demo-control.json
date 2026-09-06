@@ -1,0 +1,3954 @@
+[
+ {
+  "id": "s01",
+  "order": 1,
+  "label": "Student 1",
+  "text": "Given T(n) = 3T(n/4) + n log n, we identify parameters: a = 3, b = 4, f(n) = n log n. Next, we calculate n^(log_b a) = n^(log_4 3), which is about n^0.79. Since n log n grows faster than n^0.79, we are in Case 3 of the Master Theorem.",
+  "wordCount": 51,
+  "facultyMark": 6.5,
+  "normMark": 6,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      32,
+      84
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      92,
+      153
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      155,
+      234
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not state the asymptotic bound.",
+    "errorTag": "incomplete-working"
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3"
+   ],
+   "base": 6,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s02",
+  "order": 2,
+  "label": "Student 2",
+  "text": "For T(n) = 3T(n/4) + n log n, we see a = 3, b = 4, f(n) = n log n. Calculate n^(log_b a): n^(log_4 3) ≈ n^0.79. As f(n) = n log n dominates n^0.79, Case 3 applies. Hence, T(n) = Theta(n log n).",
+  "wordCount": 45,
+  "facultyMark": 8,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      37,
+      65
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      77,
+      110
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      112,
+      163
+     ]
+    ],
+    "note": "Correctly selects Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      171,
+      192
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c5"
+   ],
+   "base": 8,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s03",
+  "order": 3,
+  "label": "Student 3",
+  "text": "Given T(n) = 3T(n/4) + n log n, we have a = 3, b = 4, and f(n) = n log n. We compute n^(log_b a) as n^(log_4 3), which is approximately n^0.79. Therefore, T(n) = Theta(n log n) because f(n) = n log n.",
+  "wordCount": 45,
+  "facultyMark": 4,
+  "normMark": 4,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      32,
+      72
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      74,
+      143
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not identify Case 3 or any case.",
+    "errorTag": "wrong-case-selected"
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [
+     [
+      144,
+      200
+     ]
+    ],
+    "note": "States the bound without justification.",
+    "errorTag": "no-justification"
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c5"
+   ],
+   "base": 6,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s04",
+  "order": 4,
+  "label": "Student 4",
+  "text": "To solve the recurrence T(n) = 3T(n/4) + n log n using the Master Theorem, we start by identifying the parameters involved in this equation. The constants a and b are crucial to the analysis. Sometimes, students might confuse a with b, so we should watch out for common errors. Even though we think we have the values for a and b, it’s critical to double-check them to ensure accuracy. Then, computing the critical exponent means examining log_b a, yet mistakes can occur in calculating logs. Therefore, always ensure that n^(log_b a) is computed rightly. Determining which case applies from the Master Theorem requires careful comparison of f(n) with n^(log_b a). One has to decide if f(n) grows faster or not. The function n log n, common in computational complexities, poses intriguing challenges as it grows differently than power functions. So, picking the case correctly is absolutely vital. Besides, verifying any conditional bounds reinforces the solution integrity, ensuring no steps are omitted. Conclusively, stating the asymptotic bound for T(n) provides a comprehensive resolution, summing up all analysis, yet requires accurate critical reasoning. Ultimately, achieving resolution involves articulating the bound with notation that precisely captures the recurrence behavior.",
+  "wordCount": 197,
+  "facultyMark": 0.5,
+  "normMark": 0,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Parameters a, b, and f(n) are not identified.",
+    "errorTag": "misidentified-parameters"
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Critical exponent n^(log_b a) is not computed.",
+    "errorTag": "incomplete-working"
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "No case from the Master Theorem is identified.",
+    "errorTag": "wrong-case-selected"
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Regularity condition is not verified.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Asymptotic bound is not stated.",
+    "errorTag": "incomplete-working"
+   }
+  ],
+  "triage": "unusual",
+  "_truth": {
+   "covers": [],
+   "base": 0,
+   "style": "verbose"
+  },
+  "_modelTriage": "unusual"
+ },
+ {
+  "id": "s05",
+  "order": 5,
+  "label": "Student 5",
+  "text": "Let's say we have T(n) = 3T(n/4) + n log n. If a is wrong, then my whole approach could shift. I'm not sure if it applies to any case directly, but maybe it's Case 1 or something else. I'm not clear about conditions with it. I think the logarithms complicate it. I need to consider if n log n is just n^2. Wrapping it up is hazy without a definitive base case.",
+  "wordCount": 73,
+  "facultyMark": 2.5,
+  "normMark": 0,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "The student did not identify the parameters a, b, and f(n).",
+    "errorTag": "misidentified-parameters"
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "The student did not compute the critical exponent n^(log_b a).",
+    "errorTag": "incomplete-working"
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "The student did not select the correct case.",
+    "errorTag": "wrong-case-selected"
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "The student did not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "The student did not state the asymptotic bound.",
+    "errorTag": "no-justification"
+   }
+  ],
+  "triage": "unusual",
+  "_truth": {
+   "covers": [],
+   "base": 0,
+   "style": "concise"
+  },
+  "_modelTriage": "unusual"
+ },
+ {
+  "id": "s06",
+  "order": 6,
+  "label": "Student 6",
+  "text": "For T(n) = 3T(n/4) + n log n, let a = 3, b = 4, f(n) = n log n. Calculate n^(log_4 3) approximately n^0.79. As n log n grows faster, it's Case 3. Check regularity: 3(n/4)log(n/4) ≤ (3/4)n log n. Solution: T(n) = Theta(n log n).",
+  "wordCount": 47,
+  "facultyMark": 10,
+  "normMark": 10,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      30,
+      62
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      64,
+      106
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      108,
+      145
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      146,
+      194
+     ]
+    ],
+    "note": "Verifies the regularity condition correctly.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      195,
+      227
+     ]
+    ],
+    "note": "States the correct asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5"
+   ],
+   "base": 10,
+   "style": "concise"
+  },
+  "_modelTriage": "clear"
+ },
+ {
+  "id": "s07",
+  "order": 7,
+  "label": "Student 7",
+  "text": "Given the recurrence T(n) = 3T(n/4) + n log n, we identify a = 3, b = 4, and f(n) = n log n. We compute n^(log_b a): n^(log_4 3) ≈ n^0.79. Since f(n) = n log n is larger, Case 3 applies.",
+  "wordCount": 43,
+  "facultyMark": 6.5,
+  "normMark": 6,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      47,
+      91
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      93,
+      137
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      139,
+      186
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not state the asymptotic bound.",
+    "errorTag": "incomplete-working"
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3"
+   ],
+   "base": 6,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s08",
+  "order": 8,
+  "label": "Student 8",
+  "text": "Consider T(n) = 3T(n/4) + n log n. Identify a = 3, b = 4, f(n) = n log n. Calculate n^(log_b a): approximately n^0.79. Since f(n) grows faster with n log n, apply Case 3. Thus, T(n) = Theta(n log n).",
+  "wordCount": 42,
+  "facultyMark": 9,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      35,
+      73
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      74,
+      118
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      119,
+      170
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      171,
+      199
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c5"
+   ],
+   "base": 8,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s09",
+  "order": 9,
+  "label": "Student 9",
+  "text": "In solving the recurrence T(n) = 3T(n/4) + n log n using the Master Theorem, it is crucial to identify parameters accurately. Initially, we consider a = 3 and b = 4, while the function f(n) is equal to n log n. Understanding the relationships between these values is key. We must then compute the critical exponent, which is calculated as n^(log_b a). This value approximates to n^0.79, important in deducing the growth rate comparison. However, it's imperative to recognize that this entire process relies on correct assumptions about log calculations. Imbalances in calculation may lead us astray. Ultimately, establishing the bound for T(n) often hinges on detailed, correct arithmetic and understanding of how f(n) fits within the context created by n^(log_b a). We conclude with the asymptotic approximation for T(n). Given complexities involving logarithmic terms, T(n) aligns with Theta(n log n). Each step poses its pitfalls, potentially leading to errors if not methodically approached, emphasizing careful reasoning throughout.",
+  "wordCount": 159,
+  "facultyMark": 9,
+  "normMark": 6,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      126,
+      210
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      272,
+      386
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not explicitly identify Case 3.",
+    "errorTag": "wrong-case-selected"
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      871,
+      903
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": "correct-but-unexplained"
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c5"
+   ],
+   "base": 6,
+   "style": "verbose"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s10",
+  "order": 10,
+  "label": "Student 10",
+  "text": "With T(n) = 3T(n/4) + n log n, identify: a = 3, b = 4, f(n) = n log n. Calculate n^(log_b a): n^(log_4 3) ≈ n^0.79. As n log n is faster, Case 3 applies. Check 3(n/4)log(n/4) ≤ (3/4)n log n. Therefore, T(n) = Theta(n log n).",
+  "wordCount": 48,
+  "facultyMark": 10,
+  "normMark": 10,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      31,
+      69
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      71,
+      114
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      116,
+      153
+     ]
+    ],
+    "note": "Correctly selects Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      154,
+      190
+     ]
+    ],
+    "note": "Verifies the regularity condition.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      191,
+      224
+     ]
+    ],
+    "note": "States the correct asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5"
+   ],
+   "base": 10,
+   "style": "concise"
+  },
+  "_modelTriage": "clear"
+ },
+ {
+  "id": "s11",
+  "order": 11,
+  "label": "Student 11",
+  "text": "To solve the recurrence relation T(n) = 3T(n/4) + n log n, we need to utilize the Master Theorem. First, let's identify the parameters involved in this recurrence. We have a = 3, b = 4, and f(n) = n log n. These parameters are crucial for determining which case of the Master Theorem applies, helping us find the asymptotic behavior of T(n). We know that n^(log_b a) is a critical exponent here. Computing that gives us n^(log_4 3), which is approximately n^0.79. Now, with the exponent computed, we must compare f(n), which is n log n, to this n^0.79 value. In this situation, it's clear that n log n grows asymptotically faster than n^0.79, leading us to apply Case 3 of the Master Theorem. Nonetheless, it's critical to utilize this theorem cautiously and correctly, checking our assumptions. Since we're definitely in Case 3 where f(n) is greater than the exponential part, the regularity condition needs verifying to ensure that 3f(n/4) is less than cf(n) for some constant c < 1. However, the most important thing to recall, given the setup and using Case 3, is that T(n) is going to be asymptotically bound by Theta(f(n)), which means in this case, T(n) is Theta(n log n). This provides us with the asymptotic bound we seek.",
+  "wordCount": 215,
+  "facultyMark": 10,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      164,
+      205
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      396,
+      463
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      559,
+      692
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [
+     [
+      796,
+      985
+     ]
+    ],
+    "note": "Mentions regularity condition but does not verify it.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      1073,
+      1179
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1"
+   ],
+   "base": 2,
+   "style": "verbose"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s12",
+  "order": 12,
+  "label": "Student 12",
+  "text": "To solve the recurrence relation T(n) = 3T(n/4) + n log n using the Master Theorem, we should start by identifying the parameters involved. The recurrence has a = 3, b = 4, and f(n) = n log n. The next step is to compute the critical exponent, which is n^(log_b a). We know that b here is 4, and a is 3, and thus this becomes n^(log_4 3), roughly n^0.79. Now, this is essential because we need to compare this critical exponent with f(n) to determine which case of the Master Theorem we need to apply. In this scenario, f(n) = n log n, which grows polynomially faster than n^0.79. Hence, Case 3 applies where f(n) dominates. By applying this theorem, we can state confidently that T(n) should be bound by Theta(f(n)). Thus T(n) = Theta(n log n), since in Case 3, when f(n) is greater, f(n) determines the bound. We have come to this conclusion by carefully following the steps and using the Master Theorem appropriately.",
+  "wordCount": 168,
+  "facultyMark": 9.5,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      140,
+      192
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      313,
+      354
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      520,
+      602
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      718,
+      744
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c5"
+   ],
+   "base": 8,
+   "style": "verbose"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s13",
+  "order": 13,
+  "label": "Student 13",
+  "text": "T(n) = 3T(n/4) + n log n. Here, a = 3, b = 4, f(n) = n log n. Calculate n^(log_4 3) = n^0.79 approx. Since n log n grows faster than n^0.79, apply Master Theorem Case 3. Then T(n) = Theta(n log n).",
+  "wordCount": 44,
+  "facultyMark": 8,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      32,
+      60
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      62,
+      100
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      101,
+      169
+     ]
+    ],
+    "note": "Correctly selects Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      175,
+      196
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c5"
+   ],
+   "base": 8,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s14",
+  "order": 14,
+  "label": "Student 14",
+  "text": "In addressing the recurrence T(n) = 3T(n/4) + n log n, we turn to the Master Theorem. To apply this theorem, which is a powerful tool for solving divide and conquer recurrences, we first look at identifying the exact parameters. We define a as 3, b as 4, and f(n) as n log n. This setup is crucial to proceeding correctly. We need to calculate n^(log_b a), and in this situation, it becomes n^(log_4 3), which is approximately equal to n^0.79. With the critical exponent calculated, it necessitates comparing it with f(n) in order to select the correct case of the Master Theorem. Observing f(n) = n log n in relation to n^0.79, we immediately see that n log n grows faster. Thus, Case 3 is applicable here, where f(n) dominates. According to this case, the asymptotic behavior of T(n) is ultimately driven by f(n), leading us to conclude T(n) = Theta(n log n). It’s always important to re-assure oneself that each condition fits precisely to avoid errors, and in this situation, through careful calculation and comparison, the selection of Case 3 gives the correct bound.",
+  "wordCount": 186,
+  "facultyMark": 10,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      178,
+      275
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      380,
+      443
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      581,
+      707
+     ]
+    ],
+    "note": "Correctly selects Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      816,
+      861
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c5"
+   ],
+   "base": 8,
+   "style": "verbose"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s15",
+  "order": 15,
+  "label": "Student 15",
+  "text": "To solve the recurrence T(n) = 3T(n/4) + n log n using the Master Theorem, we start by establishing the parameters required. Here, a takes the value 3, b is 4, and we have f(n) = n log n. The next step is to compute the critical exponent n^(log_b a), which simplifies in this case to n^(log_4 3). This calculation yields an approximate value of n^0.79. Now, the comparison of f(n) with n^0.79 is critical. With f(n) = n log n evidently growing faster than n^0.79, Case 3 of the Master Theorem applies. Case 3 comes into play when f(n) is larger, which means T(n) is determined by f(n), giving us T(n) = Theta(f(n)). Thus, we conclude T(n) = Theta(n log n). This conclusion is reached by meticulously checking each part of the theorem and ensuring the correct application, something crucial in the dependability of this conclusion.",
+  "wordCount": 147,
+  "facultyMark": 8.5,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      125,
+      187
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      238,
+      352
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      406,
+      501
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      616,
+      656
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c5"
+   ],
+   "base": 8,
+   "style": "verbose"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s16",
+  "order": 16,
+  "label": "Student 16",
+  "text": "In this problem, we are tasked with solving the recurrence T(n) = 3T(n/4) + n log n using the Master Theorem. This means that we need to identify the relevant parameters for the recurrence. We can see that a = 3, b = 4, and f(n) = n log n. These parameters are pivotal for applying the theorem correctly. We know from the Master Theorem that a critical exponent of the form n^(log_b a) is involved. Here, calculating this gives n^(log_4 3), approximately equal to n^0.79. The next step is to compare f(n) = n log n with n^0.79. It is clear that n log n grows polynomially faster than n^0.79. Therefore, per the Master Theorem, we apply Case 3, which happens when f(n) dominates the exponential part. This requires verification of the regularity condition: a·f(n/b) must be <= c·f(n) for some constant c < 1. We can verify that 3·(n/4) log(n/4) is less than or equal to (3/4)·n log n. With this confirmed, the asymptotic bound for T(n) is determined as Theta(f(n)), resulting in T(n) = Theta(n log n). This follows from having correctly identified and applied the conditions and cases presented by the theorem.",
+  "wordCount": 196,
+  "facultyMark": 10,
+  "normMark": 10,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      190,
+      239
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      399,
+      471
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      592,
+      699
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      808,
+      883
+     ]
+    ],
+    "note": "Correctly verifies the regularity condition.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      884,
+      1000
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5"
+   ],
+   "base": 10,
+   "style": "verbose"
+  },
+  "_modelTriage": "clear"
+ },
+ {
+  "id": "s17",
+  "order": 17,
+  "label": "Student 17",
+  "text": "T(n) = 3T(n/4) + n log n. We identify a=3, b=4, f(n)=n log n. Then n^(log_4 3)=n^0.79 approx. So, choose Case 3, as n log n > n^0.79. Thus T(n)=Theta(n log n).",
+  "wordCount": 32,
+  "facultyMark": 8.5,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      26,
+      61
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      62,
+      93
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      94,
+      133
+     ]
+    ],
+    "note": "Correctly selects Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      134,
+      159
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c5"
+   ],
+   "base": 6,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s18",
+  "order": 18,
+  "label": "Student 18",
+  "text": "To solve T(n) = 3T(n/4) + n log n with Master Theorem, try a = 2, b = 3, f(n) = log n. Compute n^(log_b a) as n^(log_3 2), roughly n^0.63. Since log n grows slower, maybe Case 2? Guess T(n) = Theta(n^2).",
+  "wordCount": 43,
+  "facultyMark": 0.5,
+  "normMark": 0,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [
+     [
+      55,
+      85
+     ]
+    ],
+    "note": "Parameters a, b, and f(n) are misidentified.",
+    "errorTag": "misidentified-parameters"
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [],
+   "base": 0,
+   "style": "concise"
+  },
+  "_modelTriage": "clear"
+ },
+ {
+  "id": "s19",
+  "order": 19,
+  "label": "Student 19",
+  "text": "T(n)=3T(n/4)+n log n. Identify a=3, b=4, f(n)=n log n. Compute n^(log_4 3)=n^0.79 approx. T(n)=Theta(n log n) since n log n grows faster.",
+  "wordCount": 22,
+  "facultyMark": 9,
+  "normMark": 7,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      22,
+      54
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      55,
+      89
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 1,
+    "max": 2,
+    "evidence": [
+     [
+      90,
+      137
+     ]
+    ],
+    "note": "Correct case identified but lacks explicit mention of Case 3.",
+    "errorTag": "incomplete-working"
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "No verification of the regularity condition is provided.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      90,
+      109
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "review",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c5"
+   ],
+   "base": 6,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s20",
+  "order": 20,
+  "label": "Student 20",
+  "text": "Given T(n) = 3T(n/4) + n log n, identify a=3, b=4, f(n)=n log n. Calculate n^(log_4 3)=n^0.79 approx. Apply Case 3, f(n) is faster, so T(n)=Theta(n log n).",
+  "wordCount": 28,
+  "facultyMark": 9,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      32,
+      63
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      65,
+      101
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      102,
+      130
+     ]
+    ],
+    "note": "Correctly selects Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      135,
+      154
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c5"
+   ],
+   "base": 8,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s21",
+  "order": 21,
+  "label": "Student 21",
+  "text": "Given T(n) = 3T(n/4) + n log n, we identify the parameters as a = 3, b = 4, and f(n) = n log n. Now, calculate the critical exponent: n^(log_b a) = n^(log_4 3), which is approximately n^0.79. We see that f(n) grows faster than n^(log_4 3), so according to the Master Theorem, this falls under Case 3.",
+  "wordCount": 59,
+  "facultyMark": 6.5,
+  "normMark": 6,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      32,
+      94
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      101,
+      190
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      204,
+      299
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not state the asymptotic bound for T(n).",
+    "errorTag": "incomplete-working"
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3"
+   ],
+   "base": 6,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s22",
+  "order": 22,
+  "label": "Student 22",
+  "text": "For the recurrence T(n) = 3T(n/4) + n log n, we have a = 3, b = 4, and f(n) = n log n. Calculating the critical exponent, we find n^(log_b a) = n^(log_4 3), which is roughly n^0.79. Since f(n) = n log n grows faster than n^(log_4 3), this is Case 3 in the Master Theorem.",
+  "wordCount": 58,
+  "facultyMark": 7,
+  "normMark": 6,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      45,
+      85
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      87,
+      181
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      182,
+      271
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not state the asymptotic bound.",
+    "errorTag": "no-justification"
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3"
+   ],
+   "base": 6,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s23",
+  "order": 23,
+  "label": "Student 23",
+  "text": "T(n) = 3T(n/4) + n log n. Here, a = 3, b = 4, and f(n) = n log n. The critical exponent n^(log_b a) = n^(log_4 3) ≈ n^0.79. Since n log n grows faster and satisfies regularity (3·(n/4)log(n/4) <= c·n log n for c < 1), this is Case 3. Therefore, T(n) = Θ(n log n).",
+  "wordCount": 58,
+  "facultyMark": 10,
+  "normMark": 10,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      32,
+      65
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      88,
+      123
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      124,
+      233
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      155,
+      216
+     ]
+    ],
+    "note": "Verifies the regularity condition correctly.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      234,
+      263
+     ]
+    ],
+    "note": "States the correct asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5"
+   ],
+   "base": 10,
+   "style": "concise"
+  },
+  "_modelTriage": "clear"
+ },
+ {
+  "id": "s24",
+  "order": 24,
+  "label": "Student 24",
+  "text": "We need to solve the recurrence T(n) = 3T(n/4) + n log n using the Master Theorem. First, let's identify the parameters: a = 3, b = 4, and f(n) = n log n. We calculate n^(log_b a). Here, it is n^(log_4 3), which approximates to around n^0.79. Observing this, we note that the function f(n) = n log n grows faster than n^0.79. This implies we should consider the appropriate case in the Master Theorem. Upon checking, this growth suggests using Case 3. Consequently, the asymptotic bound for T(n) is given by T(n) = Θ(n log n). So, in conclusion, the original problem fits within this framework, and through the Master Theorem, we have determined the asymptotic bound to be Θ(n log n). This should aptly solve the problem set by the recurrence relation.",
+  "wordCount": 135,
+  "facultyMark": 8.5,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      83,
+      154
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      155,
+      242
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      326,
+      451
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      452,
+      526
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c5"
+   ],
+   "base": 6,
+   "style": "verbose"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s25",
+  "order": 25,
+  "label": "Student 25",
+  "text": "For T(n) = 3T(n/4) + n log n, the parameters are a = 3, b = 4, and f(n) = n log n. This sets us up to apply the Master Theorem properly.",
+  "wordCount": 33,
+  "facultyMark": 2,
+  "normMark": 2,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      30,
+      81
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1"
+   ],
+   "base": 2,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s26",
+  "order": 26,
+  "label": "Student 26",
+  "text": "The given recurrence T(n) = 3T(n/4) + n log n has the parameters a = 3, b = 4, and f(n) = n log n. With these, we should move on to apply the Master Theorem for solution.",
+  "wordCount": 38,
+  "facultyMark": 1.5,
+  "normMark": 2,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      65,
+      97
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1"
+   ],
+   "base": 2,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s27",
+  "order": 27,
+  "label": "Student 27",
+  "text": "For T(n) = 3T(n/4) + n log n, a = 3, b = 4, f(n) = n log n, unmatched by n^(log_b a) ≈ n^0.79. Case 3 applies as n log n grows faster and regularity is confirmed (3·(n/4)log(n/4) <= c·n log n). Hence, T(n) = Θ(n log n).",
+  "wordCount": 49,
+  "facultyMark": 9,
+  "normMark": 9,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      30,
+      58
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      73,
+      93
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      95,
+      133
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 1,
+    "max": 2,
+    "evidence": [
+     [
+      138,
+      192
+     ]
+    ],
+    "note": "Mentions regularity but does not verify with specific c < 1.",
+    "errorTag": "incomplete-working"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      201,
+      218
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "review",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5"
+   ],
+   "base": 10,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s28",
+  "order": 28,
+  "label": "Student 28",
+  "text": "We are tasked to solve the recurrence T(n) = 3T(n/4) + n log n using the Master Theorem. Let's start by identifying the parameters: a = 3, b = 4, f(n) = n log n. The next step requires calculating the critical exponent, which is n^(log_b a) or n^(log_4 3), about n^0.79. Notice that f(n) = n log n increases more rapidly than n^0.79. This tells us we're dealing with Case 3, where f(n) outpaces n^(log_b a). With regularity verified, ensuring 3·(n/4)log(n/4) is sufficiently small relative to n log n, we conclude that T(n) = Θ(n log n). This completes our analysis, showing the expected growth rate of the recurrence function within these bounds.",
+  "wordCount": 114,
+  "facultyMark": 8.5,
+  "normMark": 9,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      89,
+      161
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      162,
+      270
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      271,
+      407
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 1,
+    "max": 2,
+    "evidence": [
+     [
+      408,
+      501
+     ]
+    ],
+    "note": "Mentions regularity but lacks detailed verification.",
+    "errorTag": "incomplete-working"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      502,
+      537
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "review",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5"
+   ],
+   "base": 10,
+   "style": "verbose"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s29",
+  "order": 29,
+  "label": "Student 29",
+  "text": "When solving a recurrence like T(n) = 3T(n/4) + n log n with the Master Theorem, we start by identifying the parameters: a = 3, b = 4, and f(n) = n log n. The next important step is calculating the exponent: n^(log_b a). In this context, it is computed as n^(log_4 3), which approximates to n^0.79. It is critical to assess the growth comparison. Here, n log n, our f(n), grows more quickly than n^0.79. Therefore, it becomes clear that we are addressing Case 3 under the given circumstances. With the understanding of these condition alignments in the theorem, it helps frame the nature of the solution, indicating that the function's growth rate is significantly dictated by this category.",
+  "wordCount": 120,
+  "facultyMark": 5.5,
+  "normMark": 6,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      81,
+      153
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      238,
+      297
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      353,
+      461
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not state the asymptotic bound.",
+    "errorTag": "no-justification"
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3"
+   ],
+   "base": 6,
+   "style": "verbose"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s30",
+  "order": 30,
+  "label": "Student 30",
+  "text": "To solve the recurrence relation T(n) = 3T(n/4) + n log n, the Master Theorem requires us to identify the parameters. Here, a is 3, b equals 4, and our function f(n) is n log n. The critical exponent becomes n^(log_b a), calculated as n^(log_4 3), yielding an approximate value of n^0.79. Assessing how f(n) compares, n log n certainly grows faster than n^0.79. This leads us naturally to Case 3, where the function dominates that critical term. Applying these determinations appropriately suggests an understanding that the solution behaves within that framework. The careful breakdown determines the nature of the asymptotic behavior in this construct.",
+  "wordCount": 105,
+  "facultyMark": 6,
+  "normMark": 6,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      118,
+      177
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      178,
+      288
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      289,
+      445
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not state the asymptotic bound.",
+    "errorTag": "incomplete-working"
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3"
+   ],
+   "base": 6,
+   "style": "verbose"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s31",
+  "order": 31,
+  "label": "Student 31",
+  "text": "To solve the recurrence T(n) = 3T(n/4) + n log n using the Master Theorem, we begin by identifying the parameters. Here, a equals 3, b equals 4, and f(n) is n log n. Next, we calculate the critical exponent n^(log_b a), which is n^(log_4 3). After computing, log_4 3 is approximately 0.79, so we have n^0.79. \n\nThe Master Theorem provides three cases to determine the asymptotic behavior of T(n). In our problem, f(n) = n log n, which grows polynomially faster than n^0.79 since n log n can be approximately seen as n^1 for large n. This means we apply Case 3 because f(n) grows faster than n^(log_b a). Therefore, we now verify the regularity condition, which states that we need a constant c < 1 such that a·f(n/b) <= c·f(n). Simplifying 3 * (n/4) * log(n/4), and ensuring it's less than some form of c * n log n, satisfies the condition. We thus conclude T(n) = Theta(n log n) due to Case 3 application and verification of the regularity condition.",
+  "wordCount": 173,
+  "facultyMark": 10,
+  "normMark": 10,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      115,
+      165
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      259,
+      308
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      533,
+      603
+     ]
+    ],
+    "note": "Correctly selects Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      728,
+      840
+     ]
+    ],
+    "note": "Verifies the regularity condition correctly.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      841,
+      951
+     ]
+    ],
+    "note": "States the correct asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5"
+   ],
+   "base": 10,
+   "style": "verbose"
+  },
+  "_modelTriage": "clear"
+ },
+ {
+  "id": "s32",
+  "order": 32,
+  "label": "Student 32",
+  "text": "To address the problem of solving the recurrence T(n) = 3T(n/4) + n log n using the Master Theorem, we first need to identify the parameters involved. Specifically, a is 3, b is 4, and the function f(n) is n log n. Once these are clear, we can proceed to compute the critical exponent, which involves finding n^(log_b a). This results in n^(log_4 3). The arithmetic gives us approximately n^0.79. With these values, it becomes clear we must pick the appropriate case from the Master Theorem's options. The criterion for Case 3 applies here since f(n) = n log n grows faster than n^0.79. Case 3 is the right choice as f(n), which includes a logarithmic factor, grows faster than n raised to a modest exponent. Therefore, I feel confident that Case 3 is the correct choice, due to how f(n) far surpasses n^0.79.",
+  "wordCount": 144,
+  "facultyMark": 5.5,
+  "normMark": 6,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      165,
+      213
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      322,
+      396
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      502,
+      586
+     ]
+    ],
+    "note": "Correctly selects Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not state the asymptotic bound.",
+    "errorTag": "incomplete-working"
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3"
+   ],
+   "base": 6,
+   "style": "verbose"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s33",
+  "order": 33,
+  "label": "Student 33",
+  "text": "For T(n) = 3T(n/4) + n log n, we identify: a = 3, b = 4, f(n) = n log n. Calculate n^(log_b a) = n^(log_4 3) ≈ n^0.79. With f(n) = n log n growing faster than n^0.79, apply Master Theorem Case 3. T(n) = Theta(n log n).",
+  "wordCount": 49,
+  "facultyMark": 7,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      43,
+      71
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      83,
+      117
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      124,
+      194
+     ]
+    ],
+    "note": "Correctly selects Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      196,
+      217
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c5"
+   ],
+   "base": 8,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s34",
+  "order": 34,
+  "label": "Student 34",
+  "text": "In solving the recurrence T(n) = 3T(n/4) + n log n with the Master Theorem, we are tasked with identifying key parameters. Here, a is 3, b is 4, and f(n) is n log n. Accurately determining the critical exponent, we compute n^(log_b a). This is found to be n^(log_4 3), roughly giving us n^0.79. Although this involves some intricate calculations, it is crucial we proceed step by step. Now, comparing f(n) = n log n with n^0.79, which is indeed quite slow as compared to n log n, we recognize that Case 3 should be considered. \n\nWhile I am aware of the importance of selecting the correct case, I confirm that Case 3 fits our scenario. So, invoking the Master Theorem's conclusive logic, we thus determine T(n) is asymptotically Theta(n log n).",
+  "wordCount": 133,
+  "facultyMark": 7.5,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      123,
+      165
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      212,
+      294
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      480,
+      526
+     ]
+    ],
+    "note": "Correctly selects Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Fails to verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      688,
+      744
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c5"
+   ],
+   "base": 6,
+   "style": "verbose"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s35",
+  "order": 35,
+  "label": "Student 35",
+  "text": "We are asked to solve T(n) = 3T(n/4) + n log n using the Master Theorem. Starting with the identification of parameters: a = 3, b = 4, and f(n) is clearly n log n. Next, we find the critical exponent n^(log_b a), which means calculating n^(log_4 3). This comes out to be n^0.79 approximately, after utilizing logarithms base change rules. \n\nNow, it's crucial to choose the correct case of the Master Theorem, and this requires noting how f(n) behaves compared to n^0.79. Since f(n) = n log n grows quicker than this i.e., n^0.79, I strongly believe that Case 3 is the suitable fit. Typically, Case 3 addresses scenarios where f(n) outpaces n raised to this specific critical exponent; hence it leads us to conclude the most appropriate case.",
+  "wordCount": 130,
+  "facultyMark": 6,
+  "normMark": 6,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      73,
+      163
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      164,
+      338
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      471,
+      581
+     ]
+    ],
+    "note": "Correctly selects Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not state the asymptotic bound.",
+    "errorTag": "incomplete-working"
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3"
+   ],
+   "base": 6,
+   "style": "verbose"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s36",
+  "order": 36,
+  "label": "Student 36",
+  "text": "To solve T(n) = 3T(n/4) + n log n using Master Theorem, identify parameters: a = 3, b = 4, and f(n) = n log n, which we will use for further steps.",
+  "wordCount": 33,
+  "facultyMark": 1,
+  "normMark": 2,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      56,
+      109
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1"
+   ],
+   "base": 2,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s37",
+  "order": 37,
+  "label": "Student 37",
+  "text": "For T(n) = 3T(n/4) + n log n, identify: a = 3, b = 4, f(n) = n log n. Calculate n^(log_b a) = n^(log_4 3) ≈ n^0.79. Since f(n) grows faster, T(n) = Theta(n log n).",
+  "wordCount": 37,
+  "facultyMark": 6,
+  "normMark": 7,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      40,
+      68
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      80,
+      114
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 1,
+    "max": 2,
+    "evidence": [
+     [
+      116,
+      140
+     ]
+    ],
+    "note": "Correctly identifies Case 3 but lacks explicit mention of polynomial growth.",
+    "errorTag": "incomplete-working"
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      141,
+      162
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "review",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c5"
+   ],
+   "base": 6,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s38",
+  "order": 38,
+  "label": "Student 38",
+  "text": "T(n) = 3T(n/4) + n log n. Identify: a=3, b=4, f(n)=n log n. Compute: n^(log_b a) = n^(log_4 3) ≈ n^0.79. Apply case 3 since f(n) outpaces. Verify regularity: 3(n/4)log(n/4) <= (3/4)n log n. Conclude: T(n) = Theta(n log n).",
+  "wordCount": 40,
+  "facultyMark": 9.5,
+  "normMark": 10,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      26,
+      59
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      60,
+      104
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      105,
+      138
+     ]
+    ],
+    "note": "Correctly selects Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      139,
+      189
+     ]
+    ],
+    "note": "Correctly verifies the regularity condition.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      190,
+      222
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5"
+   ],
+   "base": 10,
+   "style": "concise"
+  },
+  "_modelTriage": "clear"
+ },
+ {
+  "id": "s39",
+  "order": 39,
+  "label": "Student 39",
+  "text": "For T(n) = 3T(n/4) + n log n via Master Theorem, a = 3, b = 4, f(n) = n log n.",
+  "wordCount": 22,
+  "facultyMark": 2,
+  "normMark": 2,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      49,
+      77
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1"
+   ],
+   "base": 2,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s40",
+  "order": 40,
+  "label": "Student 40",
+  "text": "With T(n) = 3T(n/4) + n log n, identify a = 3, b = 4, f(n) = n log n. Compute: n^(log_b a) = n^(log_4 3) ≈ n^0.79. Since f(n) grows faster, apply Case 3. T(n) = Theta(n log n).",
+  "wordCount": 40,
+  "facultyMark": 7,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      31,
+      68
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      70,
+      113
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      115,
+      153
+     ]
+    ],
+    "note": "Correctly selects Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      154,
+      175
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c5"
+   ],
+   "base": 8,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s41",
+  "order": 41,
+  "label": "Student 41",
+  "text": "Let's say we have T(n) = 3T(n/4) + n log n. If a is wrong, then my whole approach could shift. I'm not sure if it applies to any case directly, but maybe it's Case 1 or something else. I'm not clear about conditions with it. I think the logarithms complicate it. I need to consider if n log n is just n^2. Wrapping it up is hazy without a definitive base case.",
+  "wordCount": 73,
+  "facultyMark": 0,
+  "normMark": 0,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "The student did not identify the parameters a, b, and f(n).",
+    "errorTag": "misidentified-parameters"
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "The student did not compute the critical exponent n^(log_b a).",
+    "errorTag": "incomplete-working"
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "The student did not select the correct case.",
+    "errorTag": "wrong-case-selected"
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "The student did not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "The student did not state the asymptotic bound.",
+    "errorTag": "no-justification"
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3"
+   ],
+   "base": 6,
+   "style": "verbose"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s42",
+  "order": 42,
+  "label": "Student 42",
+  "text": "For T(n) = 3T(n/4) + n log n, using the Master Theorem, a = 3, b = 4, and f(n) = n log n. Parameters set. That part's straightforward.",
+  "wordCount": 29,
+  "facultyMark": 1,
+  "normMark": 2,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      56,
+      88
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "",
+    "errorTag": null
+   }
+  ],
+  "triage": "unusual",
+  "_truth": {
+   "covers": [
+    "c1"
+   ],
+   "base": 2,
+   "style": "concise"
+  },
+  "_modelTriage": "unusual"
+ },
+ {
+  "id": "s43",
+  "order": 43,
+  "label": "Student 43",
+  "text": "To tackle the problem of solving the recurrence relation T(n) = 3T(n/4) + n log n using the Master Theorem, we start by identifying the necessary parameters for application. Here, our recurrence fits the form T(n) = aT(n/b) + f(n), where we identify a = 3, b = 4, and f(n) = n log n. With these parameters in hand, the next step is to compute the critical exponent, which involves n being raised to log base b of a. Thus, we calculate n^(log_4 3), which approximately equals n^0.79.\n\nWe then determine which case of the Master Theorem our problem falls into. Given that our f(n) = n log n outpaces n^0.79 in growth, we can confidently assert that Case 3 of the theorem is applicable, as f(n) grows faster than the critical exponent part. With everything considered, it doesn't even become necessary to verify the regularity condition, as f(n) far surpasses the polynomial growth of n^0.79. Consequently, we ascertain that the asymptotic bound for T(n) is T(n) = Theta(f(n)), leading to T(n) = Theta(n log n). This solution illustrates a clear, systematic approach to leveraging the Master Theorem in settling recurrence relations of this nature.",
+  "wordCount": 196,
+  "facultyMark": 9,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      232,
+      283
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      416,
+      482
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      559,
+      683
+     ]
+    ],
+    "note": "Correctly selects Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [
+     [
+      738,
+      834
+     ]
+    ],
+    "note": "Fails to verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      890,
+      1008
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c5"
+   ],
+   "base": 8,
+   "style": "verbose"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s44",
+  "order": 44,
+  "label": "Student 44",
+  "text": "In solving the recurrence T(n) = 3T(n/4) + n log n using the Master Theorem, it is crucial to identify parameters accurately. Initially, we consider a = 3 and b = 4, while the function f(n) is equal to n log n. Understanding the relationships between these values is key. We must then compute the critical exponent, which is calculated as n^(log_b a). This value approximates to n^0.79, important in deducing the growth rate comparison. However, it's imperative to recognize that this entire process relies on correct assumptions about log calculations. Imbalances in calculation may lead us astray. Ultimately, establishing the bound for T(n) often hinges on detailed, correct arithmetic and understanding of how f(n) fits within the context created by n^(log_b a). We conclude with the asymptotic approximation for T(n). Given complexities involving logarithmic terms, T(n) aligns with Theta(n log n). Each step poses its pitfalls, potentially leading to errors if not methodically approached, emphasizing careful reasoning throughout.",
+  "wordCount": 159,
+  "facultyMark": 6.5,
+  "normMark": 6,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      126,
+      210
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      272,
+      386
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not explicitly identify Case 3.",
+    "errorTag": "wrong-case-selected"
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      871,
+      903
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": "correct-but-unexplained"
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3"
+   ],
+   "base": 6,
+   "style": "verbose"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s45",
+  "order": 45,
+  "label": "Student 45",
+  "text": "To solve T(n) = 3T(n/4) + n log n using the Master Theorem, the first step is recognizing the parameters a, b, and f(n). Here, a is 3, b is 4, and f(n) = n log n. It's key to confirm our understanding of these before moving on. Next comes calculating the critical exponent: n to the power of log base b of a, which translates to n^(log_4 3). We compute this around the value of approximately 0.79 in terms of exponentiation.\n\nSelecting the correct case is pivotal. With f(n) = n log n outpacing n^0.79, Case 3 comes into play, as confirmed by the faster growth of f(n) relative to the exponential term. With confidence in our case selection, we can conclude with the asymptotic bounds. By the Master Theorem, T(n) = Theta(f(n)) then, setting T(n) = Theta(n log n). These identifications and computations firmly place our solution in compliance with the theorem's applications, unambiguously clarifying how fast T(n) grows across different scales of n.",
+  "wordCount": 166,
+  "facultyMark": 8.5,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      121,
+      162
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      274,
+      396
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      465,
+      525
+     ]
+    ],
+    "note": "Correctly selects Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      742,
+      763
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c5"
+   ],
+   "base": 8,
+   "style": "verbose"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s46",
+  "order": 46,
+  "label": "Student 46",
+  "text": "In tackling the recurrence T(n) = 3T(n/4) + n log n with the Master Theorem, we approach it by misidentifying parameters as the form T(n) fits is key. Instead of selecting correct variables, assume defaults a = 2, b = 2, and f(n) = n^2. Maybe that's where they fit, who knows. \n\nIt seems reasonable to aim for calculating whichever critical factor fits a seemingly accurate measure for the big O - say, try n raised to log base b of a. So n^(log_2 2), guessing approximately is 1 due to inaccurate base assessments. Assuming maybe this leads us to Case 1, because everything else should be close enough, never mind the variations f(n) introduces. It gets clearer thinking eventually, even though specifics aren't there today. Anyhow, based on all assumptions here, random regularity conditions feel checked wrongly and we say T(n) supposedly fitting some big O. Nonetheless, it's another approximation-driven conclusion that leads us nowhere perfectly right.",
+  "wordCount": 158,
+  "facultyMark": 1.5,
+  "normMark": 0,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [
+     [
+      191,
+      235
+     ]
+    ],
+    "note": "Parameters a, b, and f(n) are misidentified.",
+    "errorTag": "misidentified-parameters"
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [
+     [
+      439,
+      479
+     ]
+    ],
+    "note": "Critical exponent is incorrectly computed.",
+    "errorTag": "arithmetic-slip"
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [
+     [
+      516,
+      554
+     ]
+    ],
+    "note": "Incorrect case is selected.",
+    "errorTag": "wrong-case-selected"
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [
+     [
+      765,
+      814
+     ]
+    ],
+    "note": "Regularity condition is not verified.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [
+     [
+      822,
+      860
+     ]
+    ],
+    "note": "Asymptotic bound is not correctly stated.",
+    "errorTag": "no-justification"
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [],
+   "base": 0,
+   "style": "verbose"
+  },
+  "_modelTriage": "clear"
+ },
+ {
+  "id": "s47",
+  "order": 47,
+  "label": "Student 47",
+  "text": "In addressing the recurrence T(n) = 3T(n/4) + n log n, we turn to the Master Theorem. To apply this theorem, which is a powerful tool for solving divide and conquer recurrences, we first look at identifying the exact parameters. We define a as 3, b as 4, and f(n) as n log n. This setup is crucial to proceeding correctly. We need to calculate n^(log_b a), and in this situation, it becomes n^(log_4 3), which is approximately equal to n^0.79. With the critical exponent calculated, it necessitates comparing it with f(n) in order to select the correct case of the Master Theorem. Observing f(n) = n log n in relation to n^0.79, we immediately see that n log n grows faster. Thus, Case 3 is applicable here, where f(n) dominates. According to this case, the asymptotic behavior of T(n) is ultimately driven by f(n), leading us to conclude T(n) = Theta(n log n). It’s always important to re-assure oneself that each condition fits precisely to avoid errors, and in this situation, through careful calculation and comparison, the selection of Case 3 gives the correct bound.",
+  "wordCount": 186,
+  "facultyMark": 7.5,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      178,
+      275
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      380,
+      443
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      581,
+      707
+     ]
+    ],
+    "note": "Correctly selects Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      816,
+      861
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c5"
+   ],
+   "base": 6,
+   "style": "verbose"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s48",
+  "order": 48,
+  "label": "Student 48",
+  "text": "T(n) = 3T(n/4) + n log n. For Master Theorem, set a = 3, b = 4, f(n) = n log n. Calculate n^(log_4 3) ~ n^0.79. f(n) grows faster than n^0.79, making it Case 3. Thus, T(n) = Theta(n log n).",
+  "wordCount": 42,
+  "facultyMark": 7,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      46,
+      78
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      80,
+      110
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      112,
+      159
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      167,
+      188
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c5"
+   ],
+   "base": 8,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s49",
+  "order": 49,
+  "label": "Student 49",
+  "text": "For T(n) = 3T(n/4) + n log n, with Master Theorem: set a = 3, b = 4, f(n) = n log n. Compute critical exponent n^(log_4 3) as ~n^0.79. Since f(n) > n^0.79, Case 3. T(n) = Theta(n log n).",
+  "wordCount": 41,
+  "facultyMark": 7,
+  "normMark": 8,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      51,
+      83
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      85,
+      133
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      135,
+      163
+     ]
+    ],
+    "note": "Correctly identifies Case 3.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "Does not verify the regularity condition.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      164,
+      185
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c5"
+   ],
+   "base": 8,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ },
+ {
+  "id": "s50",
+  "order": 50,
+  "label": "Student 50",
+  "text": "T(n)=3T(n/4)+n log n. Identify a=3, b=4, f(n)=n log n. Compute n^(log_4 3)=n^0.79 approx. T(n)=Theta(n log n) since n log n grows faster.",
+  "wordCount": 22,
+  "facultyMark": 6.5,
+  "normMark": 7,
+  "awards": [
+   {
+    "criterionId": "c1",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      22,
+      54
+     ]
+    ],
+    "note": "Correctly identifies the parameters a, b, and f(n).",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c2",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      55,
+      89
+     ]
+    ],
+    "note": "Correctly computes the critical exponent.",
+    "errorTag": null
+   },
+   {
+    "criterionId": "c3",
+    "awarded": 1,
+    "max": 2,
+    "evidence": [
+     [
+      90,
+      137
+     ]
+    ],
+    "note": "Correct case identified but lacks explicit mention of Case 3.",
+    "errorTag": "incomplete-working"
+   },
+   {
+    "criterionId": "c4",
+    "awarded": 0,
+    "max": 2,
+    "evidence": [],
+    "note": "No verification of the regularity condition is provided.",
+    "errorTag": "missed-regularity-check"
+   },
+   {
+    "criterionId": "c5",
+    "awarded": 2,
+    "max": 2,
+    "evidence": [
+     [
+      90,
+      109
+     ]
+    ],
+    "note": "Correctly states the asymptotic bound.",
+    "errorTag": null
+   }
+  ],
+  "triage": "clear",
+  "_truth": {
+   "covers": [
+    "c1",
+    "c2",
+    "c3",
+    "c5"
+   ],
+   "base": 8,
+   "style": "concise"
+  },
+  "_modelTriage": "review"
+ }
+]

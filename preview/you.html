@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>You — NORM</title>
+<style>
+:root {
+  color-scheme: light;
+  --surface-0: #f4f4f1;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #78766f;
+  --rule: #e3e2dd;
+  --rule-strong: #c9c7bf;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --accent-soft: #eef4fc;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --surface-0: #111110;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #93918a;
+    --rule: #2c2c2a;
+    --rule-strong: #46453f;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --accent-soft: #16202c;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface-0: #111110;
+  --surface-1: #1a1a19;
+  --text-primary: #ffffff;
+  --text-secondary: #c3c2b7;
+  --text-muted: #93918a;
+  --rule: #2c2c2a;
+  --rule-strong: #46453f;
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --accent-soft: #16202c;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--surface-0);
+  color: var(--text-primary);
+  font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 900px; margin: 0 auto; padding: 32px 24px 64px; }
+
+header.page { margin-bottom: 24px; }
+.eyebrow { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 6px; }
+h1 { font-size: 30px; line-height: 1.15; margin: 0 0 6px; letter-spacing: -0.01em; }
+.sub { font-size: 16px; color: var(--text-secondary); margin: 0; }
+
+.chips { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0 26px; }
+.chip {
+  background: var(--surface-1); border: 1px solid var(--rule); border-radius: 10px;
+  padding: 10px 14px; min-width: 108px;
+}
+.chip b { display: block; font-size: 22px; line-height: 1.1; letter-spacing: -0.01em; }
+.chip span { font-size: 12.5px; color: var(--text-muted); }
+
+.card {
+  background: var(--surface-1); border: 1px solid var(--rule); border-radius: 14px;
+  padding: 22px 24px; margin-bottom: 18px;
+}
+.card.hero { border-color: var(--rule-strong); }
+.card h2 { font-size: 20px; line-height: 1.25; margin: 0 0 8px; letter-spacing: -0.01em; }
+.card p.detail { font-size: 15px; color: var(--text-secondary); margin: 0 0 14px; max-width: 68ch; }
+.kind {
+  display: inline-block; font-size: 11.5px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--text-muted); border: 1px solid var(--rule); border-radius: 999px;
+  padding: 2px 9px; margin-bottom: 10px;
+}
+
+.legend { display: flex; gap: 18px; align-items: center; margin: 4px 0 12px; font-size: 13px; color: var(--text-secondary); }
+.legend i { width: 11px; height: 11px; border-radius: 3px; display: inline-block; margin-right: 7px; vertical-align: -1px; }
+.legend .s1 { background: var(--series-1); }
+.legend .s2 { background: var(--series-2); }
+
+.scripts { font-size: 13px; color: var(--text-muted); margin-top: 12px; }
+.scripts code {
+  font: 12.5px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: var(--accent-soft); border-radius: 4px; padding: 1px 5px; margin-right: 3px;
+  color: var(--text-secondary);
+}
+
+ul.pairs { list-style: none; margin: 0; padding: 0; }
+ul.pairs li { border-top: 1px solid var(--rule); padding: 12px 0; font-size: 15px; }
+ul.pairs li:first-child { border-top: 0; padding-top: 4px; }
+ul.pairs .why { font-size: 13.5px; color: var(--text-muted); margin-top: 3px; }
+
+details { margin-top: 14px; }
+details summary { cursor: pointer; font-size: 13.5px; color: var(--text-secondary); }
+table { border-collapse: collapse; width: 100%; margin-top: 12px; font-size: 13px; }
+th, td { text-align: right; padding: 5px 8px; border-bottom: 1px solid var(--rule); }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--text-muted); font-weight: 600; }
+
+.empty { text-align: center; padding: 46px 20px; }
+.empty h2 { font-size: 21px; margin: 0 0 8px; }
+.empty p { color: var(--text-secondary); margin: 0 auto; max-width: 52ch; font-size: 15px; }
+
+footer.note { margin-top: 28px; font-size: 13px; color: var(--text-muted); border-top: 1px solid var(--rule); padding-top: 14px; }
+
+
+.dc { width: 100%; height: auto; display: block; overflow: visible; }
+.dc-grid { stroke: var(--rule); stroke-width: 1; }
+.dc-zero { stroke: var(--rule-strong); stroke-width: 1.5; }
+.dc-cut { stroke: var(--rule-strong); stroke-width: 1.5; stroke-dasharray: 3 4; }
+.dc-cut-label { fill: var(--text-muted); font-size: 12px; }
+.dc-tick { fill: var(--text-muted); font-size: 12px; }
+.dc-tick-y { text-anchor: end; }
+.dc-tick-x { text-anchor: middle; }
+.dc-axis-title { fill: var(--text-muted); font-size: 12px; text-anchor: middle; }
+.dc-dot { stroke: var(--surface-1); stroke-width: 2; }
+.dc-dot.dc-early { fill: var(--series-1); }
+.dc-dot.dc-late  { fill: var(--series-2); }
+.dc-mean { stroke-width: 2.5; stroke-linecap: round; }
+.dc-mean.dc-early { stroke: var(--series-1); }
+.dc-mean.dc-late  { stroke: var(--series-2); }
+.dc-mean-label { font-size: 13px; font-weight: 600; fill: var(--text-secondary); }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="page">
+    <p class="eyebrow">NORM · You</p>
+    <h1>What happened while you were marking</h1>
+    <p class="sub">50 scripts, one question. NORM re-marked every script against the guide you approved, then looked at how your own marks moved.</p>
+  </header>
+
+  <div class="chips">
+    <div class="chip"><b>50</b><span>scripts marked</span></div>
+    <div class="chip"><b>3</b><span>patterns found</span></div>
+    <div class="chip"><b>4</b><span>pairs to review</span></div>
+    <div class="chip"><b>5</b><span>shared mistakes</span></div>
+  </div>
+
+  
+  <section class="card hero">
+    <span class="kind">Marking drift</span>
+    <h2>Your marking may have shifted after script 26</h2>
+    <p class="detail">Scripts 1–25 were marked 1.1 marks more generously than scripts 26–50, at the same rubric coverage. This is a pattern worth reviewing, not a verdict — but the later scripts were held to a different standard than the earlier ones.</p>
+    <div class="legend">
+             <span><i class="s1"></i>earlier scripts</span>
+             <span><i class="s2"></i>later scripts</span>
+             <span style="color:var(--text-muted)">each dot is one script</span>
+           </div>
+           <svg viewBox="0 0 720 260" class="dc" role="img" aria-label="Each script's mark compared with the fixed standard, in the order they were marked. The earlier scripts average +0.8 and the later scripts average -0.3."><line x1="54" y1="220.0" x2="628" y2="220.0" class="dc-grid"/><text x="44" y="224.0" class="dc-tick dc-tick-y">-1.4</text><line x1="54" y1="169.5" x2="628" y2="169.5" class="dc-grid"/><text x="44" y="173.5" class="dc-tick dc-tick-y">-0.2</text><line x1="54" y1="119.0" x2="628" y2="119.0" class="dc-grid"/><text x="44" y="123.0" class="dc-tick dc-tick-y">+1.0</text><line x1="54" y1="68.5" x2="628" y2="68.5" class="dc-grid"/><text x="44" y="72.5" class="dc-tick dc-tick-y">+2.2</text><line x1="54" y1="18.0" x2="628" y2="18.0" class="dc-grid"/><text x="44" y="22.0" class="dc-tick dc-tick-y">+3.4</text><line x1="54" y1="161.1" x2="628" y2="161.1" class="dc-zero"/><text x="54.0" y="240" class="dc-tick dc-tick-x">1</text><text x="346.9" y="240" class="dc-tick dc-tick-x">26</text><text x="628.0" y="240" class="dc-tick dc-tick-x">50</text><line x1="341.0" y1="18" x2="341.0" y2="220" class="dc-cut"/><text x="347.0" y="29" class="dc-cut-label">script 26</text><line x1="54.0" y1="127.4" x2="335.1" y2="127.4" class="dc-mean dc-early"/><text x="638.0" y="131.4" class="dc-mean-label dc-early">+0.8 avg</text><line x1="346.9" y1="173.7" x2="628.0" y2="173.7" class="dc-mean dc-late"/><text x="638.0" y="177.7" class="dc-mean-label dc-late">-0.3 avg</text><circle cx="54.0" cy="140.0" r="5" class="dc-dot dc-early"><title>Script 1 (earlier) — +0.5 marks vs the fixed standard</title></circle><circle cx="65.7" cy="161.1" r="5" class="dc-dot dc-early"><title>Script 2 (earlier) — +0.0 marks vs the fixed standard</title></circle><circle cx="77.4" cy="161.1" r="5" class="dc-dot dc-early"><title>Script 3 (earlier) — +0.0 marks vs the fixed standard</title></circle><circle cx="89.1" cy="140.0" r="5" class="dc-dot dc-early"><title>Script 4 (earlier) — +0.5 marks vs the fixed standard</title></circle><circle cx="100.9" cy="55.9" r="5" class="dc-dot dc-early"><title>Script 5 (earlier) — +2.5 marks vs the fixed standard</title></circle><circle cx="112.6" cy="161.1" r="5" class="dc-dot dc-early"><title>Script 6 (earlier) — +0.0 marks vs the fixed standard</title></circle><circle cx="124.3" cy="140.0" r="5" class="dc-dot dc-early"><title>Script 7 (earlier) — +0.5 marks vs the fixed standard</title></circle><circle cx="136.0" cy="119.0" r="5" class="dc-dot dc-early"><title>Script 8 (earlier) — +1.0 marks vs the fixed standard</title></circle><circle cx="147.7" cy="34.8" r="5" class="dc-dot dc-early"><title>Script 9 (earlier) — +3.0 marks vs the fixed standard</title></circle><circle cx="159.4" cy="161.1" r="5" class="dc-dot dc-early"><title>Script 10 (earlier) — +0.0 marks vs the fixed standard</title></circle><circle cx="171.1" cy="76.9" r="5" class="dc-dot dc-early"><title>Script 11 (earlier) — +2.0 marks vs the fixed standard</title></circle><circle cx="182.9" cy="98.0" r="5" class="dc-dot dc-early"><title>Script 12 (earlier) — +1.5 marks vs the fixed standard</title></circle><circle cx="194.6" cy="161.1" r="5" class="dc-dot dc-early"><title>Script 13 (earlier) — +0.0 marks vs the fixed standard</title></circle><circle cx="206.3" cy="76.9" r="5" class="dc-dot dc-early"><title>Script 14 (earlier) — +2.0 marks vs the fixed standard</title></circle><circle cx="218.0" cy="140.0" r="5" class="dc-dot dc-early"><title>Script 15 (earlier) — +0.5 marks vs the fixed standard</title></circle><circle cx="229.7" cy="161.1" r="5" class="dc-dot dc-early"><title>Script 16 (earlier) — +0.0 marks vs the fixed standard</title></circle><circle cx="241.4" cy="140.0" r="5" class="dc-dot dc-early"><title>Script 17 (earlier) — +0.5 marks vs the fixed standard</title></circle><circle cx="253.1" cy="140.0" r="5" class="dc-dot dc-early"><title>Script 18 (earlier) — +0.5 marks vs the fixed standard</title></circle><circle cx="264.9" cy="76.9" r="5" class="dc-dot dc-early"><title>Script 19 (earlier) — +2.0 marks vs the fixed standard</title></circle><circle cx="276.6" cy="119.0" r="5" class="dc-dot dc-early"><title>Script 20 (earlier) — +1.0 marks vs the fixed standard</title></circle><circle cx="288.3" cy="140.0" r="5" class="dc-dot dc-early"><title>Script 21 (earlier) — +0.5 marks vs the fixed standard</title></circle><circle cx="300.0" cy="119.0" r="5" class="dc-dot dc-early"><title>Script 22 (earlier) — +1.0 marks vs the fixed standard</title></circle><circle cx="311.7" cy="161.1" r="5" class="dc-dot dc-early"><title>Script 23 (earlier) — +0.0 marks vs the fixed standard</title></circle><circle cx="323.4" cy="140.0" r="5" class="dc-dot dc-early"><title>Script 24 (earlier) — +0.5 marks vs the fixed standard</title></circle><circle cx="335.1" cy="161.1" r="5" class="dc-dot dc-early"><title>Script 25 (earlier) — +0.0 marks vs the fixed standard</title></circle><circle cx="346.9" cy="182.1" r="5" class="dc-dot dc-late"><title>Script 26 (later) — -0.5 marks vs the fixed standard</title></circle><circle cx="358.6" cy="161.1" r="5" class="dc-dot dc-late"><title>Script 27 (later) — +0.0 marks vs the fixed standard</title></circle><circle cx="370.3" cy="182.1" r="5" class="dc-dot dc-late"><title>Script 28 (later) — -0.5 marks vs the fixed standard</title></circle><circle cx="382.0" cy="182.1" r="5" class="dc-dot dc-late"><title>Script 29 (later) — -0.5 marks vs the fixed standard</title></circle><circle cx="393.7" cy="161.1" r="5" class="dc-dot dc-late"><title>Script 30 (later) — +0.0 marks vs the fixed standard</title></circle><circle cx="405.4" cy="161.1" r="5" class="dc-dot dc-late"><title>Script 31 (later) — +0.0 marks vs the fixed standard</title></circle><circle cx="417.1" cy="182.1" r="5" class="dc-dot dc-late"><title>Script 32 (later) — -0.5 marks vs the fixed standard</title></circle><circle cx="428.9" cy="203.2" r="5" class="dc-dot dc-late"><title>Script 33 (later) — -1.0 marks vs the fixed standard</title></circle><circle cx="440.6" cy="182.1" r="5" class="dc-dot dc-late"><title>Script 34 (later) — -0.5 marks vs the fixed standard</title></circle><circle cx="452.3" cy="161.1" r="5" class="dc-dot dc-late"><title>Script 35 (later) — +0.0 marks vs the fixed standard</title></circle><circle cx="464.0" cy="203.2" r="5" class="dc-dot dc-late"><title>Script 36 (later) — -1.0 marks vs the fixed standard</title></circle><circle cx="475.7" cy="203.2" r="5" class="dc-dot dc-late"><title>Script 37 (later) — -1.0 marks vs the fixed standard</title></circle><circle cx="487.4" cy="182.1" r="5" class="dc-dot dc-late"><title>Script 38 (later) — -0.5 marks vs the fixed standard</title></circle><circle cx="499.1" cy="161.1" r="5" class="dc-dot dc-late"><title>Script 39 (later) — +0.0 marks vs the fixed standard</title></circle><circle cx="510.9" cy="203.2" r="5" class="dc-dot dc-late"><title>Script 40 (later) — -1.0 marks vs the fixed standard</title></circle><circle cx="522.6" cy="161.1" r="5" class="dc-dot dc-late"><title>Script 41 (later) — +0.0 marks vs the fixed standard</title></circle><circle cx="534.3" cy="203.2" r="5" class="dc-dot dc-late"><title>Script 42 (later) — -1.0 marks vs the fixed standard</title></circle><circle cx="546.0" cy="119.0" r="5" class="dc-dot dc-late"><title>Script 43 (later) — +1.0 marks vs the fixed standard</title></circle><circle cx="557.7" cy="140.0" r="5" class="dc-dot dc-late"><title>Script 44 (later) — +0.5 marks vs the fixed standard</title></circle><circle cx="569.4" cy="140.0" r="5" class="dc-dot dc-late"><title>Script 45 (later) — +0.5 marks vs the fixed standard</title></circle><circle cx="581.1" cy="98.0" r="5" class="dc-dot dc-late"><title>Script 46 (later) — +1.5 marks vs the fixed standard</title></circle><circle cx="592.9" cy="182.1" r="5" class="dc-dot dc-late"><title>Script 47 (later) — -0.5 marks vs the fixed standard</title></circle><circle cx="604.6" cy="203.2" r="5" class="dc-dot dc-late"><title>Script 48 (later) — -1.0 marks vs the fixed standard</title></circle><circle cx="616.3" cy="203.2" r="5" class="dc-dot dc-late"><title>Script 49 (later) — -1.0 marks vs the fixed standard</title></circle><circle cx="628.0" cy="182.1" r="5" class="dc-dot dc-late"><title>Script 50 (later) — -0.5 marks vs the fixed standard</title></circle><text x="341.0" y="254" class="dc-axis-title">order the scripts were marked in</text><text transform="translate(14,119.0) rotate(-90)" class="dc-axis-title">marks vs standard</text></svg>
+           <details>
+             <summary>Show the numbers as a table</summary>
+             <table>
+               <thead><tr><th>Period</th><th>Scripts</th><th>Average vs standard</th></tr></thead>
+               <tbody>
+                 <tr><td>Earlier</td><td>25</td><td>+0.80</td></tr>
+                 <tr><td>Later</td><td>25</td><td>-0.30</td></tr>
+               </tbody>
+             </table>
+           </details>
+  </section>
+
+  <section class="card">
+    <span class="kind">Answer length</span>
+    <h2>Longer answers scored higher at the same rubric coverage</h2>
+    <p class="detail">Answers over 150 words scored about 1.0 marks higher than shorter answers that earned the same marking-guide credit (12 long, 38 short). Length and correctness are not the same thing here, so this may be worth a look — a longer answer can read as more complete without containing more correct reasoning.</p>
+    <div class="scripts">Based on 12 long answers: <code>s04</code><code>s09</code><code>s11</code><code>s12</code><code>s14</code><code>s16</code><code>s31</code><code>s43</code><code>s44</code><code>s45</code> +2 more</div>
+  </section>
+
+  <section class="card">
+    <span class="kind">Similar answers</span>
+    <h2>4 pairs of similar answers were marked differently</h2>
+    <p class="detail">These answers cover the same ground but received different marks. Worth opening side by side — one may contain something the other does not.</p>
+    <ul class="pairs">
+      <li>Student 5 and Student 41 gave similar answers but were marked 2.5 marks apart
+            <div class="why">These two answers cover the same points in nearly the same way (100% similar), but received 2.5 and 0. Worth comparing side by side — one may contain something the other does not.</div>
+            <div class="scripts"><code>s05</code><code>s41</code></div>
+          </li><li>Student 9 and Student 44 gave similar answers but were marked 2.5 marks apart
+            <div class="why">These two answers cover the same points in nearly the same way (100% similar), but received 9 and 6.5. Worth comparing side by side — one may contain something the other does not.</div>
+            <div class="scripts"><code>s09</code><code>s44</code></div>
+          </li><li>Student 14 and Student 47 gave similar answers but were marked 2.5 marks apart
+            <div class="why">These two answers cover the same points in nearly the same way (100% similar), but received 10 and 7.5. Worth comparing side by side — one may contain something the other does not.</div>
+            <div class="scripts"><code>s14</code><code>s47</code></div>
+          </li><li>Student 19 and Student 50 gave similar answers but were marked 2.5 marks apart
+            <div class="why">These two answers cover the same points in nearly the same way (100% similar), but received 9 and 6.5. Worth comparing side by side — one may contain something the other does not.</div>
+            <div class="scripts"><code>s19</code><code>s50</code></div>
+          </li>
+    </ul>
+  </section>
+
+  <footer class="note">
+    NORM's marks are not claimed to be correct — only consistent. Everything above measures your
+    marking against one fixed standard, so a shift means the standard you applied moved, not that
+    any single mark was wrong. Preview built from <code>fixtures/demo-control.json</code>.
+  </footer>
+</div>
+</body>
+</html>
