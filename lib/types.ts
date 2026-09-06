@@ -66,7 +66,7 @@ export interface Finding {
   detail: string;     // must contain the real numbers
   /** How hard the UI is allowed to lean on it. Nothing reaches the screen at
    *  all unless its detector called it significant. */
-  strength: 'weak' | 'clear';
+  strength?: 'weak' | 'clear';
   scriptIds: string[];
   series?: { x: number; y: number }[];
 }

@@ -14,6 +14,9 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
+    // Dev 2's tools/ scripts import with explicit .ts extensions; their tsconfig
+    // was dropped in the rebase, so the flag lives here instead.
+    "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
