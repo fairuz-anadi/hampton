@@ -484,3 +484,25 @@ tr[data-selected='true'] td { background: var(--accent-wash); }
   h2 { font-size: 26px; }
 }
 }
+
+/* ── Landing typography ──────────────────────────────────────────────────────
+   Scoped to the marketing page on purpose. The app's own h1/h2 (Your marking,
+   What the class struggled with, …) sit inside dense data screens and are sized
+   for reading; pushing 120px globally would break all nine of them. */
+
+.hero-h1 {
+  font-size: clamp(52px, 9vw, 120px);
+  line-height: 128px;
+  letter-spacing: -0.045em;
+}
+
+.landing-h2 {
+  font-size: clamp(40px, 7vw, 96px);
+  line-height: 104px;
+  letter-spacing: -0.035em;
+}
+
+@media (max-width: 900px) {
+  .hero-h1 { line-height: 1.05; }
+  .landing-h2 { line-height: 1.08; }
+}

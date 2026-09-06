@@ -6,6 +6,7 @@ import { ArrowDown, Check, Minus } from 'lucide-react';
 import KineticGrid from '@/components/ui/kinetic-grid';
 import { FlowButton } from '@/components/ui/flow-button';
 import DriftChart from '@/components/DriftChart';
+import HeroAsk from '@/components/HeroAsk';
 
 interface Props {
   totalMarks: number;
@@ -88,7 +89,9 @@ export default function Landing({
 
       {/* ─────────────────────────────────────────────────── 01 · hero */}
       <section className="mx-auto max-w-[1240px] px-6 pb-28 pt-10 md:px-10 md:pt-16">
-        <h1 className="display rise text-[clamp(52px,10.5vw,152px)]">
+        {/* hero-h1 caps at 120/128 on desktop and scales down on narrow screens, so the
+            three lines never break mid-phrase. */}
+        <h1 className="display rise hero-h1 text-center">
           {words.map((w, i) => (
             <span key={w} style={{ animationDelay: `${i * 0.08}s` }}>
               {w}&nbsp;
@@ -105,6 +108,10 @@ export default function Landing({
             Better teaching.
           </span>
         </h1>
+
+        <div className="fade-up" style={{ animationDelay: '0.5s' }}>
+          <HeroAsk />
+        </div>
 
         <div className="mt-14 grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] md:items-end">
           <div className="fade-up" style={{ animationDelay: '0.45s' }}>
@@ -194,7 +201,7 @@ export default function Landing({
           </Reveal>
 
           <Reveal delay={0.05}>
-            <h2 className="display mt-8 max-w-[16ch] text-[clamp(38px,6.6vw,92px)]">
+            <h2 className="display landing-h2 mt-8 max-w-[16ch]">
               A grade tells you what happened. It doesn&rsquo;t tell you why.
             </h2>
           </Reveal>
@@ -246,7 +253,7 @@ export default function Landing({
           </Reveal>
 
           <Reveal delay={0.05}>
-            <h2 className="display mt-8 text-[clamp(38px,6.6vw,92px)]">
+            <h2 className="display landing-h2 mt-8">
               Grade once.
               <br />
               Learn more from it.
@@ -314,7 +321,7 @@ export default function Landing({
           </Reveal>
 
           <Reveal delay={0.05}>
-            <h2 className="display mt-8 max-w-[18ch] text-[clamp(38px,6.6vw,92px)]">
+            <h2 className="display landing-h2 mt-8 max-w-[18ch]">
               Markable finds things you can&rsquo;t see while grading.
             </h2>
           </Reveal>

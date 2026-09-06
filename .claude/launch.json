@@ -1,11 +1,6 @@
 {
   "version": "0.0.1",
   "configurations": [
-    {
-      "name": "markable-dev",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 3100
-    }
+    { "name": "markable", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev"], "port": 3100 }
   ]
 }

@@ -31,7 +31,9 @@ export function FlowButton({
         'group relative flex items-center gap-1 overflow-hidden rounded-[100px] border-[1.5px] bg-transparent px-8 py-3',
         'text-sm font-semibold cursor-pointer transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)]',
         'hover:!border-transparent hover:rounded-[12px] active:scale-[0.95]',
-        variant === 'dark' ? 'hover:text-white' : 'hover:text-[#111111]',
+        // `!` is required: the base colour is set as an inline style above, and an inline
+        // style beats a plain class — so without it the label never changes on hover.
+        variant === 'dark' ? 'hover:!text-white' : 'hover:!text-[#111111]',
         className,
       )}
     >
