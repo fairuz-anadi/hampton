@@ -173,7 +173,7 @@ export const SidebarLink = ({
     <Link
       href={link.href}
       className={cn(
-        "flex items-center justify-start gap-3.5 group/sidebar rounded-full px-4 py-2.5 transition-colors duration-200",
+        "flex items-center justify-start gap-3.5 group/sidebar rounded-full px-4 py-2 transition-colors duration-200",
         active ? "bg-lilac text-ink font-medium" : "hover:bg-paper text-ink-soft",
         className
       )}

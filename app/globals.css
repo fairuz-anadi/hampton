@@ -523,3 +523,21 @@ tr[data-selected='true'] td { background: var(--accent-wash); }
   background-size: 28px 28px;
   background-position: -1px -1px;
 }
+
+/* ── Sidebar on short screens ────────────────────────────────────────────────
+   With a 22px type floor the rail needs ~660px of height. A 1440x720 laptop
+   leaves 664px, and a 800px-tall one is tighter still once browser chrome is
+   counted. The group headings (MARK / FIND OUT / ACT) are taxonomy, not
+   navigation — you recognise the grouping from the gaps alone — so they are the
+   first thing to go rather than shrinking the labels below the floor. */
+
+@media (max-height: 880px) {
+  .nav-group-title { display: none; }
+}
+
+/* If it ever does scroll, it should not do it with a stock scrollbar sitting
+   on top of the nav. */
+.sidebar-scroll { scrollbar-width: thin; scrollbar-color: var(--rule-strong) transparent; }
+.sidebar-scroll::-webkit-scrollbar { width: 4px; }
+.sidebar-scroll::-webkit-scrollbar-track { background: transparent; }
+.sidebar-scroll::-webkit-scrollbar-thumb { background: var(--rule-strong); border-radius: 4px; }
